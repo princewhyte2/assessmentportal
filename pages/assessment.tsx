@@ -2,7 +2,7 @@ import react from "react"
 
 const Assessment = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen h-full text-white bg-blue-400">
+    <div className="flex w-screen items-center justify-center min-h-screen h-full text-white bg-blue-400">
       <div>
         <h1 className="text-xl font-bold text-center ">Assessment Checks</h1>
         <form className="p-4 text-black bg-white">

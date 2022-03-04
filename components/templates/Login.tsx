@@ -19,7 +19,7 @@ const Login = ({ csrfToken }: any) => {
     console.log("response is", res)
   }
   return (
-    <div className="h-screen flex justify-center text-center items-center bg-blue-400 text-white">
+    <div className="h-screen w-screen flex justify-center text-center items-center bg-blue-400 text-white">
       <div className="">
         <h1 className=" font-bold text-xl">Welcome To Assessment Portal</h1>
 

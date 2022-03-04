@@ -12,7 +12,7 @@ const Department = () => {
     "Project Delivery Manager - Level 3",
   ]
   return (
-    <div className="h-screen flex justify-center  items-center bg-blue-400 text-white">
+    <div className="h-screen w-screen flex justify-center  items-center bg-blue-400 text-white">
       <div>
         <h1 className=" font-bold text-xl">Chose your Department and Project Level</h1>
         <form className="bg-white text-black p-4">
