@@ -30,7 +30,72 @@ const Project = () => {
             </Tab>
           </Tab.List>
           <Tab.Panels>
-            <Tab.Panel>Content 1</Tab.Panel>
+            <Tab.Panel>
+              <div className="w-full border">
+                <div className="px-3 py-2 border-b bg-gray-100">Fill Your General Employee Details</div>
+                <div className="p-4">
+                  <div>
+                    <label>Enter Email Address</label>
+                    <input type="text" className="w-full outline-none rounded-md p-3 my-2 border" />
+                  </div>
+                  <div>
+                    <label>Enter Full Name</label>
+                    <input type="text" className="w-full outline-none rounded-md p-3 my-2 border" />
+                  </div>
+                  <div>
+                    <label>Ref. Indicator</label>
+                    <input type="text" className="w-full outline-none rounded-md p-3 my-2 border" />
+                  </div>
+                  <div>
+                    <label>Job Title/Role</label>
+                    <input type="text" className="w-full outline-none rounded-md p-3 my-2 border" />
+                  </div>
+                  <div>
+                    <label>Department</label>
+                    <div className="w-full rounded-md p-3 my-2 border">
+                      <select className="w-full ">
+                        <option>TP</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label>Years of Experience in Project Delivery</label>
+                    <div className="w-full rounded-md p-3 my-2 border">
+                      <select className="w-full ">
+                        <option>0</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label>Relevant Training(s) attended with dates</label>
+                    <textarea className="w-full outline-none rounded-md p-3 my-2 border h-16" />
+                  </div>
+                  <div>
+                    <label>Upload you CV and Assessment Evidence </label>
+                    <input type="file" className="w-full outline-none rounded-md p-3 my-2 border" />
+                  </div>
+                  <div>
+                    <label>Primary Skillpool </label>
+                    <input type="text" className="w-full outline-none rounded-md p-3 my-2 border" />
+                  </div>
+                  <div>
+                    <label>Secondary Skillpool</label>
+                    <input type="text" className="w-full outline-none rounded-md p-3 my-2 border" />
+                  </div>
+                  <div>
+                    <label>Last Approved Project Level </label>
+                    <input type="text" className="w-full outline-none rounded-md p-3 my-2 border" />
+                  </div>
+                  <div>
+                    <label>Supervisor </label>
+                    <input type="text" className="w-full outline-none rounded-md p-3 my-2 border" />
+                  </div>
+                  <div className="flex justify-center space-x-2 py-8">
+                    <button className="rounded border p-3 text-white bg-blue-400">Next</button>
+                  </div>
+                </div>
+              </div>
+            </Tab.Panel>
             <Tab.Panel>
               <div className="w-full border">
                 <div className="px-3 py-2 border-b bg-gray-100">Fill Your Education Details</div>
