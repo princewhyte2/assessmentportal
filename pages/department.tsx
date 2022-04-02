@@ -1,8 +1,14 @@
 import react, { useState } from "react"
+import { getSession } from "next-auth/react"
+import axios from "axios"
+import { useRouter } from "next/router"
 
 const Department = () => {
   const [department, setDepartment] = useState("TPTF")
   const [projectLevel, setProjectLevel] = useState("Select Project level")
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
+
   const optionA = ["Frontend Practitioner - Level 1", "Frontend Development - Level 2", "Frontend Practioner - Level 3"]
   const optionB = [
     "Project Practitioner (Project services) - Level 1",
@@ -11,11 +17,35 @@ const Department = () => {
     "Project Services - Level 2",
     "Project Delivery Manager - Level 3",
   ]
+
+  const handleSubmitDepartment = async (e: any) => {
+    e.preventDefault()
+    if (department === "TPTF" || projectLevel === "Select Project level") {
+      return
+    }
+    setIsLoading(true)
+    try {
+      const info = {
+        department,
+        projectLevel,
+      }
+      const { data } = await axios.post("/api/setdepartment", info)
+      console.log("post result", data)
+      setIsLoading(false)
+      if (data.id) {
+        router.push("/assessment")
+      }
+    } catch (error) {
+      console.log(error)
+      setIsLoading(false)
+    }
+  }
+
   return (
     <div className="h-screen w-screen flex justify-center  items-center bg-blue-400 text-white">
       <div>
         <h1 className=" font-bold text-xl">Chose your Department and Project Level</h1>
-        <form className="bg-white text-black p-4">
+        <form onSubmit={handleSubmitDepartment} className="bg-white text-black p-4">
           <div className="py-4 border-b border-gray-400">
             <h2>Select your department</h2>
             <div>
@@ -72,12 +102,46 @@ const Department = () => {
             <p>S - Skill</p>
           </div>
           <div className="flex justify-center mt-6">
-            <button className=" bg-blue-600 px-4 py-2 text-white">Start</button>
+            <button disabled={isLoading} type="submit" className=" bg-blue-600 px-4 py-2 text-white">
+              {isLoading ? "processing..." : "Start"}
+            </button>
           </div>
         </form>
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps(context: any) {
+  const { req, res } = context
+  const session = await getSession({ req })
+  console.log("session", session?.user)
+  if (!!!session?.user) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/?redirect=/department",
+      },
+    }
+  } else {
+    try {
+      const { data } = await axios.get(`http://localhost:3000/api/user/${session.user.id}`)
+      console.log("data", data)
+      if (data && data.department && data.department.name) {
+        return {
+          redirect: {
+            permanent: false,
+            destination: "/assessment?department=" + data.department.name,
+          },
+        }
+      }
+    } catch (error: any) {
+      console.log(error.message)
+    }
+    return {
+      props: { user: session?.user },
+    }
+  }
 }
 
 export default Department

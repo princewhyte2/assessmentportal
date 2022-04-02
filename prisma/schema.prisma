@@ -6,15 +6,85 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "mysql"
+  url      = "mysql://root:prince119@mysql@localhost:3306/assessmentportal"
 }
 
 model User {
-  id       String  @id @default(cuid())
-  name     String?
-  email    String? @unique
-  image    String?
-  password String
-  isAdmin  Boolean @default(false)
+  id         String      @id @default(cuid())
+  name       String?
+  email      String?     @unique
+  image      String?
+  password   String
+  isAdmin    Boolean     @default(false)
+  department Department?
+  assessment Assessment?
+  project    Project?
+}
+
+model Department {
+  id           Int      @id @default(autoincrement())
+  user         User     @relation(fields: [userId], references: [id])
+  userId       String   @unique
+  name         String
+  projectLevel String
+  createdAt    DateTime @default(now())
+}
+
+model Assessment {
+  id                                            Int      @id @default(autoincrement())
+  user                                          User     @relation(fields: [userId], references: [id])
+  userId                                        String   @unique
+  evaluateAndFrameOpportunities                 Int?
+  deliverCommercialValue                        Int?
+  costEstimating                                Int?
+  probablisticCost                              Int?
+  driveProjectPerformance                       Int?
+  projectRiskManagement                         Int?
+  competitiveAndAffordableScope                 Int?
+  leveragePortfolioBenefit                      Int?
+  projectPortfolioBenchmarking                  Int?
+  manageDesignEngineering                       Int?
+  developProjectExecutionStrategiesAndPlans     Int?
+  contractAndContractorManagement               Int?
+  setUpLeadProjectTeams                         Int?
+  workEfficientlyWithStakeholders               Int?
+  manageProjectComplexities                     Int?
+  manageQuality                                 Int?
+  evaluateAndFrameOpportunitiesFile             String?
+  deliverCommercialValueFile                    String?
+  costEstimatingFile                            String?
+  probablisticCostFile                          String?
+  driveProjectPerformanceFile                   String?
+  projectRiskManagementFile                     String?
+  competitiveAndAffordableScopeFile             String?
+  leveragePortfolioBenefitFile                  String?
+  projectPortfolioBenchmarkingFile              String?
+  manageDesignEngineeringFile                   String?
+  developProjectExecutionStrategiesAndPlansFile String?
+  contractAndContractorManagementFile           String?
+  setUpLeadProjectTeamsFile                     String?
+  workEfficientlyWithStakeholdersFile           String?
+  manageProjectComplexitiesFile                 String?
+  manageQualityFile                             String?
+  createdAt                                     DateTime @default(now())
+  updatedAt                                     DateTime @default(now())
+}
+
+model Project {
+  id                       Int     @id @default(autoincrement())
+  user                     User    @relation(fields: [userId], references: [id])
+  userId                   String  @unique
+  refIndicator             String?
+  jobTitle                 String?
+  yrsOfExp                 String?
+  projects                 Json?
+  relevantTrainings        Json?
+  priSkillPool             String?
+  secSkillPool             String?
+  lastApprovedProjectLevel String?
+  education                Json?
+  supervisor               String?
+  cvAssessmentFiles        Json?
+
 }

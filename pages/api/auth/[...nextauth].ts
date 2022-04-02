@@ -8,6 +8,7 @@ const prisma = new PrismaClient()
 export default NextAuth({
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
   },
   providers: [
     CredentialsProvider({
@@ -33,7 +34,20 @@ export default NextAuth({
       },
     }),
   ],
+  callbacks: {
+    async jwt ({ token, user, account, profile, isNewUser }) {
+     
+       user && (token.user = user)
+      return token
+    },
+    async session ({ session, user, token }) {
+      
+      session.user = token.user
+      return session
+    },
+  },
   pages: {
     signIn: "/",
   },
+  secret: process.env.JWT_SECRET,
 })

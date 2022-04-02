@@ -1,4 +1,4 @@
-import react, { useState } from "react"
+import react, { useState, useEffect } from "react"
 import EyeIcon from "../icons/Eye"
 import EyeoffIcon from "../icons/Eyeoff"
 // import { getCsrfToken } from "next-auth/react"
@@ -9,14 +9,19 @@ const Login = ({ csrfToken }: any) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault()
-    const res = signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    })
-    console.log("response is", res)
+    try {
+      const res = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      })
+      //when user logs in redirect a non admin using the app for the first time to the department page
+      console.log("response is", res)
+    } catch (error) {
+      console.log("error is", error)
+    }
   }
   return (
     <div className="h-screen w-screen flex justify-center text-center items-center bg-blue-400 text-white">
