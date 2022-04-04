@@ -58,7 +58,15 @@ export default async function handler(
       setUpLeadProjectTeams,
       workEfficientlyWithStakeholders,
       manageProjectComplexities,
-      manageQuality,
+      manageQuality, implementProcurement ,
+  manageFabrication ,
+  costControl ,
+  planningAndScheduling ,
+  deliverSuccessfulStartUp ,
+  handOver ,
+  manageSchedulesAndResources ,
+  manageCosts ,
+  LeadInterfaceManagement ,
     } = JSON.parse(fields.data as string)
 
     if (err) {
@@ -84,6 +92,15 @@ export default async function handler(
     const workEfficientlyWithStakeholdersFile = await saveFile(files.workEfficientlyWithStakeholdersFile)
     const manageProjectComplexitiesFile = await saveFile(files.manageProjectComplexitiesFile)
     const manageQualityFile = await saveFile(files.manageQualityFile)
+    const implementProcurementFile = await saveFile(files.implementProcurementFile)
+    const manageFabricationFile = await saveFile(files.manageFabricationFile)
+    const costControlFile = await saveFile(files.costControlFile)
+    const planningAndSchedulingFile = await saveFile(files.planningAndSchedulingFile)
+    const deliverSuccessfulStartUpFile = await saveFile(files.deliverSuccessfulStartUpFile)
+    const handOverFile = await saveFile(files.handOverFile)
+    const manageSchedulesAndResourcesFile = await saveFile(files.manageSchedulesAndResourcesFile)
+    const manageCostsFile = await saveFile(files.manageCostsFile)
+    const LeadInterfaceManagementFile = await saveFile(files.LeadInterfaceManagementFile)
 
     const {id }= req.query
 
@@ -104,6 +121,15 @@ export default async function handler(
       workEfficientlyWithStakeholders,
       manageProjectComplexities,
       manageQuality,
+       implementProcurement ,
+  manageFabrication ,
+  costControl ,
+  planningAndScheduling ,
+  deliverSuccessfulStartUp ,
+  handOver ,
+  manageSchedulesAndResources ,
+  manageCosts ,
+  LeadInterfaceManagement ,
       evaluateAndFrameOpportunitiesFile,
       deliverCommercialValueFile,
       costEstimatingFile,
@@ -120,6 +146,15 @@ export default async function handler(
       workEfficientlyWithStakeholdersFile,
       manageProjectComplexitiesFile,
       manageQualityFile,
+      implementProcurementFile,
+      manageFabricationFile,
+      costControlFile,
+      planningAndSchedulingFile,
+      deliverSuccessfulStartUpFile,
+      handOverFile,
+      manageSchedulesAndResourcesFile,
+      manageCostsFile,
+      LeadInterfaceManagementFile,
       user: {
                     connect: {
                         id: id as string

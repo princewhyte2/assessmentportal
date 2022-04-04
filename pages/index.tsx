@@ -16,7 +16,7 @@ export async function getServerSideProps(context: any) {
     return {
       redirect: {
         permanent: false,
-        destination: "/assessment",
+        destination: "/department",
       },
     }
   } else {

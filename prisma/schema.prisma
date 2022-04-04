@@ -32,9 +32,9 @@ model Department {
 }
 
 model Assessment {
-  id                                            Int      @id @default(autoincrement())
-  user                                          User     @relation(fields: [userId], references: [id])
-  userId                                        String   @unique
+  id                                            Int     @id @default(autoincrement())
+  user                                          User    @relation(fields: [userId], references: [id])
+  userId                                        String  @unique
   evaluateAndFrameOpportunities                 Int?
   deliverCommercialValue                        Int?
   costEstimating                                Int?
@@ -51,6 +51,15 @@ model Assessment {
   workEfficientlyWithStakeholders               Int?
   manageProjectComplexities                     Int?
   manageQuality                                 Int?
+  implementProcurement                          Int?
+  manageFabrication                             Int?
+  costControl                                   Int?
+  planningAndScheduling                         Int?
+  deliverSuccessfulStartUp                      Int?
+  handOver                                      Int?
+  manageSchedulesAndResources                   Int?
+  manageCosts                                   Int?
+  LeadInterfaceManagement                       Int?
   evaluateAndFrameOpportunitiesFile             String?
   deliverCommercialValueFile                    String?
   costEstimatingFile                            String?
@@ -67,14 +76,26 @@ model Assessment {
   workEfficientlyWithStakeholdersFile           String?
   manageProjectComplexitiesFile                 String?
   manageQualityFile                             String?
-  createdAt                                     DateTime @default(now())
-  updatedAt                                     DateTime @default(now())
+  implementProcurementFile                      String?
+  manageFabricationFile                         String?
+  costControlFile                               String?
+  planningAndSchedulingFile                     String?
+  deliverSuccessfulStartUpFile                  String?
+  handOverFile                                  String?
+  manageSchedulesAndResourcesFile               String?
+  manageCostsFile                               String?
+  LeadInterfaceManagementFile                   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }
 
 model Project {
   id                       Int     @id @default(autoincrement())
   user                     User    @relation(fields: [userId], references: [id])
   userId                   String  @unique
+  email                    String
+  fullName                 String
   refIndicator             String?
   jobTitle                 String?
   yrsOfExp                 String?

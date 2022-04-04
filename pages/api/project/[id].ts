@@ -31,10 +31,9 @@ export default async function handler (
   
     const form = formidable({multiples: true});
     
-    console.log(form)
     form.parse(req, async function (err, fields, files) {
         const {
-           refIndicator,jobTitle,yrsOfExp,projects,priSkillPool,secSkillPool,lastApprovedProjectLevel,education,supervisor,relevantTrainings
+          email,fullName, refIndicator,jobTitle,yrsOfExp,projects,priSkillPool,secSkillPool,lastApprovedProjectLevel,education,supervisor,relevantTrainings
         } = JSON.parse(fields.data as string)
 
         if (err) {
@@ -59,7 +58,7 @@ export default async function handler (
         const { id } = req.query
 
         const data = {
-            refIndicator,jobTitle,cvAssessmentFiles,yrsOfExp,projects,priSkillPool,secSkillPool,lastApprovedProjectLevel,education,supervisor,relevantTrainings
+            refIndicator,jobTitle,cvAssessmentFiles,yrsOfExp,projects,priSkillPool,secSkillPool,lastApprovedProjectLevel,education,supervisor,relevantTrainings,fullName,email,
             user: {
                 connect: {
                     id: id as string

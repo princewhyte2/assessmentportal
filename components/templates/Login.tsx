@@ -2,12 +2,14 @@ import react, { useState, useEffect } from "react"
 import EyeIcon from "../icons/Eye"
 import EyeoffIcon from "../icons/Eyeoff"
 // import { getCsrfToken } from "next-auth/react"
+import { useRouter } from "next/router"
 import { signIn } from "next-auth/react"
 
 const Login = ({ csrfToken }: any) => {
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const router = useRouter()
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
@@ -17,6 +19,9 @@ const Login = ({ csrfToken }: any) => {
         email,
         password,
       })
+      if (res) {
+        router.push("/department")
+      }
       //when user logs in redirect a non admin using the app for the first time to the department page
       console.log("response is", res)
     } catch (error) {
@@ -24,14 +29,14 @@ const Login = ({ csrfToken }: any) => {
     }
   }
   return (
-    <div className="h-screen w-screen flex justify-center text-center items-center bg-blue-400 text-white">
+    <div className="flex items-center justify-center w-screen h-screen text-center text-white bg-blue-400">
       <div className="">
-        <h1 className=" font-bold text-xl">Welcome To Assessment Portal</h1>
+        <h1 className="text-xl font-bold ">Welcome To Assessment Portal</h1>
 
-        <h3 className=" text-center pt-8 pb-4 font-semibold text-xl">Sign In to Begin</h3>
+        <h3 className="pt-8 pb-4 text-xl font-semibold text-center ">Sign In to Begin</h3>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col space-y-6 p-4"
+          className="flex flex-col p-4 space-y-6"
           method="post"
           action="/api/auth/callback/credentials"
         >
@@ -41,25 +46,25 @@ const Login = ({ csrfToken }: any) => {
             value={email}
             onChange={({ target }) => setEmail(target.value)}
             placeholder="example@youremail.com"
-            className=" text-white placeholder-current h-12 w-80 rounded-xl border border-white bg-transparent outline-none px-4"
+            className="h-12 px-4 text-white placeholder-current bg-transparent border border-white outline-none w-80 rounded-xl"
           />
-          <div className="h-12 w-80 rounded-xl border space-x-3 border-white px-4 flex items-center">
+          <div className="flex items-center h-12 px-4 space-x-3 border border-white w-80 rounded-xl">
             <input
               value={password}
               onChange={({ target }) => setPassword(target.value)}
               placeholder="your password"
               type={showPassword ? "text" : "password"}
-              className="flex-1 text-white placeholder-current outline-none bg-transparent"
+              className="flex-1 text-white placeholder-current bg-transparent outline-none"
             />
             <button onClick={() => setShowPassword(!showPassword)} type="button">
               {showPassword ? <EyeoffIcon /> : <EyeIcon />}
             </button>
           </div>
-          <button type="submit" className="h-12 rounded-xl w-80 border border-white outline-none">
+          <button type="submit" className="h-12 border border-white outline-none rounded-xl w-80">
             SIGN IN
           </button>
         </form>
-        <h3 className=" pt-4">2021 - A Product of TR Team</h3>
+        <h3 className="pt-4 ">2021 - A Product of TR Team</h3>
       </div>
     </div>
   )

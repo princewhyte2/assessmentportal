@@ -53,6 +53,7 @@ const Assessment = ({ user }: any) => {
   const [handOver, setHandOver] = useState(0)
   const [handOverFile, setHandOverFile] = useState<File>()
   const [manageSchedulesAndResources, setManageSchedulesAndResources] = useState(0)
+  const [manageSchedulesAndResourcesFile, setManageSchedulesAndResourcesFile] = useState<File>()
   const [manageCosts, setManageCosts] = useState(0)
   const [manageCostsFile, setManageCostsFile] = useState<File>()
   const [LeadInterfaceManagement, setLeadInterfaceManagement] = useState(0)
@@ -65,6 +66,15 @@ const Assessment = ({ user }: any) => {
     setIsLoading(true)
     const formData = new FormData()
     const data = JSON.stringify({
+      implementProcurement,
+      manageFabrication,
+      costControl,
+      planningAndScheduling,
+      deliverSuccessfulStartUp,
+      handOver,
+      manageSchedulesAndResources,
+      manageCosts,
+      LeadInterfaceManagement,
       evaluateAndFrameOpportunities,
       deliverCommercialValue,
       costEstimating,
@@ -103,6 +113,15 @@ const Assessment = ({ user }: any) => {
     formData.append("workEfficientlyWithStakeholdersFile", workEfficientlyWithStakeholdersFile as Blob)
     formData.append("manageProjectComplexitiesFile", manageProjectComplexitiesFile as Blob)
     formData.append("manageQualityFile", manageQualityFile as Blob)
+    formData.append("implementProcurementFile", implementProcurementFile as Blob)
+    formData.append("manageFabricationFile", manageFabricationFile as Blob)
+    formData.append("costControlFile", costControlFile as Blob)
+    formData.append("planningAndSchedulingFile", planningAndSchedulingFile as Blob)
+    formData.append("deliverSuccessfulStartUpFile", deliverSuccessfulStartUpFile as Blob)
+    formData.append("handOverFile", handOverFile as Blob)
+    formData.append("manageSchedulesAndResourcesFile", manageSchedulesAndResourcesFile as Blob)
+    formData.append("manageCostsFile", manageCostsFile as Blob)
+    formData.append("LeadInterfaceManagementFile", LeadInterfaceManagementFile as Blob)
 
     try {
       const { data } = await axios.post(`/api/assessment/${user.id}`, formData, {
@@ -110,6 +129,7 @@ const Assessment = ({ user }: any) => {
       })
       setIsLoading(false)
       console.log("success", data)
+      router.push("/project")
     } catch (error) {
       console.log(error)
       setIsLoading(false)
@@ -857,19 +877,39 @@ const Assessment = ({ user }: any) => {
                     <div className="flex items-center space-x-2">
                       <div className="flex-1 ">
                         <label className="block">
-                          <input type="radio" /> Awareness = Can describe in basic terms
+                          <input
+                            onChange={({ target }) => setImplementProcurement(Number(target.value))}
+                            value={1}
+                            type="radio"
+                          />{" "}
+                          Awareness = Can describe in basic terms
                         </label>
 
                         <label className="block">
-                          <input type="radio" /> Knowledge = Awareness plus, can explain and have an informed debate and
-                          participation
+                          <input
+                            onChange={({ target }) => setImplementProcurement(Number(target.value))}
+                            value={2}
+                            type="radio"
+                          />{" "}
+                          Knowledge = Awareness plus, can explain and have an informed debate and participation
                         </label>
                         <label className="block">
-                          <input type="radio" /> Skill = Knowledge plus, can do the work
+                          <input
+                            onChange={({ target }) => setImplementProcurement(Number(target.value))}
+                            value={3}
+                            type="radio"
+                          />{" "}
+                          Skill = Knowledge plus, can do the work
                         </label>
                       </div>
                       <div>
-                        <input type={"file"} placeholder="File:Attach file evidence" />
+                        <input
+                          onChange={({ target }) =>
+                            target?.files?.length ? setImplementProcurementFile(target.files[0]) : null
+                          }
+                          type={"file"}
+                          placeholder="File:Attach file evidence"
+                        />
                       </div>
                     </div>
                   </section>
@@ -878,19 +918,39 @@ const Assessment = ({ user }: any) => {
                     <div className="flex items-center space-x-2">
                       <div className="flex-1">
                         <label className="block">
-                          <input type="radio" /> Awareness = Can describe in basic terms
+                          <input
+                            onChange={({ target }) => setManageFabrication(Number(target.value))}
+                            value={1}
+                            type="radio"
+                          />{" "}
+                          Awareness = Can describe in basic terms
                         </label>
 
                         <label className="block">
-                          <input type="radio" /> Knowledge = Awareness plus, can explain and have an informed debate and
-                          participation
+                          <input
+                            onChange={({ target }) => setManageFabrication(Number(target.value))}
+                            value={2}
+                            type="radio"
+                          />{" "}
+                          Knowledge = Awareness plus, can explain and have an informed debate and participation
                         </label>
                         <label className="block">
-                          <input type="radio" /> Skill = Knowledge plus, can do the work
+                          <input
+                            onChange={({ target }) => setManageFabrication(Number(target.value))}
+                            value={3}
+                            type="radio"
+                          />{" "}
+                          Skill = Knowledge plus, can do the work
                         </label>
                       </div>
                       <div>
-                        <input type={"file"} placeholder="File:Attach file evidence" />
+                        <input
+                          onChange={({ target }) =>
+                            target?.files?.length ? setManageFabricationFile(target.files[0]) : null
+                          }
+                          type={"file"}
+                          placeholder="File:Attach file evidence"
+                        />
                       </div>
                     </div>
                   </section>
@@ -899,19 +959,39 @@ const Assessment = ({ user }: any) => {
                     <div className="flex items-center space-x-2">
                       <div className="flex-1 ">
                         <label className="block">
-                          <input type="radio" /> Awareness = Can describe in basic terms
+                          <input
+                            onChange={({ target }) => setCostControl(Number(target.value))}
+                            value={1}
+                            type="radio"
+                          />{" "}
+                          Awareness = Can describe in basic terms
                         </label>
 
                         <label className="block">
-                          <input type="radio" /> Knowledge = Awareness plus, can explain and have an informed debate and
-                          participation
+                          <input
+                            onChange={({ target }) => setCostControl(Number(target.value))}
+                            value={2}
+                            type="radio"
+                          />{" "}
+                          Knowledge = Awareness plus, can explain and have an informed debate and participation
                         </label>
                         <label className="block">
-                          <input type="radio" /> Skill = Knowledge plus, can do the work
+                          <input
+                            onChange={({ target }) => setCostControl(Number(target.value))}
+                            value={3}
+                            type="radio"
+                          />{" "}
+                          Skill = Knowledge plus, can do the work
                         </label>
                       </div>
                       <div>
-                        <input type={"file"} placeholder="File:Attach file evidence" />
+                        <input
+                          onChange={({ target }) =>
+                            target?.files?.length ? setCostControlFile(target.files[0]) : null
+                          }
+                          type={"file"}
+                          placeholder="File:Attach file evidence"
+                        />
                       </div>
                     </div>
                   </section>
@@ -920,19 +1000,39 @@ const Assessment = ({ user }: any) => {
                     <div className="flex items-center space-x-2">
                       <div className="flex-1 ">
                         <label className="block">
-                          <input type="radio" /> Awareness = Can describe in basic terms
+                          <input
+                            onChange={({ target }) => setPlanningAndScheduling(Number(target.value))}
+                            value={1}
+                            type="radio"
+                          />{" "}
+                          Awareness = Can describe in basic terms
                         </label>
 
                         <label className="block">
-                          <input type="radio" /> Knowledge = Awareness plus, can explain and have an informed debate and
-                          participation
+                          <input
+                            onChange={({ target }) => setPlanningAndScheduling(Number(target.value))}
+                            value={2}
+                            type="radio"
+                          />{" "}
+                          Knowledge = Awareness plus, can explain and have an informed debate and participation
                         </label>
                         <label className="block">
-                          <input type="radio" /> Skill = Knowledge plus, can do the work
+                          <input
+                            onChange={({ target }) => setPlanningAndScheduling(Number(target.value))}
+                            value={3}
+                            type="radio"
+                          />{" "}
+                          Skill = Knowledge plus, can do the work
                         </label>
                       </div>
                       <div>
-                        <input type={"file"} placeholder="File:Attach file evidence" />
+                        <input
+                          onChange={({ target }) =>
+                            target?.files?.length ? setPlanningAndSchedulingFile(target.files[0]) : null
+                          }
+                          type={"file"}
+                          placeholder="File:Attach file evidence"
+                        />
                       </div>
                     </div>
                   </section>
@@ -941,19 +1041,39 @@ const Assessment = ({ user }: any) => {
                     <div className="flex items-center space-x-2">
                       <div className="flex-1 ">
                         <label className="block">
-                          <input type="radio" /> Awareness = Can describe in basic terms
+                          <input
+                            onChange={({ target }) => setDeliverSuccessfulStartUp(Number(target.value))}
+                            value={1}
+                            type="radio"
+                          />{" "}
+                          Awareness = Can describe in basic terms
                         </label>
 
                         <label className="block">
-                          <input type="radio" /> Knowledge = Awareness plus, can explain and have an informed debate and
-                          participation
+                          <input
+                            onChange={({ target }) => setDeliverSuccessfulStartUp(Number(target.value))}
+                            value={2}
+                            type="radio"
+                          />{" "}
+                          Knowledge = Awareness plus, can explain and have an informed debate and participation
                         </label>
                         <label className="block">
-                          <input type="radio" /> Skill = Knowledge plus, can do the work
+                          <input
+                            onChange={({ target }) => setDeliverSuccessfulStartUp(Number(target.value))}
+                            value={3}
+                            type="radio"
+                          />{" "}
+                          Skill = Knowledge plus, can do the work
                         </label>
                       </div>
                       <div>
-                        <input type={"file"} placeholder="File:Attach file evidence" />
+                        <input
+                          onChange={({ target }) =>
+                            target?.files?.length ? setDeliverSuccessfulStartUpFile(target.files[0]) : null
+                          }
+                          type={"file"}
+                          placeholder="File:Attach file evidence"
+                        />
                       </div>
                     </div>
                   </section>
@@ -962,19 +1082,25 @@ const Assessment = ({ user }: any) => {
                     <div className="flex items-center space-x-2">
                       <div className="flex-1 ">
                         <label className="block">
-                          <input type="radio" /> Awareness = Can describe in basic terms
+                          <input onChange={({ target }) => setHandOver(Number(target.value))} value={1} type="radio" />{" "}
+                          Awareness = Can describe in basic terms
                         </label>
 
                         <label className="block">
-                          <input type="radio" /> Knowledge = Awareness plus, can explain and have an informed debate and
-                          participation
+                          <input onChange={({ target }) => setHandOver(Number(target.value))} value={2} type="radio" />{" "}
+                          Knowledge = Awareness plus, can explain and have an informed debate and participation
                         </label>
                         <label className="block">
-                          <input type="radio" /> Skill = Knowledge plus, can do the work
+                          <input onChange={({ target }) => setHandOver(Number(target.value))} value={3} type="radio" />{" "}
+                          Skill = Knowledge plus, can do the work
                         </label>
                       </div>
                       <div>
-                        <input type={"file"} placeholder="File:Attach file evidence" />
+                        <input
+                          onChange={({ target }) => (target?.files?.length ? setHandOverFile(target.files[0]) : null)}
+                          type={"file"}
+                          placeholder="File:Attach file evidence"
+                        />
                       </div>
                     </div>
                   </section>
@@ -985,19 +1111,39 @@ const Assessment = ({ user }: any) => {
                 <div className="flex items-center space-x-2">
                   <div className="flex-1 ">
                     <label className="block">
-                      <input type="radio" /> Awareness = Can describe in basic terms
+                      <input
+                        onChange={({ target }) => setManageSchedulesAndResources(Number(target.value))}
+                        value={1}
+                        type="radio"
+                      />{" "}
+                      Awareness = Can describe in basic terms
                     </label>
 
                     <label className="block">
-                      <input type="radio" /> Knowledge = Awareness plus, can explain and have an informed debate and
-                      participation
+                      <input
+                        onChange={({ target }) => setManageSchedulesAndResources(Number(target.value))}
+                        value={2}
+                        type="radio"
+                      />{" "}
+                      Knowledge = Awareness plus, can explain and have an informed debate and participation
                     </label>
                     <label className="block">
-                      <input type="radio" /> Skill = Knowledge plus, can do the work
+                      <input
+                        onChange={({ target }) => setManageSchedulesAndResources(Number(target.value))}
+                        value={3}
+                        type="radio"
+                      />{" "}
+                      Skill = Knowledge plus, can do the work
                     </label>
                   </div>
                   <div>
-                    <input type={"file"} placeholder="File:Attach file evidence" />
+                    <input
+                      onChange={({ target }) =>
+                        target?.files?.length ? setManageSchedulesAndResourcesFile(target.files[0]) : null
+                      }
+                      type={"file"}
+                      placeholder="File:Attach file evidence"
+                    />
                   </div>
                 </div>
               </section>
@@ -1006,19 +1152,25 @@ const Assessment = ({ user }: any) => {
                 <div className="flex items-center space-x-2">
                   <div className="flex-1">
                     <label className="block">
-                      <input type="radio" /> Awareness = Can describe in basic terms
+                      <input onChange={({ target }) => setManageCosts(Number(target.value))} value={1} type="radio" />{" "}
+                      Awareness = Can describe in basic terms
                     </label>
 
                     <label className="block">
-                      <input type="radio" /> Knowledge = Awareness plus, can explain and have an informed debate and
-                      participation
+                      <input onChange={({ target }) => setManageCosts(Number(target.value))} value={2} type="radio" />{" "}
+                      Knowledge = Awareness plus, can explain and have an informed debate and participation
                     </label>
                     <label className="block">
-                      <input type="radio" /> Skill = Knowledge plus, can do the work
+                      <input onChange={({ target }) => setManageCosts(Number(target.value))} value={3} type="radio" />{" "}
+                      Skill = Knowledge plus, can do the work
                     </label>
                   </div>
                   <div>
-                    <input type={"file"} placeholder="File:Attach file evidence" />
+                    <input
+                      onChange={({ target }) => (target?.files?.length ? setManageCostsFile(target.files[0]) : null)}
+                      type={"file"}
+                      placeholder="File:Attach file evidence"
+                    />
                   </div>
                 </div>
               </section>
@@ -1033,19 +1185,39 @@ const Assessment = ({ user }: any) => {
                   <div className="flex items-center space-x-2">
                     <div className="flex-1 ">
                       <label className="block">
-                        <input type="radio" /> Awareness = Can describe in basic terms
+                        <input
+                          onChange={({ target }) => setLeadInterfaceManagement(Number(target.value))}
+                          value={1}
+                          type="radio"
+                        />{" "}
+                        Awareness = Can describe in basic terms
                       </label>
 
                       <label className="block">
-                        <input type="radio" /> Knowledge = Awareness plus, can explain and have an informed debate and
-                        participation
+                        <input
+                          onChange={({ target }) => setLeadInterfaceManagement(Number(target.value))}
+                          value={2}
+                          type="radio"
+                        />{" "}
+                        Knowledge = Awareness plus, can explain and have an informed debate and participation
                       </label>
                       <label className="block">
-                        <input type="radio" /> Skill = Knowledge plus, can do the work
+                        <input
+                          onChange={({ target }) => setLeadInterfaceManagement(Number(target.value))}
+                          value={3}
+                          type="radio"
+                        />{" "}
+                        Skill = Knowledge plus, can do the work
                       </label>
                     </div>
                     <div>
-                      <input type={"file"} placeholder="File:Attach file evidence" />
+                      <input
+                        onChange={({ target }) =>
+                          target?.files?.length ? setLeadInterfaceManagementFile(target.files[0]) : null
+                        }
+                        type={"file"}
+                        placeholder="File:Attach file evidence"
+                      />
                     </div>
                   </div>
                 </section>

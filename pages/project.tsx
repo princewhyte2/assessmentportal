@@ -2,8 +2,10 @@ import { useState } from "react"
 import { Tab } from "@headlessui/react"
 import axios from "axios"
 import { getSession } from "next-auth/react"
+import { useRouter } from "next/router"
 
 const Project = ({ user }: any) => {
+  const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [email, setEmail] = useState("")
@@ -107,12 +109,13 @@ const Project = ({ user }: any) => {
 
   async function handleRegisteration(e: any) {
     e.preventDefault()
-    console.log("registeration")
     const response = window.confirm("Are you sure all fields are filled correctly ?")
     if (!response) return
     setIsLoading(true)
     const formData = new FormData()
     const data = JSON.stringify({
+      email,
+      fullName,
       refIndicator,
       jobTitle,
       yrsOfExp,
@@ -125,7 +128,6 @@ const Project = ({ user }: any) => {
       relevantTrainings,
     })
     formData.append("data", data)
-    console.log(cvAssessmentFiles)
 
     if (cvAssessmentFiles) {
       for (let i = 0; i < cvAssessmentFiles.length; i++) {
@@ -139,6 +141,7 @@ const Project = ({ user }: any) => {
       })
       setIsLoading(false)
       console.log("success", data)
+      router.push("/general")
     } catch (error) {
       console.log(error)
       setIsLoading(false)
@@ -147,7 +150,7 @@ const Project = ({ user }: any) => {
 
   return (
     <div className="flex items-center justify-center w-screen h-full min-h-screen overflow-x-hidden text-black bg-blue-400 lg:p-10">
-      <div className="p-4 bg-white">
+      <div className="w-full p-4 bg-white">
         <h1 className="py-3 text-center">Project Competency Assessment Details</h1>
         <Tab.Group selectedIndex={selectedIndex}>
           <Tab.List className="flex p-1 space-x-2 ">
@@ -238,15 +241,31 @@ const Project = ({ user }: any) => {
                   <div>
                     <label>Relevant Training(s) attended with dates</label>{" "}
                     <div>
-                      {!relevantButton && <button onClick={() => setRelevantButton(true)}>Add Training</button>}
-                      <ul>
+                      <table style={{ width: "100%", border: "1px solid black" }}>
+                        <thead>
+                          <tr>
+                            <th style={{ border: "1px solid black" }}>Key Date</th>
+                            <th style={{ border: "1px solid black" }}>Training</th>
+                            <th style={{ border: "1px solid black" }}>Certificate</th>
+                            <th>
+                              {" "}
+                              {!relevantButton && <button onClick={() => setRelevantButton(true)}>Add Training</button>}
+                            </th>
+                          </tr>
+                        </thead>
                         {relevantTrainings.map((item, index) => (
-                          <li key={index}>
-                            {item.keyDate} {item.training} {item.certificate}{" "}
-                            <button onClick={() => handleRemoveTraining(index)}>remove</button>
-                          </li>
+                          <tbody key={index}>
+                            <tr>
+                              <td style={{ border: "1px solid black" }}>{item.keyDate}</td>
+                              <td style={{ border: "1px solid black" }}>{item.training}</td>
+                              <td style={{ border: "1px solid black" }}>{item.certificate}</td>
+                              <td style={{ border: "1px solid black" }}>
+                                <button onClick={() => handleRemoveTraining(index)}>remove</button>
+                              </td>
+                            </tr>
+                          </tbody>
                         ))}
-                      </ul>
+                      </table>
                     </div>
                     {relevantButton && (
                       <div>
@@ -287,7 +306,7 @@ const Project = ({ user }: any) => {
                       </div>
                     )}
                   </div>
-                  <div>
+                  <div className="mt-2">
                     <label>Upload you CV and Assessment Evidence </label>
                     <input
                       onChange={({ target }) => (target?.files?.length ? setCvAssessmentFiles(target.files) : null)}
@@ -345,14 +364,29 @@ const Project = ({ user }: any) => {
                 <div className="px-3 py-2 bg-gray-100 border-b">Fill Your Education Details</div>
                 <div className="p-4">
                   {!showButton && <button onClick={() => setShowButton(true)}>Add Details</button>}
-                  <ul>
+
+                  <table style={{ width: "100%", border: "1px solid black" }}>
+                    <thead>
+                      <tr>
+                        <th style={{ border: "1px solid black" }}>Key Date</th>
+                        <th style={{ border: "1px solid black" }}>Education</th>
+                        <th style={{ border: "1px solid black" }}>Certificate</th>
+                        <th> {!showButton && <button onClick={() => setShowButton(true)}>Add Details</button>}</th>
+                      </tr>
+                    </thead>
                     {education.map((item, index) => (
-                      <li key={index}>
-                        {item.keyDate} {item.education} {item.certificate}{" "}
-                        <button onClick={() => handleRemoveEducation(index)}>remove</button>
-                      </li>
+                      <tbody key={index}>
+                        <tr>
+                          <td style={{ border: "1px solid black" }}>{item.keyDate}</td>
+                          <td style={{ border: "1px solid black" }}>{item.education}</td>
+                          <td style={{ border: "1px solid black" }}>{item.certificate}</td>
+                          <td style={{ border: "1px solid black" }}>
+                            <button onClick={() => handleRemoveEducation(index)}>remove</button>
+                          </td>
+                        </tr>
+                      </tbody>
                     ))}
-                  </ul>
+                  </table>
                   {showButton && (
                     <div>
                       <div>
@@ -409,8 +443,7 @@ const Project = ({ user }: any) => {
               <div className="w-full border">
                 <div className="px-3 py-2 bg-gray-100 border-b">Project Information Details</div>
                 <div className="p-4">
-                  {!addProject && <button onClick={() => setAddProject(true)}>Add Project</button>}
-                  <ul>
+                  {/* <ul>
                     {projects.map((item, index) => (
                       <li key={index}>
                         {item.name} {item.size} {item.complexity} {item.details} {item.orpPhases}{" "}
@@ -418,7 +451,37 @@ const Project = ({ user }: any) => {
                         <button onClick={() => handleRemoveProject(index)}>remove</button>
                       </li>
                     ))}
-                  </ul>
+                  </ul> */}
+                  <table style={{ width: "100%", border: "1px solid black" }}>
+                    <thead>
+                      <tr>
+                        <th style={{ border: "1px solid black" }}>Name</th>
+                        <th style={{ border: "1px solid black" }}>Size</th>
+                        <th style={{ border: "1px solid black" }}>Complexity</th>
+                        <th style={{ border: "1px solid black" }}>Details</th>
+                        <th style={{ border: "1px solid black" }}>Orp-phrases</th>
+                        <th style={{ border: "1px solid black" }}>Project ManageMentRole</th>
+                        <th style={{ border: "1px solid black" }}>Results Achieved</th>
+                        <th>{!addProject && <button onClick={() => setAddProject(true)}>Add Project</button>}</th>
+                      </tr>
+                    </thead>
+                    {projects.map((item, index) => (
+                      <tbody key={index}>
+                        <tr>
+                          <td style={{ border: "1px solid black" }}>{item.name}</td>
+                          <td style={{ border: "1px solid black" }}>{item.size}</td>
+                          <td style={{ border: "1px solid black" }}>{item.complexity}</td>
+                          <td style={{ border: "1px solid black" }}>{item.details}</td>
+                          <td style={{ border: "1px solid black" }}>{item.orpPhases}</td>
+                          <td style={{ border: "1px solid black" }}>{item.projectManageMentRole}</td>
+                          <td style={{ border: "1px solid black" }}>{item.resultsAchieved}</td>
+                          <td style={{ border: "1px solid black" }}>
+                            <button onClick={() => handleRemoveProject(index)}>remove</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    ))}
+                  </table>
                   {addProject && (
                     <>
                       <div>

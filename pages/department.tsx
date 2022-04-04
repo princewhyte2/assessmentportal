@@ -3,19 +3,19 @@ import { getSession } from "next-auth/react"
 import axios from "axios"
 import { useRouter } from "next/router"
 
-const Department = () => {
+const Department = ({ user }: any) => {
   const [department, setDepartment] = useState("TPTF")
   const [projectLevel, setProjectLevel] = useState("Select Project level")
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
-  const optionA = ["Frontend Practitioner - Level 1", "Frontend Development - Level 2", "Frontend Practioner - Level 3"]
+  const optionA = ["Front-End Engineer - Level 1", "Front-End Engineer - Level 2", "Front-End Engineer - Level 3"]
   const optionB = [
-    "Project Practitioner (Project services) - Level 1",
-    "Project Practioner - Level 1",
-    "Project Engineering - Level 2",
+    "Project Practitioner  - Level 1",
+    "Project Practioner - Level 2",
+    "Project Services - Level 1",
     "Project Services - Level 2",
-    "Project Delivery Manager - Level 3",
+    "Project Services - Level 3",
   ]
 
   const handleSubmitDepartment = async (e: any) => {
@@ -29,7 +29,7 @@ const Department = () => {
         department,
         projectLevel,
       }
-      const { data } = await axios.post("/api/setdepartment", info)
+      const { data } = await axios.post(`/api/setdepartment/${user.id}`, info)
       console.log("post result", data)
       setIsLoading(false)
       if (data.id) {
