@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import SendIcon from "../components/icons/Send"
 import MoreIcon from "../components/icons/More"
+import axios from "axios"
+import { getSession } from "next-auth/react"
 
 const General = () => {
   const [activeMenu, setActiveMenu] = useState("General")
@@ -86,6 +88,37 @@ const General = () => {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps(context: any) {
+  const { req, res } = context
+  const session = await getSession({ req })
+  console.log("session", session?.user)
+  if (!!!session?.user) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/?redirect=/department",
+      },
+    }
+  } else {
+    try {
+      const { data } = await axios.get(`http://localhost:3000/api/users`)
+      console.log("data", data)
+      if (data) {
+        return {
+          props: {
+            users: data,
+          },
+        }
+      }
+    } catch (error: any) {
+      console.log(error.message)
+    }
+    return {
+      props: { users: session?.user },
+    }
+  }
 }
 
 export default General

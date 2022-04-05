@@ -2,7 +2,7 @@ const TFAssessment = () => {
   return (
     <div className="w-screen h-full min-h-screen ">
       <h1 className="text-2xl font-bold text-purple-600 ">TF Assessment</h1>
-      <div className="flex pr-16 mr-16 space-x-52">
+      <div className="flex items-center pr-16 mr-16 space-x-52">
         <div className="flex-1">
           <div className="flex border border-black">
             <div className="flex items-center">
@@ -45,7 +45,7 @@ const TFAssessment = () => {
             </div>
           </div>
         </div>
-        <div className="text-white bg-red-500 border-2 border-black w-44">
+        <div className="text-white h-32 bg-red-500 border-2 border-black w-60">
           <div>
             Proceed to final Assessment by an independent assessor only when Line Head agrees project JCP score has met
             minimum criteria of 80%

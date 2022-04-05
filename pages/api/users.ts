@@ -15,7 +15,7 @@ const prisma = new PrismaClient()
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data|User>
+  res: NextApiResponse<Data|any>
 ) {
 
     if (req.method !== 'GET') {
@@ -23,29 +23,22 @@ export default async function handler(
     
     }
 
-    const id = req.query.id as string
-
-    if(!id) return res.status(400).send({ message: 'No id provided' })
   
       
     try {
+ 
         
-        const uniqueUser: User|null = await prisma.user.findUnique({
-            where: {
-                id
-            },
+        const users = await prisma.user.findMany({
             include: {
                 department: true,
                 assessment: true,
                 project: true
             }
         })
-
-        if(!uniqueUser){
-            return res.status(404).send({ message: 'User not found' })
+        if (!users) {
+            return res.status(404).send({ message: 'Users not found' })
         }
-
-       return res.status(200).json(uniqueUser)
+        return res.status(200).json(users)
         
     } catch (error) {
         console.log('backend',error)

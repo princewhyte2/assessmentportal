@@ -1,11 +1,48 @@
 import react, { useEffect, useState } from "react"
+import { styled } from "@mui/material/styles"
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp"
+import MuiAccordion, { AccordionProps } from "@mui/material/Accordion"
+import MuiAccordionSummary, { AccordionSummaryProps } from "@mui/material/AccordionSummary"
+import MuiAccordionDetails from "@mui/material/AccordionDetails"
+import Typography from "@mui/material/Typography"
 import { getSession } from "next-auth/react"
 import { useRouter } from "next/router"
 import axios from "axios"
 
+const Accordion = styled((props: AccordionProps) => <MuiAccordion disableGutters elevation={0} square {...props} />)(
+  ({ theme }) => ({
+    border: `1px solid ${theme.palette.divider}`,
+    "&:not(:last-child)": {
+      borderBottom: 0,
+    },
+    "&:before": {
+      display: "none",
+    },
+  }),
+)
+
+const AccordionSummary = styled((props: AccordionSummaryProps) => (
+  <MuiAccordionSummary expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />} {...props} />
+))(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, .05)" : "rgba(0, 0, 0, .03)",
+  flexDirection: "row-reverse",
+  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+    transform: "rotate(90deg)",
+  },
+  "& .MuiAccordionSummary-content": {
+    marginLeft: theme.spacing(1),
+  },
+}))
+
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+  padding: theme.spacing(2),
+  borderTop: "1px solid rgba(0, 0, 0, .125)",
+}))
+
 const Assessment = ({ user }: any) => {
   const router = useRouter()
   const { department } = router.query
+
   const [isLoading, setIsLoading] = useState(false)
   const [evaluateAndFrameOpportunities, setEvaluateAndFrameOpportunities] = useState(0)
   const [evaluateAndFrameOpportunitiesFile, setEvaluateAndFrameOpportunitiesFile] = useState<File>()
@@ -58,6 +95,12 @@ const Assessment = ({ user }: any) => {
   const [manageCostsFile, setManageCostsFile] = useState<File>()
   const [LeadInterfaceManagement, setLeadInterfaceManagement] = useState(0)
   const [LeadInterfaceManagementFile, setLeadInterfaceManagementFile] = useState<File>()
+
+  const [expanded, setExpanded] = useState<string | false>("panel1")
+
+  const handleChange = (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+    setExpanded(newExpanded ? panel : false)
+  }
 
   const handleContinue = async (e: any) => {
     e.preventDefault()
@@ -141,9 +184,11 @@ const Assessment = ({ user }: any) => {
       <div className="w-full px-12 py-6">
         <h1 className="text-xl font-bold text-center ">Assessment Checks</h1>
         <form onSubmit={handleContinue} className="w-full p-4 text-black bg-white">
-          <details>
-            <summary>Business Case Study</summary>
-            <main className="flex flex-col space-y-2">
+          <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
+            <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+              <Typography>Business Case Study</Typography>
+            </AccordionSummary>
+            <AccordionDetails className="flex flex-col space-y-2">
               <section>
                 <h3>Evaluate & Frame Oppportunities</h3>
                 <div className="flex items-center space-x-2">
@@ -412,11 +457,13 @@ const Assessment = ({ user }: any) => {
                   </div>
                 </div>
               </section>
-            </main>
-          </details>
-          <details>
-            <summary>Competitive & Affordable Scope</summary>
-            <main className="flex flex-col space-y-2">
+            </AccordionDetails>
+          </Accordion>
+          <Accordion expanded={expanded === "panel2"} onChange={handleChange("panel2")}>
+            <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+              <Typography>Competitive & Affordable Scope</Typography>
+            </AccordionSummary>
+            <AccordionDetails className="flex flex-col space-y-2">
               <section>
                 <h3>Select & Optimise Capital Efficient Project Concept</h3>
                 <div className="flex items-center space-x-2">
@@ -593,11 +640,13 @@ const Assessment = ({ user }: any) => {
                   </div>
                 </div>
               </section>
-            </main>
-          </details>
-          <details>
-            <summary>Lead Efficient Execution</summary>
-            <main className="flex flex-col space-y-2">
+            </AccordionDetails>
+          </Accordion>
+          <Accordion expanded={expanded === "panel3"} onChange={handleChange("panel3")}>
+            <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+              <Typography>Lead Efficient Execution</Typography>
+            </AccordionSummary>
+            <AccordionDetails className="flex flex-col space-y-2">
               <section>
                 <h3>Develop Project Execution Strategies & Plans </h3>
                 <div className="flex items-center space-x-2">
@@ -864,12 +913,14 @@ const Assessment = ({ user }: any) => {
                   </div>
                 </section>
               )}
-            </main>
-          </details>
-          <details>
-            <summary>Manage Efficient Execution</summary>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion expanded={expanded === "panel4"} onChange={handleChange("panel4")}>
+            <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
+              <Typography>Manage Efficient Execution</Typography>
+            </AccordionSummary>
 
-            <main className="flex flex-col space-y-2">
+            <AccordionDetails className="flex flex-col space-y-2">
               {department === "TP" && (
                 <>
                   <section>
@@ -1174,12 +1225,14 @@ const Assessment = ({ user }: any) => {
                   </div>
                 </div>
               </section>
-            </main>
-          </details>
+            </AccordionDetails>
+          </Accordion>
           {department === "TF" && (
-            <details>
-              <summary>Interface Management</summary>
-              <main className="flex flex-col space-y-2">
+            <Accordion expanded={expanded === "panel5"} onChange={handleChange("panel5")}>
+              <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
+                <Typography>Interface Management</Typography>
+              </AccordionSummary>
+              <AccordionDetails className="flex flex-col space-y-2">
                 <section>
                   <h3>Lead Interface Management</h3>
                   <div className="flex items-center space-x-2">
@@ -1221,8 +1274,8 @@ const Assessment = ({ user }: any) => {
                     </div>
                   </div>
                 </section>
-              </main>
-            </details>
+              </AccordionDetails>
+            </Accordion>
           )}
           <div className="flex justify-center mt-6">
             <button

@@ -44,9 +44,14 @@ export default async function handler (
         const cvAssessmentFiles = []
 
         if (files.cvAssessmentFiles) {
-            for (const file of files.cvAssessmentFiles as any) {
-                const filepath = await saveFile(file)
-                cvAssessmentFiles.push(filepath)
+            if (Array.isArray(files.cvAssessmentFiles)) {    
+                for (const file of files.cvAssessmentFiles as any) {
+                    const filepath = await saveFile(file)
+                    cvAssessmentFiles.push(filepath)
+                }
+            } else {
+                const filepath = await saveFile(files.cvAssessmentFiles)
+                    cvAssessmentFiles.push(filepath)
             }
         }
 
