@@ -1,4 +1,31 @@
-const TFAssessment = () => {
+import { useEffect } from "react"
+import axios from "axios"
+import { getSession } from "next-auth/react"
+
+function getEntry(entry: number) {
+  switch (entry) {
+    case 1:
+      return "A"
+      break
+    case 2:
+      return "K"
+      break
+    case 3:
+      return "S"
+      break
+    default:
+      return "E"
+      break
+  }
+}
+
+const TFAssessment = ({ user }: any) => {
+  useEffect(() => {
+    console.log("users", user)
+
+    return () => {}
+  }, [user])
+
   return (
     <div className="w-screen h-full min-h-screen ">
       <h1 className="text-2xl font-bold text-purple-600 ">TF Assessment</h1>
@@ -7,15 +34,11 @@ const TFAssessment = () => {
           <div className="flex border border-black">
             <div className="flex items-center">
               <div className="p-3 border-r border-black">Staff Name:</div>
-              <div className="p-3 border-r border-black">
-                <input type="text" value={"Prince whyte Dabotubo"} />
-              </div>
+              <div className="p-3 border-r border-black">{user.name}</div>
             </div>
             <div className="flex items-center">
               <div className="p-3 border-r border-black">Ref Indicator</div>
-              <div className="p-3 border-r border-black">
-                <input type="text" />
-              </div>
+              <div className="p-3 border-r border-black">{user.project?.refIndicator ?? ""}</div>
             </div>
           </div>
           <div className="flex mt-3 border border-black">
@@ -52,7 +75,7 @@ const TFAssessment = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className=" mt-4">
         <table style={{ width: "100%", border: "1px solid black" }}>
           <thead>
             <tr>
@@ -70,8 +93,13 @@ const TFAssessment = () => {
           </thead>
           <tbody>
             <tr>
-              <td style={{ border: "1px solid black" }}>
-                COMPETENCY LEVELS A = Awareness and Understanding K = Working Knowledge S = Skill
+              <td style={{ border: "1px solid black", padding: "10px" }}>
+                <div className="text-blue-600 font-bold">
+                  <h1 className=" text-xl text-blue-600 font-bold">COMPETENCY LEVELS</h1>
+                  <p>A = Awareness and Understanding</p>
+                  <p>K = Working Knowledge</p>
+                  <p>S = Skill</p>
+                </div>
               </td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}></td>
@@ -79,23 +107,44 @@ const TFAssessment = () => {
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}>0%</td>
+              <td style={{ border: "1px solid black" }}>
+                <div className="flex items-center justify-center text-2xl font-extrabold h-full">0%</div>
+              </td>
               <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}>2%</td>
+              <td style={{ border: "1px solid black" }}>
+                <div className="flex items-center justify-center text-2xl font-extrabold h-full">2%</div>
+              </td>
             </tr>
             <tr>
-              <td style={{ border: "1px solid black" }}>competence level</td>
-              <td style={{ border: "1px solid black" }}>2</td>
-              <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}>Not Achieved</td>
-              <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}>Not Achieved</td>
+              <td
+                className="text-center text-blue-600 font-bold text-base"
+                style={{ border: "1px solid black", padding: "10px" }}
+              >
+                competence level
+              </td>
+              <td className="text-center" style={{ border: "1px solid black", padding: "10px" }}>
+                2
+              </td>
+              <td style={{ border: "1px solid black", padding: "10px" }}></td>
+              <td style={{ border: "1px solid black", padding: "10px" }}></td>
+              <td style={{ border: "1px solid black", padding: "10px" }}></td>
+              <td style={{ border: "1px solid black", padding: "10px" }}></td>
+              <td style={{ border: "1px solid black", padding: "10px" }}></td>
+              <td
+                className=" font-extrabold text-red-500 text-lg"
+                style={{ border: "1px solid black", padding: "10px" }}
+              >
+                Not Achieved
+              </td>
+              <td style={{ border: "1px solid black", padding: "10px" }}></td>
+              <td
+                className=" font-extrabold text-red-500 text-lg"
+                style={{ border: "1px solid black", padding: "10px" }}
+              >
+                Not Achieved
+              </td>
             </tr>
-            <tr>
+            <tr className=" bg-yellow-400 text-black text-center font-bold">
               <td style={{ border: "1px solid black" }}>Project competence</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}></td>
@@ -107,7 +156,7 @@ const TFAssessment = () => {
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}></td>
             </tr>
-            <tr>
+            <tr className="  bg-pink-200 text-black text-center font-bold">
               <td style={{ border: "1px solid black" }}>Business Case Value</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}></td>
@@ -119,14 +168,11 @@ const TFAssessment = () => {
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}></td>
             </tr>
-            <tr>
+            <tr className="text-center">
               <td style={{ border: "1px solid black" }}>Evaluate & Frame Opportunities</td>
               <td style={{ border: "1px solid black" }}>S</td>
               <td style={{ border: "1px solid black" }}>
-                <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
-                </select>
+                {getEntry(user.assessment?.evaluateAndFrameOpportunities ?? 0)}
               </td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
@@ -146,15 +192,10 @@ const TFAssessment = () => {
               </td>
               <td style={{ border: "1px solid black" }}>0</td>
             </tr>
-            <tr>
+            <tr className="text-center">
               <td style={{ border: "1px solid black" }}>Deliver Commercial Values</td>
               <td style={{ border: "1px solid black" }}>S</td>
-              <td style={{ border: "1px solid black" }}>
-                <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
-                </select>
-              </td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.deliverCommercialValue ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -173,15 +214,10 @@ const TFAssessment = () => {
               </td>
               <td style={{ border: "1px solid black" }}>0</td>
             </tr>
-            <tr>
+            <tr className="text-center">
               <td style={{ border: "1px solid black" }}>Cost Estimating</td>
               <td style={{ border: "1px solid black" }}>S</td>
-              <td style={{ border: "1px solid black" }}>
-                <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
-                </select>
-              </td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.costEstimating ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -200,15 +236,10 @@ const TFAssessment = () => {
               </td>
               <td style={{ border: "1px solid black" }}>0</td>
             </tr>
-            <tr>
+            <tr className="text-center">
               <td style={{ border: "1px solid black" }}>Project Risk Management</td>
               <td style={{ border: "1px solid black" }}>S</td>
-              <td style={{ border: "1px solid black" }}>
-                <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
-                </select>
-              </td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.projectRiskManagement ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -227,15 +258,10 @@ const TFAssessment = () => {
               </td>
               <td style={{ border: "1px solid black" }}>0</td>
             </tr>
-            <tr>
+            <tr className="text-center">
               <td style={{ border: "1px solid black" }}>Probablistic Cost & schedule Risk Analysis</td>
               <td style={{ border: "1px solid black" }}>S</td>
-              <td style={{ border: "1px solid black" }}>
-                <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
-                </select>
-              </td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.probablisticCost ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -254,15 +280,10 @@ const TFAssessment = () => {
               </td>
               <td style={{ border: "1px solid black" }}>0</td>
             </tr>
-            <tr>
+            <tr className="text-center">
               <td style={{ border: "1px solid black" }}>Drive & project performance</td>
               <td style={{ border: "1px solid black" }}>S</td>
-              <td style={{ border: "1px solid black" }}>
-                <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
-                </select>
-              </td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.driveProjectPerformance ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -335,6 +356,37 @@ const TFAssessment = () => {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps(context: any) {
+  const { req, res, query } = context
+  const session = await getSession({ req })
+  console.log("session", session?.user)
+  if (!!!session?.user) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/?redirect=/department",
+      },
+    }
+  } else {
+    try {
+      const { data } = await axios.get(`http://localhost:3000/api/user/${query.id}`)
+      console.log("data", data)
+      if (data) {
+        return {
+          props: {
+            user: data,
+          },
+        }
+      }
+    } catch (error: any) {
+      console.log(error.message)
+    }
+    return {
+      props: { user: session?.user },
+    }
+  }
 }
 
 export default TFAssessment

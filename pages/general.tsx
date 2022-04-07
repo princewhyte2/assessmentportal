@@ -1,11 +1,16 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import SendIcon from "../components/icons/Send"
 import MoreIcon from "../components/icons/More"
 import axios from "axios"
 import { getSession } from "next-auth/react"
 
-const General = () => {
+const General = ({ users }: any) => {
   const [activeMenu, setActiveMenu] = useState("General")
+
+  useEffect(() => {
+    console.log("users", users)
+  }, [users])
+
   return (
     <div className="min-h-screen px-20 bg-gray-500">
       <h2 className="text-center">Assessment</h2>
@@ -66,26 +71,31 @@ const General = () => {
         <div className="w-[160px]">Supervisor</div>
         <div className="flex-1"></div>
       </div>
-      <div className="flex bg-white p-3 space-x-6">
-        <div>
-          <input type={"checkbox"} />
+      {users.map((user: any) => (
+        <div key={user.id} className="flex bg-white p-3 space-x-6">
+          <div>
+            <input type={"checkbox"} />
+          </div>
+          <div className="break-words w-[60px]">{user.name}</div>
+          <div className=" break-words w-28">{user.email}</div>
+          <div className="w-[60px]">{user.project?.jobTitle ?? ""}</div>
+          <div className="w-[80px]">{user.project?.priSkillPool ?? ""}</div>
+          <div className="w-[160px]">{user.project?.secSkillPool ?? ""}</div>
+          <div className="w-[160px]">{user.project?.lastApprovedProjectLevel ?? ""}</div>
+          <div className="w-[160px]">{user.project?.supervisor ?? ""}</div>
+          <div className="flex-1 flex space-x-3">
+            <a
+              href={`mailto:${user.email}`}
+              className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
+            >
+              <SendIcon />
+            </a>
+            <button className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500">
+              <MoreIcon />
+            </button>
+          </div>
         </div>
-        <div className="w-[60px]">Lori lynch</div>
-        <div className=" w-28">Lori@example.com</div>
-        <div className="w-[60px]">Blaa blaa</div>
-        <div className="w-[80px]">2018-08-09 02:12</div>
-        <div className="w-[160px]">Processed</div>
-        <div className="w-[160px]">Blaa Blaa</div>
-        <div className="w-[160px]">Blaa Blaa</div>
-        <div className="flex-1 flex space-x-3">
-          <button className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500">
-            <SendIcon />
-          </button>
-          <button className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500">
-            <MoreIcon />
-          </button>
-        </div>
-      </div>
+      ))}
     </div>
   )
 }
