@@ -18,7 +18,7 @@ const CvDashboard = () => {
     ],
     [],
   )
-  const columns = useMemo(
+  const columns: any = useMemo(
     () => [
       {
         Header: "Surname/Name",

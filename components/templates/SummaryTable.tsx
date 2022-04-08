@@ -17,7 +17,7 @@ const SummaryTable = () => {
     ],
     [],
   )
-  const columns = useMemo(
+  const columns: any = useMemo(
     () => [
       {
         Header: "Project/Portfolio name",

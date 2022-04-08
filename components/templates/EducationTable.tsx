@@ -13,7 +13,7 @@ const EducationTable = () => {
     ],
     [],
   )
-  const columns = useMemo(
+  const columns: any = useMemo(
     () => [
       {
         Header: "Key dates (start)",
