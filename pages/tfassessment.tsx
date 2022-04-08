@@ -19,6 +19,21 @@ function getEntry(entry: number) {
   }
 }
 
+const lineEntry = [
+  {
+    key: "A",
+    value: 1,
+  },
+  {
+    key: "K",
+    value: 2,
+  },
+  {
+    key: "S",
+    value: 3,
+  },
+]
+
 const TFAssessment = ({ user }: any) => {
   useEffect(() => {
     console.log("users", user)
@@ -177,17 +192,23 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
                 <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
                 </select>
               </td>
-              <td style={{ border: "1px solid black" }}>3</td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.evaluateAndFrameOpportunities ?? 0}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>0</td>
@@ -199,17 +220,23 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
                 <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
                 </select>
               </td>
-              <td style={{ border: "1px solid black" }}>3</td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.deliverCommercialValue ?? 0}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>0</td>
@@ -221,17 +248,23 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
                 <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
                 </select>
               </td>
-              <td style={{ border: "1px solid black" }}>3</td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.costEstimating ?? 0}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>0</td>
@@ -243,17 +276,23 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
                 <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
                 </select>
               </td>
-              <td style={{ border: "1px solid black" }}>3</td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.projectRiskManagement ?? 0}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>0</td>
@@ -265,17 +304,23 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
                 <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
                 </select>
               </td>
-              <td style={{ border: "1px solid black" }}>3</td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.probablisticCost ?? 0}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>0</td>
@@ -287,17 +332,545 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
                 <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
                 </select>
               </td>
-              <td style={{ border: "1px solid black" }}>3</td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.driveProjectPerformance ?? 0}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
-                  <option>Not Achieved</option>
-                  <option>Achieved</option>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="  bg-pink-200 text-black text-center font-bold">
+              <td style={{ border: "1px solid black" }}>Competitive and Affordable Scope</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Select & Optimize Capital Efficient Project Concepts</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.driveProjectPerformance ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.driveProjectPerformance ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Leverage Portfolio benefits</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.leveragePortfolioBenefit ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.leveragePortfolioBenefit ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Project/Portfolio Benchmarking</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>
+                {getEntry(user.assessment?.projectPortfolioBenchmarking ?? 0)}
+              </td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.projectPortfolioBenchmarking ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Manage Design & Engineering</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.manageDesignEngineering ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.manageDesignEngineering ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="  bg-pink-200 text-black text-center font-bold">
+              <td style={{ border: "1px solid black" }}>Lead Efficient Execution</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Develop project Execution Strategies and plans</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>
+                {getEntry(user.assessment?.developProjectExecutionStrategiesAndPlans ?? 0)}
+              </td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                {user.assessment?.developProjectExecutionStrategiesAndPlans ?? 0}
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Contract and Contractor Management</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>
+                {getEntry(user.assessment?.contractAndContractorManagement ?? 0)}
+              </td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.contractAndContractorManagement ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Set up and & Lead Project Teams</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.setUpLeadProjectTeams ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.setUpLeadProjectTeams ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Work Effectively with Stakeholders</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>
+                {getEntry(user.assessment?.workEfficientlyWithStakeholders ?? 0)}
+              </td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.workEfficientlyWithStakeholders ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Manage Project Complexity</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.manageProjectComplexities ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.manageProjectComplexities ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Manage Quality</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.manageQuality ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.manageQuality ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="  bg-pink-200 text-black text-center font-bold">
+              <td style={{ border: "1px solid black" }}>Manage Efficient Execution</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}></td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Implement Procurement Material Management & Logistics</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.implementProcurement ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.implementProcurement ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Manage Fabrication & Construction</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.manageFabrication ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.manageFabrication ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Planning & Scheduling</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.planningAndScheduling ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.planningAndScheduling ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Manage Cost</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.manageCosts ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.manageCosts ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Cost Controls</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.costControl ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.costControl ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Deliver Successfull Start Up & Operation</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.deliverSuccessfulStartUp ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.deliverSuccessfulStartUp ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>0</td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Hand Over & Close out Work</td>
+              <td style={{ border: "1px solid black" }}>S</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.handOver ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.handOver ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                <select>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>0</td>
@@ -305,7 +878,7 @@ const TFAssessment = ({ user }: any) => {
           </tbody>
         </table>
       </div>
-      <div>
+      <div className="p-3">
         <table style={{ width: "100%", border: "1px solid black" }}>
           <thead>
             <tr>
