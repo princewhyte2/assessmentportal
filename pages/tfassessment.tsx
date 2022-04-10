@@ -49,7 +49,7 @@ const TFAssessment = ({ user }: any) => {
           <div className="flex border border-black">
             <div className="flex items-center">
               <div className="p-3 border-r border-black">Staff Name:</div>
-              <div className="p-3 border-r border-black">{user.name}</div>
+              <div className="p-3 border-r border-black">{user.project.fullName ?? ""}</div>
             </div>
             <div className="flex items-center">
               <div className="p-3 border-r border-black">Ref Indicator</div>
@@ -79,7 +79,7 @@ const TFAssessment = ({ user }: any) => {
           <div className="flex mt-3 border border-black">
             <div className="flex items-center">
               <div className="p-3 border-r border-black">Project Level</div>
-              <div className="p-3 border-r border-black">Project Level 2</div>
+              <div className="p-3 border-r border-black">{user.department?.projectLevel ?? ""}</div>
             </div>
           </div>
         </div>

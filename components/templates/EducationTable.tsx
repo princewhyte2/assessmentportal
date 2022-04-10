@@ -1,17 +1,18 @@
 import { useMemo } from "react"
 import { useTable } from "react-table"
 
-const EducationTable = () => {
+const EducationTable = ({ education }: any) => {
   const data = useMemo(
-    () => [
-      {
-        col1: "1997",
-        col2: "",
-        col3: "Masters, Electrical Engineering",
-        col4: "Federal University of Technology, Owerri",
-      },
-    ],
-    [],
+    () =>
+      education?.map((item: any) => {
+        return {
+          col1: item.keyDate,
+          col2: "",
+          col3: item.certificate,
+          col4: item.education,
+        }
+      }) ?? [],
+    [education],
   )
   const columns: any = useMemo(
     () => [

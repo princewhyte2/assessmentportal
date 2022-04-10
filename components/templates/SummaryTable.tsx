@@ -1,21 +1,21 @@
 import { useMemo } from "react"
 import { useTable } from "react-table"
 
-const SummaryTable = () => {
+const SummaryTable = ({ project }: any) => {
   const data = useMemo(
-    () => [
-      {
-        col1: "Special Plant Projects",
-        col2: "",
-        col3: "$45M",
-        col4: "Lead Project Engineer 2019 - 2022",
-        col5: "Select/Define Operate",
-        col6: `The main challenge in this role has been a lack of adequate project resource loaded and integrated schedule, 
-          longer and more challenging procurement logistics, few capable contractor pool in remote location, inadequate PMC contractor engineering capability, insufficient technical authority personnel, insufficient owner construction personnel, delays caused by shared project services personnel, schedule slippages from unavailable execution windows, with attendant negative impact on the journey to top quartile project delivery'`,
-        col7: "Delivered the following projects 1. Train 4,5&6 Mark VI to Mark Vie Turbine Control Upgrade Project ($25m)2. Replacement of Obsolete HVAC Units Tr1-3 ($9M)3. Replacement of Obsolete VSDS Control System Tr1-3 ($5M)",
-      },
-    ],
-    [],
+    () =>
+      project?.map((item: any) => {
+        return {
+          col1: item.name,
+          col2: "",
+          col3: item.size,
+          col4: item.projectManageMentRole,
+          col5: item.orpPhases,
+          col6: item.challenges,
+          col7: item.resultsAchieved,
+        }
+      }) ?? [],
+    [project],
   )
   const columns: any = useMemo(
     () => [

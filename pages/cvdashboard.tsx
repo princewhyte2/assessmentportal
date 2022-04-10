@@ -1,22 +1,33 @@
+import axios from "axios"
+import { getSession } from "next-auth/react"
 import { useMemo } from "react"
 import { useTable } from "react-table"
 import EducationTable from "../components/templates/EducationTable"
 import SummaryTable from "../components/templates/SummaryTable"
 
-const CvDashboard = () => {
+const CvDashboard = ({ user }: any) => {
+  console.log("user", user)
   const data = useMemo(
     () => [
       {
-        col1: "Hello",
-        col2: "World",
-        col3: "Hello",
-        col4: "World",
-        col5: "Hello",
-        col6: "World",
-        col7: "Hello",
+        col1: user?.project?.fullName ?? "",
+        col2: user?.project?.refIndicator ?? "",
+        col3: user?.project?.jobTitle ?? "",
+        col4: user?.project?.priSkillPool ?? "",
+        col5: user?.project?.secSkillPool ?? "",
+        col6: user?.project?.lastApprovedProjectLevel ?? "",
+        col7: user?.project?.supervisor ?? "",
       },
     ],
-    [],
+    [
+      user?.project?.fullName,
+      user?.project?.jobTitle,
+      user?.project?.lastApprovedProjectLevel,
+      user?.project?.priSkillPool,
+      user?.project?.refIndicator,
+      user?.project?.secSkillPool,
+      user?.project?.supervisor,
+    ],
   )
   const columns: any = useMemo(
     () => [
@@ -104,10 +115,41 @@ const CvDashboard = () => {
           })}
         </tbody>
       </table>
-      <SummaryTable />
-      <EducationTable />
+      <SummaryTable project={user?.project?.projects ?? []} />
+      <EducationTable education={user?.project?.education ?? []} />
     </div>
   )
+}
+
+export async function getServerSideProps(context: any) {
+  const { req, res, query } = context
+  const session = await getSession({ req })
+  console.log("session", session?.user)
+  if (!!!session?.user) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/?redirect=/department",
+      },
+    }
+  } else {
+    try {
+      const { data } = await axios.get(`http://localhost:3000/api/user/${query.id}`)
+      console.log("data", data)
+      if (data) {
+        return {
+          props: {
+            user: data,
+          },
+        }
+      }
+    } catch (error: any) {
+      console.log(error.message)
+    }
+    return {
+      props: { user: session?.user },
+    }
+  }
 }
 
 export default CvDashboard
