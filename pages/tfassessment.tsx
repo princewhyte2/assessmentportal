@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
 import { getSession } from "next-auth/react"
 
@@ -35,6 +35,56 @@ const lineEntry = [
 ]
 
 const TFAssessment = ({ user }: any) => {
+  const [evaluateAndFrameOpportunitiesLineEntry, setEvaluateAndFrameOpportunitiesLineEntry] = useState(0)
+  const [evaluateAndFrameOpportunitiesAssessorEntry, setEvaluateAndFrameOpportunitiesAssessorEntry] = useState(0)
+  const [deliverCommercialValueLineEntry, setDeliverCommercialValueLineEntry] = useState(0)
+  const [deliverCommercialValueAssessorEntry, setDeliverCommercialValueAssessorEntry] = useState(0)
+
+  const [costEstimatingLineEntry, setCostEstimatingLineEntry] = useState(0)
+  const [costEstimatingAssessorEntry, setCostEstimatingAssessorEntry] = useState(0)
+  const [projectRiskManagementLineEntry, setProjectRiskManagementLineEntry] = useState(0)
+  const [projectRiskManagementAssesorEntry, setProjectRiskManagementAssesorEntry] = useState(0)
+  const [probablisticCostLineEntry, setProbablisticCostLineEntry] = useState(0)
+  const [probablisticCostAssessorEntry, setProbablisticCostAssesorEntry] = useState(0)
+  const [driveProjectPerformanceLineEntry, setDriveProjectPerformanceLineEntry] = useState(0)
+  const [driveProjectPerformanceAssesorEntry, setDriveProjectPerformanceAssesorEntry] = useState(0)
+  const [leveragePortfolioBenefitLineEntry, setLeveragePortfolioBenefitLineEntry] = useState(0)
+  const [leveragePortfolioBenefitAssesorEntry, setLeveragePortfolioBenefitAssesorEntry] = useState(0)
+  const [projectPortfolioBenchmarkingLineEntry, setProjectPortfolioBenchmarkingLineEntry] = useState(0)
+  const [projectPortfolioBenchmarkingAssesorEntry, setProjectPortfolioBenchmarkingAssesorEntry] = useState(0)
+  const [manageDesignEngineeringLineEntry, setManageDesignEngineeringLineEntry] = useState(0)
+  const [manageDesignEngineeringAssesorEntry, setManageDesignEngineeringAssesorEntry] = useState(0)
+  const [developProjectExecutionStrategiesAndPlansLineEntry, setDevelopProjectExecutionStrategiesAndPlansLineEntry] =
+    useState(0)
+  const [
+    developProjectExecutionStrategiesAndPlansAssesorEntry,
+    setDevelopProjectExecutionStrategiesAndPlansAssesorEntry,
+  ] = useState(0)
+  const [contractAndContractorManagementLineEntry, setContractAndContractorManagementLineEntry] = useState(0)
+  const [contractAndContractorManagementAssesorEntry, setContractAndContractorManagementAssesorEntry] = useState(0)
+  const [setUpLeadProjectTeamsLineEntry, setSetUpLeadProjectTeamsLineEntry] = useState(0)
+  const [setUpLeadProjectTeamsAssessorEntry, setSetUpLeadProjectTeamsAssessorEntry] = useState(0)
+  const [workEfficientlyWithStakeholdersLineEntry, setWorkEfficientlyWithStakeholdersLineEntry] = useState(0)
+  const [workEfficientlyWithStakeholdersAssesorEntry, setWorkEfficientlyWithStakeholdersAssesorEntry] = useState(0)
+  const [manageProjectComplexitiesLineEntry, setManageProjectComplexitiesLineEntry] = useState(0)
+  const [manageProjectComplexitiesAssesorEntry, setManageProjectComplexitiesAssesorEntry] = useState(0)
+  const [manageQualityLineEntry, setManageQualityLineEntry] = useState(0)
+  const [manageQualityAssesorEntry, setManageQualityAssesorEntry] = useState(0)
+  const [implementProcurementLineEntry, setImplementProcurementLineEntry] = useState(0)
+  const [implementProcurementAssesorEntry, setImplementProcurementAssesorEntry] = useState(0)
+  const [manageFabricationLineEntry, setManageFabricationLineEntry] = useState(0)
+  const [manageFabricationAssesorEntry, setManageFabricationAssesorEntry] = useState(0)
+  const [planningAndSchedulingLineEntry, setPlanningAndSchedulingLineEntry] = useState(0)
+  const [planningAndSchedulingAssesorEntry, setPlanningAndSchedulingAssesorEntry] = useState(0)
+  const [manageCostsLineEntry, setManageCostsLineEntry] = useState(0)
+  const [manageCostsAssesorEntry, setManageCostsAssesorEntry] = useState(0)
+  const [costControlLineEntry, setCostControlLineEntry] = useState(0)
+  const [costControlAssesorEntry, setCostControlAssesorEntry] = useState(0)
+  const [deliverSuccessfulStartUpLineEntry, setDeliverSuccessfulStartUpLineEntry] = useState(0)
+  const [deliverSuccessfulStartUpAssesorEntry, setDeliverSuccessfulStartUpAssesorEntry] = useState(0)
+  const [handOverLineEntry, setHandOverLineEntry] = useState(0)
+  const [handOverAssesorEntry, setHandOverAssesorEntry] = useState(0)
+
   useEffect(() => {
     console.log("users", user)
 
@@ -191,7 +241,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setEvaluateAndFrameOpportunitiesLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -200,7 +250,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.evaluateAndFrameOpportunities ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{evaluateAndFrameOpportunitiesLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -211,7 +261,7 @@ const TFAssessment = ({ user }: any) => {
                   ))}
                 </select>
               </td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{evaluateAndFrameOpportunitiesAssessorEntry}</td>
             </tr>
             <tr className="text-center">
               <td style={{ border: "1px solid black" }}>Deliver Commercial Values</td>
@@ -219,7 +269,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.deliverCommercialValue ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setDeliverCommercialValueLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -228,7 +278,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.deliverCommercialValue ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{deliverCommercialValueLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -247,7 +297,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.costEstimating ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setCostEstimatingLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -256,7 +306,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.costEstimating ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{costEstimatingLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -275,7 +325,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.projectRiskManagement ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setProjectRiskManagementLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -284,7 +334,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.projectRiskManagement ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{projectRiskManagementLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -303,7 +353,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.probablisticCost ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setProbablisticCostLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -312,7 +362,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.probablisticCost ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{probablisticCostLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -331,7 +381,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.driveProjectPerformance ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setDriveProjectPerformanceLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -340,7 +390,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.driveProjectPerformance ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{driveProjectPerformanceLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -399,7 +449,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.leveragePortfolioBenefit ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setLeveragePortfolioBenefitLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -408,7 +458,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.leveragePortfolioBenefit ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{leveragePortfolioBenefitLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -429,7 +479,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setProjectPortfolioBenchmarkingLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -438,7 +488,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.projectPortfolioBenchmarking ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{projectPortfolioBenchmarkingLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -457,7 +507,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.manageDesignEngineering ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setManageDesignEngineeringLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -466,7 +516,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.manageDesignEngineering ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{manageDesignEngineeringLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -499,7 +549,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setDevelopProjectExecutionStrategiesAndPlansLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -510,7 +560,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 {user.assessment?.developProjectExecutionStrategiesAndPlans ?? 0}
               </td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{developProjectExecutionStrategiesAndPlansLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -531,7 +581,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setContractAndContractorManagementLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -540,7 +590,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.contractAndContractorManagement ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{contractAndContractorManagementLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -559,7 +609,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.setUpLeadProjectTeams ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setSetUpLeadProjectTeamsLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -568,7 +618,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.setUpLeadProjectTeams ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{setUpLeadProjectTeamsLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -589,7 +639,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setWorkEfficientlyWithStakeholdersLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -598,7 +648,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.workEfficientlyWithStakeholders ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{workEfficientlyWithStakeholdersLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -617,7 +667,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.manageProjectComplexities ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setManageProjectComplexitiesLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -626,7 +676,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.manageProjectComplexities ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{manageProjectComplexitiesLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -645,7 +695,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.manageQuality ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setManageQualityLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -654,7 +704,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.manageQuality ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{manageQualityLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -694,10 +744,10 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.implementProcurement ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{implementProcurementLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setImplementProcurementLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -713,7 +763,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.manageFabrication ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setManageFabricationLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -722,7 +772,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.manageFabrication ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{manageFabricationLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -741,7 +791,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.planningAndScheduling ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setPlanningAndSchedulingLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -750,7 +800,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.planningAndScheduling ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{planningAndSchedulingLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -769,7 +819,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.manageCosts ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setManageCostsLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -778,7 +828,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.manageCosts ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{manageCostsLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -797,7 +847,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.costControl ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setCostControlLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -806,7 +856,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.costControl ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{costControlLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -825,7 +875,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.deliverSuccessfulStartUp ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setDeliverSuccessfulStartUpLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -834,7 +884,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.deliverSuccessfulStartUp ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{deliverSuccessfulStartUpLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
@@ -853,7 +903,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.handOver ?? 0)}</td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <select>
+                <select onChange={({ target }) => setHandOverLineEntry(+target.value)}>
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -862,7 +912,7 @@ const TFAssessment = ({ user }: any) => {
                 </select>
               </td>
               <td style={{ border: "1px solid black" }}>{user.assessment?.handOver ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{handOverLineEntry}</td>
               <td style={{ border: "1px solid black" }}>0</td>
               <td style={{ border: "1px solid black" }}>
                 <select>
