@@ -262,7 +262,61 @@ const TFAssessment = ({ user }: any) => {
   const [handOverAssesorEntry, setHandOverAssesorEntry] = useState(0)
 
   const [targetLevel, _] = useState(() => getTargetLevel(user.department.projectLevel))
+  const totalAssessorEntry =
+    evaluateAndFrameOpportunitiesAssessorEntry +
+    deliverCommercialValueAssessorEntry +
+    costEstimatingAssessorEntry +
+    projectRiskManagementAssesorEntry +
+    probablisticCostAssessorEntry +
+    driveProjectPerformanceAssesorEntry +
+    leveragePortfolioBenefitAssesorEntry +
+    projectPortfolioBenchmarkingAssesorEntry +
+    manageDesignEngineeringAssesorEntry +
+    developProjectExecutionStrategiesAndPlansAssesorEntry +
+    contractAndContractorManagementAssesorEntry +
+    setUpLeadProjectTeamsAssessorEntry +
+    workEfficientlyWithStakeholdersAssesorEntry +
+    manageProjectComplexitiesAssesorEntry +
+    manageQualityAssesorEntry +
+    implementProcurementAssesorEntry +
+    manageFabricationAssesorEntry +
+    planningAndSchedulingAssesorEntry +
+    manageCostsAssesorEntry +
+    costControlAssesorEntry +
+    deliverSuccessfulStartUpAssesorEntry +
+    handOverAssesorEntry
 
+  const totalLineEntry =
+    evaluateAndFrameOpportunitiesLineEntry +
+    deliverCommercialValueLineEntry +
+    costEstimatingLineEntry +
+    projectRiskManagementLineEntry +
+    probablisticCostLineEntry +
+    driveProjectPerformanceLineEntry +
+    leveragePortfolioBenefitLineEntry +
+    projectPortfolioBenchmarkingLineEntry +
+    manageDesignEngineeringLineEntry +
+    developProjectExecutionStrategiesAndPlansLineEntry +
+    contractAndContractorManagementLineEntry +
+    setUpLeadProjectTeamsLineEntry +
+    workEfficientlyWithStakeholdersLineEntry +
+    manageProjectComplexitiesLineEntry +
+    manageQualityLineEntry +
+    implementProcurementLineEntry +
+    manageFabricationLineEntry +
+    planningAndSchedulingLineEntry +
+    manageCostsLineEntry +
+    costControlLineEntry +
+    deliverSuccessfulStartUpLineEntry +
+    handOverLineEntry
+
+  function totalLinePercent() {
+    console.log(totalLineEntry)
+    return Math.floor((totalLineEntry / 67) * 100)
+  }
+  function totalAssessorPercent() {
+    return Math.floor((totalAssessorEntry / 67) * 100)
+  }
   useEffect(() => {
     console.log("users", user)
 
@@ -356,11 +410,11 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <div className="flex items-center justify-center h-full text-2xl font-extrabold">0%</div>
+                <div className="flex items-center justify-center h-full text-2xl font-extrabold">{`${totalLinePercent()}%`}</div>
               </td>
               <td style={{ border: "1px solid black" }}></td>
               <td style={{ border: "1px solid black" }}>
-                <div className="flex items-center justify-center h-full text-2xl font-extrabold">2%</div>
+                <div className="flex items-center justify-center h-full text-2xl font-extrabold">{`${totalAssessorPercent()}%`}</div>
               </td>
             </tr>
             <tr>
@@ -379,17 +433,19 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black", padding: "10px" }}></td>
               <td style={{ border: "1px solid black", padding: "10px" }}></td>
               <td
-                className="text-lg font-extrabold text-red-500 "
+                className={`text-lg font-extrabold ${totalLinePercent() > 50 ? " text-green-500" : "text-red-500 "} `}
                 style={{ border: "1px solid black", padding: "10px" }}
               >
-                Not Achieved
+                {totalLinePercent() > 80 ? "Achieved" : "Not Achieved"}
               </td>
               <td style={{ border: "1px solid black", padding: "10px" }}></td>
               <td
-                className="text-lg font-extrabold text-red-500 "
+                className={`text-lg font-extrabold ${
+                  totalAssessorPercent() > 80 ? " text-green-500" : "text-red-500 "
+                } `}
                 style={{ border: "1px solid black", padding: "10px" }}
               >
-                Not Achieved
+                {totalAssessorPercent() > 80 ? "Achieved" : "Not Achieved"}
               </td>
             </tr>
             <tr className="font-bold text-center text-black bg-yellow-400 ">
@@ -417,7 +473,10 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}></td>
             </tr>
             <tr className="text-center">
-              <td style={{ border: "1px solid black" }}>Evaluate & Frame Opportunities</td>
+              <td style={{ border: "1px solid black" }}>
+                Evaluate & Frame Opportunities
+                {/* <a href={evaluateAndFrameOpportunitiesFile}>Evaluate & Frame Opportunities</a> */}
+              </td>
               <td style={{ border: "1px solid black" }}>{targetLevel?.evaluateAndFrameOpportunitiesLineEntry ?? ""}</td>
               <td style={{ border: "1px solid black" }}>
                 {getEntry(user.assessment?.evaluateAndFrameOpportunities ?? 0)}
