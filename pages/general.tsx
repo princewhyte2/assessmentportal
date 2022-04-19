@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react"
 import SendIcon from "../components/icons/Send"
 import MoreIcon from "../components/icons/More"
+import { useRouter } from "next/router"
 import axios from "axios"
 import { getSession } from "next-auth/react"
 
 const General = ({ users }: any) => {
   const [activeMenu, setActiveMenu] = useState("General")
+  const router = useRouter()
 
   useEffect(() => {
     console.log("users", users)
   }, [users])
+
+  function handleRoute(user: any) {
+    router.push("tfassessment?id=" + user.id)
+  }
 
   return (
     <div className="min-h-screen px-20 bg-gray-500">
@@ -17,11 +23,11 @@ const General = ({ users }: any) => {
       <h3 className="mt-6">General Information</h3>
       <div className="flex justify-between mb-6">
         <div className="flex space-x-3 items-center">
-          <div className="px-2 bg-white">
+          {/* <div className="px-2 bg-white">
             <select className="bg-transparent">
               <option>All properties</option>
             </select>
-          </div>
+          </div> */}
           <div className="px-2 bg-white">
             <select className="bg-transparent">
               <option>Today</option>
@@ -36,7 +42,7 @@ const General = ({ users }: any) => {
           >
             General Information
           </button>
-          <button
+          {/* <button
             onClick={() => setActiveMenu("Education")}
             className={activeMenu === "Education" ? "p-2 bg-blue-600 text-white" : "p-2 text-black"}
           >
@@ -47,10 +53,10 @@ const General = ({ users }: any) => {
             className={activeMenu === "Summary" ? "p-2 bg-blue-600 text-white" : "p-2 text-black"}
           >
             Summary
-          </button>
+          </button> */}
         </div>
         <div className="flex items-center space-x-3">
-          <button className="p-2 bg-green-400">+ ADD ITEM</button>
+          {/* <button className="p-2 bg-green-400">+ ADD ITEM</button> */}
           <div className="p-2 bg-black">
             <select className="bg-transparent text-white">
               <option>Export</option>
@@ -90,7 +96,10 @@ const General = ({ users }: any) => {
             >
               <SendIcon />
             </a>
-            <button className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500">
+            <button
+              onClick={() => handleRoute(user)}
+              className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
+            >
               <MoreIcon />
             </button>
           </div>

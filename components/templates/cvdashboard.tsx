@@ -1,12 +1,7 @@
-import axios from "axios"
-import { getSession } from "next-auth/react"
 import { useMemo } from "react"
 import { useTable } from "react-table"
-import EducationTable from "../components/templates/EducationTable"
-import SummaryTable from "../components/templates/SummaryTable"
 
 const CvDashboard = ({ user }: any) => {
-  console.log("user", user)
   const data = useMemo(
     () => [
       {
@@ -65,7 +60,7 @@ const CvDashboard = ({ user }: any) => {
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data })
   return (
-    <div className=" w-screen min-h-screen h-full ">
+    <div>
       <h1>Cv Dashboard</h1>
       <table {...getTableProps()} style={{ border: "solid 1px blue" }}>
         <thead>
@@ -115,41 +110,8 @@ const CvDashboard = ({ user }: any) => {
           })}
         </tbody>
       </table>
-      <SummaryTable project={user?.project?.projects ?? []} />
-      <EducationTable education={user?.project?.education ?? []} />
     </div>
   )
-}
-
-export async function getServerSideProps(context: any) {
-  const { req, res, query } = context
-  const session = await getSession({ req })
-  console.log("session", session?.user)
-  if (!!!session?.user) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/?redirect=/department",
-      },
-    }
-  } else {
-    try {
-      const { data } = await axios.get(`http://localhost:3000/api/user/${query.id}`)
-      console.log("data", data)
-      if (data) {
-        return {
-          props: {
-            user: data,
-          },
-        }
-      }
-    } catch (error: any) {
-      console.log(error.message)
-    }
-    return {
-      props: { user: session?.user },
-    }
-  }
 }
 
 export default CvDashboard

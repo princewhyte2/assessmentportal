@@ -54,10 +54,6 @@ export default async function handler (
                     cvAssessmentFiles.push(filepath)
             }
         }
-
-
-         console.log('files', cvAssessmentFiles);
-        console.log('fields',fields.data );
     
 
         const { id } = req.query
@@ -78,7 +74,6 @@ export default async function handler (
             const userProject = await prisma.project.create({
                 data
             })
-            console.log('success', userProject)
 
             return res.status(200).json(userProject)
         } catch (error) {
