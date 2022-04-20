@@ -19,8 +19,10 @@ const Login = ({ csrfToken }: any) => {
         email,
         password,
       })
+      console.log("response is", res)
+
       if (res) {
-        router.push("/department")
+        router.push("/")
       }
       //when user logs in redirect a non admin using the app for the first time to the department page
       console.log("response is", res)
@@ -71,11 +73,3 @@ const Login = ({ csrfToken }: any) => {
 }
 
 export default Login
-
-// export async function getServerSideProps(context) {
-//   return {
-//     props: {
-//       csrfToken: await getCsrfToken(context),
-//     },
-//   }
-// }

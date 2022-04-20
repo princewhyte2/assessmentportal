@@ -5,15 +5,15 @@ import { useRouter } from "next/router"
 import axios from "axios"
 import { getSession } from "next-auth/react"
 
-const General = ({ users }: any) => {
+const UserGeneral = ({ user }: any) => {
   const [activeMenu, setActiveMenu] = useState("General")
   const router = useRouter()
 
   useEffect(() => {
-    console.log("users", users)
-  }, [users])
+    console.log("users", user)
+  }, [user])
 
-  function handleRoute(user: any) {
+  function handleRoute() {
     if (user.department.name === "TP") {
       router.push("tpassessment?id=" + user.id)
     } else {
@@ -81,34 +81,32 @@ const General = ({ users }: any) => {
         <div className="w-[160px]">Supervisor</div>
         <div className="flex-1"></div>
       </div>
-      {users.map((user: any) => (
-        <div key={user.id} className="flex bg-white p-3 space-x-6">
-          <div>
-            <input type={"checkbox"} />
-          </div>
-          <div className="break-words w-[60px]">{user.name}</div>
-          <div className=" break-words w-28">{user.email}</div>
-          <div className="w-[60px]">{user.project?.jobTitle ?? ""}</div>
-          <div className="w-[80px]">{user.project?.priSkillPool ?? ""}</div>
-          <div className="w-[160px]">{user.project?.secSkillPool ?? ""}</div>
-          <div className="w-[160px]">{user.project?.lastApprovedProjectLevel ?? ""}</div>
-          <div className="w-[160px]">{user.project?.supervisor ?? ""}</div>
-          <div className="flex-1 flex space-x-3">
-            <a
-              href={`mailto:${user.email}`}
-              className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
-            >
-              <SendIcon />
-            </a>
-            <button
-              onClick={() => handleRoute(user)}
-              className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
-            >
-              <MoreIcon />
-            </button>
-          </div>
+      <div key={user.id} className="flex bg-white p-3 space-x-6">
+        <div>
+          <input type={"checkbox"} />
         </div>
-      ))}
+        <div className="break-words w-[60px]">{user.name}</div>
+        <div className=" break-words w-28">{user.email}</div>
+        <div className="w-[60px]">{user.project?.jobTitle ?? ""}</div>
+        <div className="w-[80px]">{user.project?.priSkillPool ?? ""}</div>
+        <div className="w-[160px]">{user.project?.secSkillPool ?? ""}</div>
+        <div className="w-[160px]">{user.project?.lastApprovedProjectLevel ?? ""}</div>
+        <div className="w-[160px]">{user.project?.supervisor ?? ""}</div>
+        <div className="flex-1 flex space-x-3">
+          <a
+            href={`mailto:${user.email}`}
+            className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
+          >
+            <SendIcon />
+          </a>
+          <button
+            onClick={handleRoute}
+            className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
+          >
+            <MoreIcon />
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
@@ -126,12 +124,12 @@ export async function getServerSideProps(context: any) {
     }
   } else {
     try {
-      const { data } = await axios.get(`http://localhost:3000/api/users`)
+      const { data } = await axios.get(`http://localhost:3000/api/user/${session.user.id}`)
       console.log("data", data)
       if (data) {
         return {
           props: {
-            users: data,
+            user: data,
           },
         }
       }
@@ -139,9 +137,9 @@ export async function getServerSideProps(context: any) {
       console.log(error.message)
     }
     return {
-      props: { users: session?.user },
+      props: { user: session?.user },
     }
   }
 }
 
-export default General
+export default UserGeneral

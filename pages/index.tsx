@@ -13,6 +13,14 @@ export async function getServerSideProps(context: any) {
 
   const session = await getSession({ req })
   if (session && res && session.user) {
+    if (session.user.isAdmin) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/general",
+        },
+      }
+    }
     return {
       redirect: {
         permanent: false,

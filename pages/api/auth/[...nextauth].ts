@@ -35,7 +35,7 @@ export default NextAuth({
     }),
   ],
   callbacks: {
-    async jwt ({ token, user, account, profile, isNewUser }) {
+    async jwt ({ token, user}) {
      
        user && (token.user = user)
       return token

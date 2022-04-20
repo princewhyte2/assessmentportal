@@ -141,7 +141,7 @@ const Project = ({ user }: any) => {
       })
       setIsLoading(false)
       console.log("success", data)
-      router.push("/general")
+      router.push("/user-general")
     } catch (error) {
       console.log(error)
       setIsLoading(false)

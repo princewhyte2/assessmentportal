@@ -8,41 +8,107 @@ import { getSession } from "next-auth/react"
 const pone = {
   evaluateAndFrameOpportunitiesLineEntry: "S",
   deliverCommercialValueLineEntry: "S",
+  costEstimatingLineEntry: "K",
   projectRiskManagementLineEntry: "S",
+  probablisticCostLineEntry: "S",
   driveProjectPerformanceLineEntry: "S",
   leveragePortfolioBenefitLineEntry: "S",
   projectPortfolioBenchmarkingLineEntry: "S",
   manageDesignEngineeringLineEntry: "S",
-  manageSchedulesAndResourcesLineEntry: "S",
   developProjectExecutionStrategiesAndPlansLineEntry: "S",
   contractAndContractorManagementLineEntry: "S",
   setUpLeadProjectTeamsLineEntry: "S",
   workEfficientlyWithStakeholdersLineEntry: "S",
   manageProjectComplexitiesLineEntry: "S",
+  manageQualityLineEntry: "S",
+  implementProcurementLineEntry: "S",
+  manageFabricationLineEntry: "S",
+  planningAndSchedulingLineEntry: "S",
   manageCostsLineEntry: "S",
-  leadInterfaceManagementLineEntry: "S",
+  costControlLineEntry: "S",
+  deliverSuccessfulStartUpLineEntry: "S",
+  handOverLineEntry: "S",
 }
 const ptwo = {
   evaluateAndFrameOpportunitiesLineEntry: "S",
-  deliverCommercialValueLineEntry: "S",
+  deliverCommercialValueLineEntry: "K",
+  costEstimatingLineEntry: "K",
   projectRiskManagementLineEntry: "S",
-  driveProjectPerformanceLineEntry: "K",
-  leveragePortfolioBenefitLineEntry: "K",
+  probablisticCostLineEntry: "S",
+  driveProjectPerformanceLineEntry: "S",
+  leveragePortfolioBenefitLineEntry: "S",
   projectPortfolioBenchmarkingLineEntry: "S",
   manageDesignEngineeringLineEntry: "S",
   developProjectExecutionStrategiesAndPlansLineEntry: "S",
-  contractAndContractorManagementLineEntry: "K",
+  contractAndContractorManagementLineEntry: "S",
+  setUpLeadProjectTeamsLineEntry: "K",
+  workEfficientlyWithStakeholdersLineEntry: "S",
+  manageProjectComplexitiesLineEntry: "K",
+  manageQualityLineEntry: "S",
+  implementProcurementLineEntry: "S",
+  manageFabricationLineEntry: "S",
+  planningAndSchedulingLineEntry: "S",
+  manageCostsLineEntry: "S",
+  costControlLineEntry: "S",
+  deliverSuccessfulStartUpLineEntry: "S",
+  handOverLineEntry: "S",
+}
+const pthree = {
+  evaluateAndFrameOpportunitiesLineEntry: "A",
+  deliverCommercialValueLineEntry: "K",
+  costEstimatingLineEntry: "K",
+  projectRiskManagementLineEntry: "S",
+  probablisticCostLineEntry: "K",
+  driveProjectPerformanceLineEntry: "S",
+  leveragePortfolioBenefitLineEntry: "K",
+  projectPortfolioBenchmarkingLineEntry: "S",
+  manageDesignEngineeringLineEntry: "K",
+  developProjectExecutionStrategiesAndPlansLineEntry: "S",
+  contractAndContractorManagementLineEntry: "S",
   setUpLeadProjectTeamsLineEntry: "K",
   workEfficientlyWithStakeholdersLineEntry: "K",
   manageProjectComplexitiesLineEntry: "K",
-  manageSchedulesAndResourcesLineEntry: "S",
+  manageQualityLineEntry: "K",
+  implementProcurementLineEntry: "S",
+  manageFabricationLineEntry: "K",
+  planningAndSchedulingLineEntry: "S",
   manageCostsLineEntry: "S",
-  leadInterfaceManagementLineEntry: "S",
+  costControlLineEntry: "K",
+  deliverSuccessfulStartUpLineEntry: "S",
+  handOverLineEntry: "S",
 }
-const pthree = {
-  evaluateAndFrameOpportunitiesLineEntry: "S",
+
+const pfour = {
+  evaluateAndFrameOpportunitiesLineEntry: "A",
   deliverCommercialValueLineEntry: "K",
+  costEstimatingLineEntry: "A",
+  projectRiskManagementLineEntry: "S",
+  probablisticCostLineEntry: "K",
+  driveProjectPerformanceLineEntry: "K",
+  leveragePortfolioBenefitLineEntry: "A",
+  projectPortfolioBenchmarkingLineEntry: "K",
+  manageDesignEngineeringLineEntry: "K",
+  developProjectExecutionStrategiesAndPlansLineEntry: "S",
+  contractAndContractorManagementLineEntry: "K",
+  setUpLeadProjectTeamsLineEntry: "A",
+  workEfficientlyWithStakeholdersLineEntry: "K",
+  manageProjectComplexitiesLineEntry: "A",
+  manageQualityLineEntry: "K",
+  implementProcurementLineEntry: "K",
+  manageFabricationLineEntry: "K",
+  planningAndSchedulingLineEntry: "S",
+  manageCostsLineEntry: "S",
+  costControlLineEntry: "K",
+  deliverSuccessfulStartUpLineEntry: "K",
+  handOverLineEntry: "K",
+}
+
+const pfive = {
+  evaluateAndFrameOpportunitiesLineEntry: "A",
+  deliverCommercialValueLineEntry: "K",
+  costEstimatingLineEntry: "A",
   projectRiskManagementLineEntry: "K",
+  probablisticCostLineEntry: "K",
   driveProjectPerformanceLineEntry: "K",
   leveragePortfolioBenefitLineEntry: "A",
   projectPortfolioBenchmarkingLineEntry: "K",
@@ -50,48 +116,49 @@ const pthree = {
   developProjectExecutionStrategiesAndPlansLineEntry: "K",
   contractAndContractorManagementLineEntry: "K",
   setUpLeadProjectTeamsLineEntry: "A",
-  workEfficientlyWithStakeholdersLineEntry: "A",
-  manageProjectComplexitiesLineEntry: "K",
-  manageSchedulesAndResourcesLineEntry: "K",
-  manageCostsLineEntry: "K",
-  leadInterfaceManagementLineEntry: "K",
+  workEfficientlyWithStakeholdersLineEntry: "K",
+  manageProjectComplexitiesLineEntry: "A",
+  manageQualityLineEntry: "S",
+  implementProcurementLineEntry: "S",
+  manageFabricationLineEntry: "K",
+  planningAndSchedulingLineEntry: "S",
+  manageCostsLineEntry: "S",
+  costControlLineEntry: "K",
+  deliverSuccessfulStartUpLineEntry: "K",
+  handOverLineEntry: "K",
 }
 
 function getTargetLevel(projectLevel: string) {
-  switch (projectLevel.trim()) {
-    case "Front-End Engineer - Level 3".trim():
-      return pone
-    case "Front-End Engineer - Level 2".trim():
-      return ptwo
-    case "Front-End Engineer - Level 1".trim():
+  switch (projectLevel) {
+    case "Project Practitioner  - Level 1":
+      return pfour
+    case "Project Services - Level 1":
+      return pfive
+    case "Project Services - Level 2":
       return pthree
+    case "Project Practioner - Level 2":
+      return ptwo
+    case "Project Services - Level 3":
+      return pone
     default:
       break
   }
 }
 
 function getCompetenceLevel(projectLevel: string) {
-  switch (projectLevel.trim()) {
-    case "Front-End Engineer - Level 1".trim():
-      return 1
-    case "Front-End Engineer - Level 2".trim():
+  switch (projectLevel) {
+    case "Project Practitioner  - Level 1":
       return 2
-    case "Front-End Engineer - Level 3".trim():
+    case "Project Services - Level 1":
+      return 1
+    case "Project Services - Level 2":
       return 3
+    case "Project Practioner - Level 2":
+      return 4
+    case "Project Services - Level 3":
+      return 5
     default:
       break
-  }
-}
-function getDivisor(projectLevel: string) {
-  switch (projectLevel.trim()) {
-    case "Front-End Engineer - Level 1".trim():
-      return 7
-    case "Front-End Engineer - Level 2".trim():
-      return 7
-    case "Front-End Engineer - Level 3".trim():
-      return 6
-    default:
-      return 0
   }
 }
 
@@ -99,11 +166,16 @@ function getEntry(entry: number) {
   switch (entry) {
     case 1:
       return "A"
+      break
     case 2:
       return "K"
+      break
     case 3:
       return "S"
+      break
     default:
+      return "E"
+      break
   }
 }
 
@@ -135,14 +207,23 @@ const lineEntry = [
   },
 ]
 
+function calcWeighedLineScore(lineScore: number, competence: number) {
+  if (lineScore < competence) return Math.floor((lineScore / competence) * 5)
+  //linescore / competence standard * 5
+  return Math.floor((competence / lineScore) * 5)
+}
+
 const TFAssessment = ({ user }: any) => {
   const [evaluateAndFrameOpportunitiesLineEntry, setEvaluateAndFrameOpportunitiesLineEntry] = useState(0)
   const [evaluateAndFrameOpportunitiesAssessorEntry, setEvaluateAndFrameOpportunitiesAssessorEntry] = useState(0)
   const [deliverCommercialValueLineEntry, setDeliverCommercialValueLineEntry] = useState(0)
   const [deliverCommercialValueAssessorEntry, setDeliverCommercialValueAssessorEntry] = useState(0)
-  const [leadInterfaceManagementLineEntry, setLeadInterfaceManagementLineEntry] = useState(0)
+  const [costEstimatingLineEntry, setCostEstimatingLineEntry] = useState(0)
+  const [costEstimatingAssessorEntry, setCostEstimatingAssessorEntry] = useState(0)
   const [projectRiskManagementLineEntry, setProjectRiskManagementLineEntry] = useState(0)
   const [projectRiskManagementAssesorEntry, setProjectRiskManagementAssesorEntry] = useState(0)
+  const [probablisticCostLineEntry, setProbablisticCostLineEntry] = useState(0)
+  const [probablisticCostAssessorEntry, setProbablisticCostAssesorEntry] = useState(0)
   const [driveProjectPerformanceLineEntry, setDriveProjectPerformanceLineEntry] = useState(0)
   const [driveProjectPerformanceAssesorEntry, setDriveProjectPerformanceAssesorEntry] = useState(0)
   const [leveragePortfolioBenefitLineEntry, setLeveragePortfolioBenefitLineEntry] = useState(0)
@@ -157,8 +238,6 @@ const TFAssessment = ({ user }: any) => {
     developProjectExecutionStrategiesAndPlansAssesorEntry,
     setDevelopProjectExecutionStrategiesAndPlansAssesorEntry,
   ] = useState(0)
-
-  const [leadInterfaceManagementAssesorEntry, setLeadInterfaceManagementAssesorEntry] = useState(0)
   const [contractAndContractorManagementLineEntry, setContractAndContractorManagementLineEntry] = useState(0)
   const [contractAndContractorManagementAssesorEntry, setContractAndContractorManagementAssesorEntry] = useState(0)
   const [setUpLeadProjectTeamsLineEntry, setSetUpLeadProjectTeamsLineEntry] = useState(0)
@@ -167,17 +246,31 @@ const TFAssessment = ({ user }: any) => {
   const [workEfficientlyWithStakeholdersAssesorEntry, setWorkEfficientlyWithStakeholdersAssesorEntry] = useState(0)
   const [manageProjectComplexitiesLineEntry, setManageProjectComplexitiesLineEntry] = useState(0)
   const [manageProjectComplexitiesAssesorEntry, setManageProjectComplexitiesAssesorEntry] = useState(0)
+  const [manageQualityLineEntry, setManageQualityLineEntry] = useState(0)
+  const [manageQualityAssesorEntry, setManageQualityAssesorEntry] = useState(0)
+  const [implementProcurementLineEntry, setImplementProcurementLineEntry] = useState(0)
+  const [implementProcurementAssesorEntry, setImplementProcurementAssesorEntry] = useState(0)
+  const [manageFabricationLineEntry, setManageFabricationLineEntry] = useState(0)
+  const [manageFabricationAssesorEntry, setManageFabricationAssesorEntry] = useState(0)
+  const [planningAndSchedulingLineEntry, setPlanningAndSchedulingLineEntry] = useState(0)
+  const [planningAndSchedulingAssesorEntry, setPlanningAndSchedulingAssesorEntry] = useState(0)
   const [manageCostsLineEntry, setManageCostsLineEntry] = useState(0)
   const [manageCostsAssesorEntry, setManageCostsAssesorEntry] = useState(0)
-  const [manageSchedulesAndResourcesLineEntry, setManageSchedulesAndResourcesLineEntry] = useState(0)
-  const [manageSchedulesAndResourcesAssesorEntry, setManageSchedulesAndResourcesAssesorEntry] = useState(0)
+  const [costControlLineEntry, setCostControlLineEntry] = useState(0)
+  const [costControlAssesorEntry, setCostControlAssesorEntry] = useState(0)
+  const [deliverSuccessfulStartUpLineEntry, setDeliverSuccessfulStartUpLineEntry] = useState(0)
+  const [deliverSuccessfulStartUpAssesorEntry, setDeliverSuccessfulStartUpAssesorEntry] = useState(0)
+  const [handOverLineEntry, setHandOverLineEntry] = useState(0)
+  const [handOverAssesorEntry, setHandOverAssesorEntry] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
 
   const [targetLevel, _] = useState(() => getTargetLevel(user.department.projectLevel))
   const totalAssessorEntry =
     evaluateAndFrameOpportunitiesAssessorEntry +
     deliverCommercialValueAssessorEntry +
+    costEstimatingAssessorEntry +
     projectRiskManagementAssesorEntry +
+    probablisticCostAssessorEntry +
     driveProjectPerformanceAssesorEntry +
     leveragePortfolioBenefitAssesorEntry +
     projectPortfolioBenchmarkingAssesorEntry +
@@ -187,15 +280,21 @@ const TFAssessment = ({ user }: any) => {
     setUpLeadProjectTeamsAssessorEntry +
     workEfficientlyWithStakeholdersAssesorEntry +
     manageProjectComplexitiesAssesorEntry +
+    manageQualityAssesorEntry +
+    implementProcurementAssesorEntry +
+    manageFabricationAssesorEntry +
+    planningAndSchedulingAssesorEntry +
     manageCostsAssesorEntry +
-    leadInterfaceManagementAssesorEntry +
-    contractAndContractorManagementAssesorEntry +
-    manageSchedulesAndResourcesLineEntry
+    costControlAssesorEntry +
+    deliverSuccessfulStartUpAssesorEntry +
+    handOverAssesorEntry
 
   const totalLineEntry =
     evaluateAndFrameOpportunitiesLineEntry +
     deliverCommercialValueLineEntry +
+    costEstimatingLineEntry +
     projectRiskManagementLineEntry +
+    probablisticCostLineEntry +
     driveProjectPerformanceLineEntry +
     leveragePortfolioBenefitLineEntry +
     projectPortfolioBenchmarkingLineEntry +
@@ -205,9 +304,14 @@ const TFAssessment = ({ user }: any) => {
     setUpLeadProjectTeamsLineEntry +
     workEfficientlyWithStakeholdersLineEntry +
     manageProjectComplexitiesLineEntry +
+    manageQualityLineEntry +
+    implementProcurementLineEntry +
+    manageFabricationLineEntry +
+    planningAndSchedulingLineEntry +
     manageCostsLineEntry +
-    leadInterfaceManagementLineEntry +
-    manageSchedulesAndResourcesAssesorEntry
+    costControlLineEntry +
+    deliverSuccessfulStartUpLineEntry +
+    handOverLineEntry
 
   function totalLinePercent() {
     console.log(totalLineEntry)
@@ -215,15 +319,6 @@ const TFAssessment = ({ user }: any) => {
   }
   function totalAssessorPercent() {
     return Math.floor((totalAssessorEntry / 67) * 100)
-  }
-  const divisor = getDivisor(user.department?.projectLevel ?? "")
-  function calcWeighedLineScore(lineScore: number, competence: number) {
-    console.log("linescore", lineScore)
-    console.log("competence", competence)
-    console.log("divisor", divisor)
-    if (lineScore < competence) return Math.floor((lineScore / competence) * divisor)
-    //linescore / competence standard * 5
-    return Math.floor((competence / lineScore) * divisor)
   }
   useEffect(() => {
     console.log("user", user)
@@ -250,7 +345,9 @@ const TFAssessment = ({ user }: any) => {
     const data = {
       evaluateAndFrameOpportunitiesLineEntry,
       deliverCommercialValueLineEntry,
-      leadInterfaceManagementLineEntry,
+      costEstimatingLineEntry,
+      projectRiskManagementLineEntry,
+      probablisticCostLineEntry,
       driveProjectPerformanceLineEntry,
       leveragePortfolioBenefitLineEntry,
       projectPortfolioBenchmarkingLineEntry,
@@ -260,7 +357,14 @@ const TFAssessment = ({ user }: any) => {
       setUpLeadProjectTeamsLineEntry,
       workEfficientlyWithStakeholdersLineEntry,
       manageProjectComplexitiesLineEntry,
+      manageQualityLineEntry,
+      implementProcurementLineEntry,
+      manageFabricationLineEntry,
+      planningAndSchedulingLineEntry,
       manageCostsLineEntry,
+      costControlLineEntry,
+      deliverSuccessfulStartUpLineEntry,
+      handOverLineEntry,
     }
     console.log(data)
     saveLine(data)
@@ -270,7 +374,9 @@ const TFAssessment = ({ user }: any) => {
     const data = {
       evaluateAndFrameOpportunitiesAssessorEntry,
       deliverCommercialValueAssessorEntry,
+      costEstimatingAssessorEntry,
       projectRiskManagementAssesorEntry,
+      probablisticCostAssessorEntry,
       driveProjectPerformanceAssesorEntry,
       leveragePortfolioBenefitAssesorEntry,
       projectPortfolioBenchmarkingAssesorEntry,
@@ -280,8 +386,14 @@ const TFAssessment = ({ user }: any) => {
       setUpLeadProjectTeamsAssessorEntry,
       workEfficientlyWithStakeholdersAssesorEntry,
       manageProjectComplexitiesAssesorEntry,
+      manageQualityAssesorEntry,
+      implementProcurementAssesorEntry,
+      manageFabricationAssesorEntry,
+      planningAndSchedulingAssesorEntry,
       manageCostsAssesorEntry,
-      leadInterfaceManagementAssesorEntry,
+      costControlAssesorEntry,
+      deliverSuccessfulStartUpAssesorEntry,
+      handOverAssesorEntry,
     }
     console.log(data)
     saveLine(data)
@@ -289,7 +401,7 @@ const TFAssessment = ({ user }: any) => {
 
   return (
     <div className="w-screen h-full min-h-screen ">
-      <h1 className="text-2xl font-bold text-purple-600 ">TF Assessment</h1>
+      <h1 className="text-2xl font-bold text-purple-600 ">TP Assessment</h1>
       <div className="flex items-center pr-16 mr-16 space-x-52">
         <div className="flex-1">
           <div className="flex border border-black">
@@ -549,7 +661,51 @@ const TFAssessment = ({ user }: any) => {
                 )}
               </td>
             </tr>
-
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Cost Estimating</td>
+              <td style={{ border: "1px solid black" }}>{targetLevel?.costEstimatingLineEntry ?? ""}</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.costEstimating ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}>
+                <a target={"_blank"} rel="noreferrer" href={user.assessment?.costEstimatingFile ?? "#"}>
+                  {user.assessment?.costEstimatingFile ? "view" : ""}
+                </a>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select disabled={!user.isAdmin} onChange={({ target }) => setCostEstimatingLineEntry(+target.value)}>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.costEstimating ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>{costEstimatingLineEntry}</td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(
+                  costEstimatingLineEntry,
+                  getEntryScore(targetLevel?.costEstimatingLineEntry ?? ""),
+                )}
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setCostEstimatingAssessorEntry(+target.value)}
+                >
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(
+                  costEstimatingAssessorEntry,
+                  getEntryScore(targetLevel?.costEstimatingLineEntry ?? ""),
+                )}
+              </td>
+            </tr>
             <tr className="text-center">
               <td style={{ border: "1px solid black" }}>Project Risk Management</td>
               <td style={{ border: "1px solid black" }}>{targetLevel?.projectRiskManagementLineEntry ?? ""}</td>
@@ -598,7 +754,51 @@ const TFAssessment = ({ user }: any) => {
                 )}
               </td>
             </tr>
-
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Probablistic Cost & schedule Risk Analysis</td>
+              <td style={{ border: "1px solid black" }}>{targetLevel?.probablisticCostLineEntry ?? ""}</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.probablisticCost ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}>
+                <a target={"_blank"} rel="noreferrer" href={user.assessment?.probablisticCostFile ?? "#"}>
+                  {user.assessment?.probablisticCostFile ? "view" : ""}
+                </a>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select disabled={!user.isAdmin} onChange={({ target }) => setProbablisticCostLineEntry(+target.value)}>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.probablisticCost ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>{probablisticCostLineEntry}</td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(
+                  probablisticCostLineEntry,
+                  getEntryScore(targetLevel?.probablisticCostLineEntry ?? ""),
+                )}
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setProbablisticCostAssesorEntry(+target.value)}
+                >
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(
+                  probablisticCostAssessorEntry,
+                  getEntryScore(targetLevel?.probablisticCostLineEntry ?? ""),
+                )}
+              </td>
+            </tr>
             <tr className="text-center">
               <td style={{ border: "1px solid black" }}>Drive & project performance</td>
               <td style={{ border: "1px solid black" }}>{targetLevel?.driveProjectPerformanceLineEntry ?? ""}</td>
@@ -1111,7 +1311,45 @@ const TFAssessment = ({ user }: any) => {
                 )}
               </td>
             </tr>
-
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Manage Quality</td>
+              <td style={{ border: "1px solid black" }}>{targetLevel?.manageQualityLineEntry ?? ""}</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.manageQuality ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}>
+                <a target={"_blank"} rel="noreferrer" href={user.assessment?.manageQualityFile ?? "#"}>
+                  {user.assessment?.manageQualityFile ? "view" : ""}
+                </a>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select disabled={!user.isAdmin} onChange={({ target }) => setManageQualityLineEntry(+target.value)}>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.manageQuality ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>{manageQualityLineEntry}</td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(manageQualityLineEntry, getEntryScore(targetLevel?.manageQualityLineEntry ?? ""))}
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select disabled={!user.isAdmin} onChange={({ target }) => setManageQualityAssesorEntry(+target.value)}>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(
+                  manageQualityAssesorEntry,
+                  getEntryScore(targetLevel?.manageQualityLineEntry ?? ""),
+                )}
+              </td>
+            </tr>
             <tr className="font-bold text-center text-black bg-pink-200 ">
               <td style={{ border: "1px solid black" }}>Manage Efficient Execution</td>
               <td style={{ border: "1px solid black" }}></td>
@@ -1125,20 +1363,18 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}></td>
             </tr>
             <tr className="text-center">
-              <td style={{ border: "1px solid black" }}>Manage Cost</td>
-              <td style={{ border: "1px solid black" }}>{targetLevel?.manageSchedulesAndResourcesLineEntry ?? ""}</td>
+              <td style={{ border: "1px solid black" }}>Implement Procurement Material Management & Logistics</td>
+              <td style={{ border: "1px solid black" }}>{targetLevel?.implementProcurementLineEntry ?? ""}</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.implementProcurement ?? 0)}</td>
               <td style={{ border: "1px solid black" }}>
-                {getEntry(user.assessment?.manageSchedulesAndResources ?? 0)}
-              </td>
-              <td style={{ border: "1px solid black" }}>
-                <a target={"_blank"} rel="noreferrer" href={user.assessment?.manageSchedulesAndResourcesFile ?? "#"}>
-                  {user.assessment?.manageSchedulesAndResourcesFile ? "view" : ""}
+                <a target={"_blank"} rel="noreferrer" href={user.assessment?.implementProcurementFile ?? "#"}>
+                  {user.assessment?.implementProcurementFile ? "view" : ""}
                 </a>
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
                   disabled={!user.isAdmin}
-                  onChange={({ target }) => setManageSchedulesAndResourcesLineEntry(+target.value)}
+                  onChange={({ target }) => setImplementProcurementLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
@@ -1147,18 +1383,18 @@ const TFAssessment = ({ user }: any) => {
                   ))}
                 </select>
               </td>
-              <td style={{ border: "1px solid black" }}>{user.assessment?.manageSchedulesAndResources ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>{manageSchedulesAndResourcesLineEntry}</td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.implementProcurement ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>{implementProcurementLineEntry}</td>
               <td style={{ border: "1px solid black" }}>
                 {calcWeighedLineScore(
-                  manageSchedulesAndResourcesLineEntry,
-                  getEntryScore(targetLevel?.manageSchedulesAndResourcesLineEntry ?? ""),
+                  implementProcurementLineEntry,
+                  getEntryScore(targetLevel?.implementProcurementLineEntry ?? ""),
                 )}
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
                   disabled={!user.isAdmin}
-                  onChange={({ target }) => setManageSchedulesAndResourcesAssesorEntry(+target.value)}
+                  onChange={({ target }) => setImplementProcurementAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
@@ -1169,8 +1405,104 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 {calcWeighedLineScore(
-                  manageSchedulesAndResourcesAssesorEntry,
-                  getEntryScore(targetLevel?.manageSchedulesAndResourcesLineEntry ?? ""),
+                  implementProcurementAssesorEntry,
+                  getEntryScore(targetLevel?.implementProcurementLineEntry ?? ""),
+                )}
+              </td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Manage Fabrication & Construction</td>
+              <td style={{ border: "1px solid black" }}>{targetLevel?.manageFabricationLineEntry ?? ""}</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.manageFabrication ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}>
+                <a target={"_blank"} rel="noreferrer" href={user.assessment?.manageFabricationFile ?? "#"}>
+                  {user.assessment?.manageFabricationFile ? "view" : ""}
+                </a>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setManageFabricationLineEntry(+target.value)}
+                >
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.manageFabrication ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>{manageFabricationLineEntry}</td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(
+                  manageFabricationLineEntry,
+                  getEntryScore(targetLevel?.manageFabricationLineEntry ?? ""),
+                )}
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setManageFabricationAssesorEntry(+target.value)}
+                >
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(
+                  manageFabricationAssesorEntry,
+                  getEntryScore(targetLevel?.manageFabricationLineEntry ?? ""),
+                )}
+              </td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Planning & Scheduling</td>
+              <td style={{ border: "1px solid black" }}>{targetLevel?.planningAndSchedulingLineEntry ?? ""}</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.planningAndScheduling ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}>
+                <a target={"_blank"} rel="noreferrer" href={user.assessment?.planningAndSchedulingFile ?? "#"}>
+                  {user.assessment?.planningAndSchedulingFile ? "view" : ""}
+                </a>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setPlanningAndSchedulingLineEntry(+target.value)}
+                >
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.planningAndScheduling ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>{planningAndSchedulingLineEntry}</td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(
+                  planningAndSchedulingLineEntry,
+                  getEntryScore(targetLevel?.planningAndSchedulingLineEntry ?? ""),
+                )}
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setPlanningAndSchedulingAssesorEntry(+target.value)}
+                >
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(
+                  planningAndSchedulingAssesorEntry,
+                  getEntryScore(targetLevel?.planningAndSchedulingLineEntry ?? ""),
                 )}
               </td>
             </tr>
@@ -1210,32 +1542,55 @@ const TFAssessment = ({ user }: any) => {
                 {calcWeighedLineScore(manageCostsAssesorEntry, getEntryScore(targetLevel?.manageCostsLineEntry ?? ""))}
               </td>
             </tr>
-
-            <tr className="font-bold text-center text-black bg-pink-200 ">
-              <td style={{ border: "1px solid black" }}>Interface Management</td>
-              <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}></td>
-              <td style={{ border: "1px solid black" }}></td>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Cost Controls</td>
+              <td style={{ border: "1px solid black" }}>{targetLevel?.costControlLineEntry ?? ""}</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.costControl ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}>
+                <a target={"_blank"} rel="noreferrer" href={user.assessment?.costControlFile ?? "#"}>
+                  {user.assessment?.costControlFile ? "view" : ""}
+                </a>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select disabled={!user.isAdmin} onChange={({ target }) => setCostControlLineEntry(+target.value)}>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.costControl ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>{costControlLineEntry}</td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(costControlLineEntry, getEntryScore(targetLevel?.costControlLineEntry ?? ""))}
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select disabled={!user.isAdmin} onChange={({ target }) => setCostControlAssesorEntry(+target.value)}>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(costControlAssesorEntry, getEntryScore(targetLevel?.costControlLineEntry ?? ""))}
+              </td>
             </tr>
             <tr className="text-center">
-              <td style={{ border: "1px solid black" }}>Lead Interface Management</td>
-              <td style={{ border: "1px solid black" }}>{targetLevel?.leadInterfaceManagementLineEntry ?? ""}</td>
-              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.LeadInterfaceManagement ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}>Deliver Successfull Start Up & Operation</td>
+              <td style={{ border: "1px solid black" }}>{targetLevel?.deliverSuccessfulStartUpLineEntry ?? ""}</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.deliverSuccessfulStartUp ?? 0)}</td>
               <td style={{ border: "1px solid black" }}>
-                <a target={"_blank"} rel="noreferrer" href={user.assessment?.LeadInterfaceManagementFile ?? "#"}>
-                  {user.assessment?.LeadInterfaceManagementFile ? "view" : ""}
+                <a target={"_blank"} rel="noreferrer" href={user.assessment?.deliverSuccessfulStartUpFile ?? "#"}>
+                  {user.assessment?.deliverSuccessfulStartUpFile ? "view" : ""}
                 </a>
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
                   disabled={!user.isAdmin}
-                  onChange={({ target }) => setLeadInterfaceManagementLineEntry(+target.value)}
+                  onChange={({ target }) => setDeliverSuccessfulStartUpLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
@@ -1244,18 +1599,18 @@ const TFAssessment = ({ user }: any) => {
                   ))}
                 </select>
               </td>
-              <td style={{ border: "1px solid black" }}>{user.assessment?.LeadInterfaceManagement ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>{leadInterfaceManagementLineEntry}</td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.deliverSuccessfulStartUp ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>{deliverSuccessfulStartUpLineEntry}</td>
               <td style={{ border: "1px solid black" }}>
                 {calcWeighedLineScore(
-                  leadInterfaceManagementLineEntry,
-                  getEntryScore(targetLevel?.leadInterfaceManagementLineEntry ?? ""),
+                  deliverSuccessfulStartUpLineEntry,
+                  getEntryScore(targetLevel?.deliverSuccessfulStartUpLineEntry ?? ""),
                 )}
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
                   disabled={!user.isAdmin}
-                  onChange={({ target }) => setLeadInterfaceManagementAssesorEntry(+target.value)}
+                  onChange={({ target }) => setDeliverSuccessfulStartUpAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
@@ -1266,9 +1621,45 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 {calcWeighedLineScore(
-                  leadInterfaceManagementAssesorEntry,
-                  getEntryScore(targetLevel?.leadInterfaceManagementLineEntry ?? ""),
+                  deliverSuccessfulStartUpAssesorEntry,
+                  getEntryScore(targetLevel?.deliverSuccessfulStartUpLineEntry ?? ""),
                 )}
+              </td>
+            </tr>
+            <tr className="text-center">
+              <td style={{ border: "1px solid black" }}>Hand Over & Close out Work</td>
+              <td style={{ border: "1px solid black" }}>{targetLevel?.handOverLineEntry ?? ""}</td>
+              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.handOver ?? 0)}</td>
+              <td style={{ border: "1px solid black" }}>
+                <a target={"_blank"} rel="noreferrer" href={user.assessment?.handOverFile ?? "#"}>
+                  {user.assessment?.handOverFile ? "view" : ""}
+                </a>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select disabled={!user.isAdmin} onChange={({ target }) => setHandOverLineEntry(+target.value)}>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.handOver ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>{handOverLineEntry}</td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(handOverLineEntry, getEntryScore(targetLevel?.handOverLineEntry ?? ""))}
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select disabled={!user.isAdmin} onChange={({ target }) => setHandOverAssesorEntry(+target.value)}>
+                  {lineEntry.map((item) => (
+                    <option value={item.value} key={item.key}>
+                      {item.key}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(handOverAssesorEntry, getEntryScore(targetLevel?.handOverLineEntry ?? ""))}
               </td>
             </tr>
           </tbody>
