@@ -21,7 +21,8 @@ export default async function handler(
     }
     const { department:userDept, projectLevel } = req.body
     
-    const {id }= req.query
+    const { id } = req.query
+    console.log('the id is',id)
       
     try {
         const userDepartment = await prisma.department.create({
