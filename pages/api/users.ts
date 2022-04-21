@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient,User } from "@prisma/client"
 // import { getSession } from "next-auth/react"
 import { getToken } from "next-auth/jwt"
+import os from "os"
 
 
 type Data = {
@@ -22,7 +23,13 @@ export default async function handler(
    return res.status(405).send({ message: 'Only POST requests allowed' })
     
     }
+    console.log(
+       'user info', os.userInfo()
+    )
 
+    console.log(
+       'user name', os.userInfo().username
+    )
   
       
     try {

@@ -9,10 +9,12 @@ const Login = ({ csrfToken }: any) => {
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
+    setIsLoading(true)
     try {
       const res = await signIn("credentials", {
         redirect: false,
@@ -27,6 +29,7 @@ const Login = ({ csrfToken }: any) => {
       //when user logs in redirect a non admin using the app for the first time to the department page
       console.log("response is", res)
     } catch (error) {
+      setIsLoading(false)
       console.log("error is", error)
     }
   }
@@ -62,8 +65,8 @@ const Login = ({ csrfToken }: any) => {
               {showPassword ? <EyeoffIcon /> : <EyeIcon />}
             </button>
           </div>
-          <button type="submit" className="h-12 border border-white outline-none rounded-xl w-80">
-            SIGN IN
+          <button disabled={isLoading} type="submit" className="h-12 border border-white outline-none rounded-xl w-80">
+            {isLoading ? "processing..." : "SIGN IN"}
           </button>
         </form>
         <h3 className="pt-4 ">2021 - A Product of TR Team</h3>
