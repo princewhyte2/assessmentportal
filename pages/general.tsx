@@ -81,34 +81,38 @@ const General = ({ users }: any) => {
         <div className="w-[160px]">Supervisor</div>
         <div className="flex-1"></div>
       </div>
-      {users.map((user: any) => (
-        <div key={user.id} className="flex bg-white p-3 space-x-6">
-          <div>
-            <input type={"checkbox"} />
-          </div>
-          <div className="break-words w-[60px]">{user.name}</div>
-          <div className=" break-words w-28">{user.email}</div>
-          <div className="w-[60px]">{user.project?.jobTitle ?? ""}</div>
-          <div className="w-[80px]">{user.project?.priSkillPool ?? ""}</div>
-          <div className="w-[160px]">{user.project?.secSkillPool ?? ""}</div>
-          <div className="w-[160px]">{user.project?.lastApprovedProjectLevel ?? ""}</div>
-          <div className="w-[160px]">{user.project?.supervisor ?? ""}</div>
-          <div className="flex-1 flex space-x-3">
-            <a
-              href={`mailto:${user.email}`}
-              className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
-            >
-              <SendIcon />
-            </a>
-            <button
-              onClick={() => handleRoute(user)}
-              className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
-            >
-              <MoreIcon />
-            </button>
-          </div>
-        </div>
-      ))}
+      {users.map(
+        (user: any) =>
+          user.department?.id &&
+          user.project?.id && (
+            <div key={user.id} className="flex bg-white p-3 space-x-6">
+              <div>
+                <input type={"checkbox"} />
+              </div>
+              <div className="break-words w-[60px]">{user.name}</div>
+              <div className=" break-words w-28">{user.email}</div>
+              <div className="w-[60px]">{user.project?.jobTitle ?? ""}</div>
+              <div className="w-[80px]">{user.project?.priSkillPool ?? ""}</div>
+              <div className="w-[160px]">{user.project?.secSkillPool ?? ""}</div>
+              <div className="w-[160px]">{user.project?.lastApprovedProjectLevel ?? ""}</div>
+              <div className="w-[160px]">{user.project?.supervisor ?? ""}</div>
+              <div className="flex-1 flex space-x-3">
+                <a
+                  href={`mailto:${user.email}`}
+                  className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
+                >
+                  <SendIcon />
+                </a>
+                <button
+                  onClick={() => handleRoute(user)}
+                  className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
+                >
+                  <MoreIcon />
+                </button>
+              </div>
+            </div>
+          ),
+      )}
     </div>
   )
 }

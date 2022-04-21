@@ -1288,6 +1288,7 @@ const TFAssessment = ({ user }: any) => {
           <thead>
             <tr>
               <th style={{ border: "1px solid black" }}></th>
+              <th style={{ border: "1px solid black" }}>Name</th>
               <th style={{ border: "1px solid black" }}>Signature</th>
               <th style={{ border: "1px solid black" }}>Date</th>
             </tr>
@@ -1296,7 +1297,8 @@ const TFAssessment = ({ user }: any) => {
             <tr>
               <td style={{ border: "1px solid black" }}>Employee</td>
               <td style={{ border: "1px solid black" }}>
-                <input type={"text"} />
+                {/* <input type={"text"} /> */}
+                {user.project.fullName}
               </td>
               <td style={{ border: "1px solid black" }}>
                 <input type={"text"} />
@@ -1320,7 +1322,8 @@ const TFAssessment = ({ user }: any) => {
             <tr>
               <td style={{ border: "1px solid black" }}>Supervisor</td>
               <td style={{ border: "1px solid black" }}>
-                <input type={"text"} />
+                {/* <input type={"text"} /> */}
+                {user.project.supervisor}
               </td>
               <td style={{ border: "1px solid black" }}>
                 <input type={"text"} />
