@@ -93,12 +93,9 @@ const UserGeneral = ({ user }: any) => {
         <div className="w-[160px]">{user.project?.lastApprovedProjectLevel ?? ""}</div>
         <div className="w-[160px]">{user.project?.supervisor ?? ""}</div>
         <div className="flex-1 flex space-x-3">
-          <a
-            href={`mailto:${user.email}`}
-            className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
-          >
+          <button className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500">
             <SendIcon />
-          </a>
+          </button>
           <button
             onClick={handleRoute}
             className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"

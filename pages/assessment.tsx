@@ -931,6 +931,7 @@ const Assessment = ({ user }: any) => {
                           <input
                             onChange={({ target }) => setImplementProcurement(Number(target.value))}
                             value={1}
+                            name="implementProcurement"
                             type="radio"
                           />{" "}
                           Awareness = Can describe in basic terms
@@ -940,6 +941,7 @@ const Assessment = ({ user }: any) => {
                           <input
                             onChange={({ target }) => setImplementProcurement(Number(target.value))}
                             value={2}
+                            name="implementProcurement"
                             type="radio"
                           />{" "}
                           Knowledge = Awareness plus, can explain and have an informed debate and participation
@@ -948,6 +950,7 @@ const Assessment = ({ user }: any) => {
                           <input
                             onChange={({ target }) => setImplementProcurement(Number(target.value))}
                             value={3}
+                            name="implementProcurement"
                             type="radio"
                           />{" "}
                           Skill = Knowledge plus, can do the work
@@ -1241,6 +1244,7 @@ const Assessment = ({ user }: any) => {
                         <input
                           onChange={({ target }) => setLeadInterfaceManagement(Number(target.value))}
                           value={1}
+                          name="leadInterfaceManagement"
                           type="radio"
                         />{" "}
                         Awareness = Can describe in basic terms
@@ -1250,6 +1254,7 @@ const Assessment = ({ user }: any) => {
                         <input
                           onChange={({ target }) => setLeadInterfaceManagement(Number(target.value))}
                           value={2}
+                          name="leadInterfaceManagement"
                           type="radio"
                         />{" "}
                         Knowledge = Awareness plus, can explain and have an informed debate and participation
@@ -1258,6 +1263,7 @@ const Assessment = ({ user }: any) => {
                         <input
                           onChange={({ target }) => setLeadInterfaceManagement(Number(target.value))}
                           value={3}
+                          name="leadInterfaceManagement"
                           type="radio"
                         />{" "}
                         Skill = Knowledge plus, can do the work
