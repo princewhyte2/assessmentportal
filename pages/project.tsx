@@ -4,6 +4,12 @@ import axios from "axios"
 import { getSession } from "next-auth/react"
 import { useRouter } from "next/router"
 
+const isValidEmail = (email: string) => {
+  const re =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  return re.test(String(email).toLowerCase())
+}
+
 const Project = ({ user }: any) => {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
@@ -18,7 +24,8 @@ const Project = ({ user }: any) => {
   const [projectDetails, setProjectDetails] = useState({
     name: "",
     size: "",
-    complexity: "",
+    complexity: "low",
+    duration: "",
     projectManageMentRole: "",
     orpPhases: "",
     challenges: "",
@@ -30,6 +37,7 @@ const Project = ({ user }: any) => {
       name: string
       size: string
       complexity: string
+      duration: string
       projectManageMentRole: string
       orpPhases: string
       challenges: string
@@ -97,7 +105,8 @@ const Project = ({ user }: any) => {
     setProjectDetails({
       name: "",
       size: "",
-      complexity: "",
+      complexity: "low",
+      duration: "",
       projectManageMentRole: "",
       orpPhases: "",
       challenges: "",
@@ -109,6 +118,14 @@ const Project = ({ user }: any) => {
 
   async function handleRegisteration(e: any) {
     e.preventDefault()
+    if (!cvAssessmentFiles) {
+      window.alert("Please upload your CV")
+      return
+    }
+    if (!isValidEmail(email)) {
+      window.alert("Please enter a valid email")
+      return
+    }
     const response = window.confirm("Are you sure all fields are filled correctly ?")
     if (!response) return
     setIsLoading(true)
@@ -185,8 +202,9 @@ const Project = ({ user }: any) => {
                     <label>Enter Email Address</label>
                     <input
                       value={email}
+                      required
                       onChange={({ target }) => setEmail(target.value)}
-                      type="text"
+                      type="email"
                       className="w-full p-3 my-2 border rounded-md outline-none"
                     />
                   </div>
@@ -234,7 +252,13 @@ const Project = ({ user }: any) => {
                         <option value={2}>2</option>
                         <option value={3}>3</option>
                         <option value={4}>4</option>
-                        <option value={7}>4+</option>
+                        <option value={5}>5</option>
+                        <option value={6}>6</option>
+                        <option value={7}>7</option>
+                        <option value={8}>8</option>
+                        <option value={9}>9</option>
+                        <option value={10}>10</option>
+                        <option value={13}>11+</option>
                       </select>
                     </div>
                   </div>
@@ -307,10 +331,11 @@ const Project = ({ user }: any) => {
                     )}
                   </div>
                   <div className="mt-2">
-                    <label>Upload you CV and Assessment Evidence </label>
+                    <label>Upload your CV and Assessment Evidence </label>
                     <input
                       onChange={({ target }) => (target?.files?.length ? setCvAssessmentFiles(target.files) : null)}
                       type="file"
+                      required
                       multiple
                       className="w-full p-3 my-2 border rounded-md outline-none"
                     />
@@ -352,7 +377,20 @@ const Project = ({ user }: any) => {
                     />
                   </div>
                   <div className="flex justify-center py-8 space-x-2">
-                    <button onClick={() => setSelectedIndex(1)} className="p-3 text-white bg-blue-400 border rounded">
+                    <button
+                      onClick={() => {
+                        if (!cvAssessmentFiles?.length) {
+                          alert("Please upload your CV and Assessment Evidence")
+                        } else {
+                          if (!isValidEmail(email)) {
+                            alert("Please enter a valid email address")
+                          } else {
+                            setSelectedIndex(1)
+                          }
+                        }
+                      }}
+                      className="p-3 text-white bg-blue-400 border rounded"
+                    >
                       Next
                     </button>
                   </div>
@@ -459,6 +497,7 @@ const Project = ({ user }: any) => {
                         <th style={{ border: "1px solid black" }}>Size</th>
                         <th style={{ border: "1px solid black" }}>Complexity</th>
                         <th style={{ border: "1px solid black" }}>Details</th>
+                        <th style={{ border: "1px solid black" }}>Duration</th>
                         <th style={{ border: "1px solid black" }}>Orp-phrases</th>
                         <th style={{ border: "1px solid black" }}>Project ManageMentRole</th>
                         <th style={{ border: "1px solid black" }}>Results Achieved</th>
@@ -471,6 +510,7 @@ const Project = ({ user }: any) => {
                           <td style={{ border: "1px solid black" }}>{item.name}</td>
                           <td style={{ border: "1px solid black" }}>{item.size}</td>
                           <td style={{ border: "1px solid black" }}>{item.complexity}</td>
+                          <td style={{ border: "1px solid black" }}>{item.duration}</td>
                           <td style={{ border: "1px solid black" }}>{item.details}</td>
                           <td style={{ border: "1px solid black" }}>{item.orpPhases}</td>
                           <td style={{ border: "1px solid black" }}>{item.projectManageMentRole}</td>
@@ -516,6 +556,14 @@ const Project = ({ user }: any) => {
                         </div>
                       </div>
                       <div>
+                        <label>Duration</label>
+                        <input
+                          onChange={({ target }) => setProjectDetails({ ...projectDetails, duration: target.value })}
+                          type="text"
+                          className="w-full p-3 my-2 border rounded-md outline-none"
+                        />
+                      </div>
+                      <div>
                         <label>Project Management Role</label>
                         <input
                           onChange={({ target }) =>
@@ -528,6 +576,7 @@ const Project = ({ user }: any) => {
                       <div>
                         <label>ORP Phases(Type in as it applies to you, i.e, Phase 1, Phase 2, Phase 3)</label>
                         <textarea
+                          maxLength={200}
                           onChange={({ target }) => setProjectDetails({ ...projectDetails, orpPhases: target.value })}
                           className="w-full h-16 p-3 my-2 border rounded-md outline-none"
                         />
@@ -535,6 +584,7 @@ const Project = ({ user }: any) => {
                       <div>
                         <label>Challenges</label>
                         <textarea
+                          maxLength={200}
                           onChange={({ target }) => setProjectDetails({ ...projectDetails, challenges: target.value })}
                           className="w-full h-16 p-3 my-2 border rounded-md outline-none"
                         />
@@ -542,6 +592,7 @@ const Project = ({ user }: any) => {
                       <div>
                         <label>Results Achieved</label>
                         <textarea
+                          maxLength={200}
                           onChange={({ target }) =>
                             setProjectDetails({ ...projectDetails, resultsAchieved: target.value })
                           }
@@ -551,6 +602,7 @@ const Project = ({ user }: any) => {
                       <div>
                         <label>Details </label>
                         <textarea
+                          maxLength={200}
                           onChange={({ target }) => setProjectDetails({ ...projectDetails, details: target.value })}
                           className="w-full h-16 p-3 my-2 border rounded-md outline-none"
                         />

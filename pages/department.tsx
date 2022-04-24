@@ -31,9 +31,9 @@ const Department = ({ user }: any) => {
       }
       const { data } = await axios.post(`/api/setdepartment/${user.id}`, info)
       console.log("post result", data)
-      setIsLoading(false)
       if (data.id) {
-        router.push("/assessment")
+        console.log(data.name)
+        router.push(`/assessment?department=${data.name}`)
       }
     } catch (error) {
       console.log(error)

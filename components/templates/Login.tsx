@@ -1,14 +1,9 @@
 import react, { useState, useEffect } from "react"
-import EyeIcon from "../icons/Eye"
-import EyeoffIcon from "../icons/Eyeoff"
-// import { getCsrfToken } from "next-auth/react"
 import { useRouter } from "next/router"
 import { signIn } from "next-auth/react"
 
 const Login = ({ csrfToken }: any) => {
-  const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
@@ -16,14 +11,18 @@ const Login = ({ csrfToken }: any) => {
     e.preventDefault()
     setIsLoading(true)
     try {
-      const res = await signIn("credentials", {
+      const res: any = await signIn("credentials", {
         redirect: false,
         email,
-        password,
       })
       console.log("response is", res)
 
       if (res) {
+        if (res.error) {
+          alert(res.error)
+          setIsLoading(false)
+          return
+        }
         router.push("/")
       }
       //when user logs in redirect a non admin using the app for the first time to the department page
@@ -50,21 +49,9 @@ const Login = ({ csrfToken }: any) => {
             type="text"
             value={email}
             onChange={({ target }) => setEmail(target.value)}
-            placeholder="example@youremail.com"
+            placeholder="enter your username"
             className="h-12 px-4 text-white placeholder-current bg-transparent border border-white outline-none w-80 rounded-xl"
           />
-          <div className="flex items-center h-12 px-4 space-x-3 border border-white w-80 rounded-xl">
-            <input
-              value={password}
-              onChange={({ target }) => setPassword(target.value)}
-              placeholder="your password"
-              type={showPassword ? "text" : "password"}
-              className="flex-1 text-white placeholder-current bg-transparent outline-none"
-            />
-            <button onClick={() => setShowPassword(!showPassword)} type="button">
-              {showPassword ? <EyeoffIcon /> : <EyeIcon />}
-            </button>
-          </div>
           <button disabled={isLoading} type="submit" className="h-12 border border-white outline-none rounded-xl w-80">
             {isLoading ? "processing..." : "SIGN IN"}
           </button>

@@ -170,7 +170,6 @@ const Assessment = ({ user }: any) => {
       const { data } = await axios.post(`/api/assessment/${user.id}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
-      setIsLoading(false)
       console.log("success", data)
       router.push("/project")
     } catch (error) {
@@ -1168,6 +1167,7 @@ const Assessment = ({ user }: any) => {
                       <input
                         onChange={({ target }) => setManageSchedulesAndResources(Number(target.value))}
                         value={1}
+                        name="manageSchedulesAndResources"
                         type="radio"
                       />{" "}
                       Awareness = Can describe in basic terms
@@ -1177,6 +1177,7 @@ const Assessment = ({ user }: any) => {
                       <input
                         onChange={({ target }) => setManageSchedulesAndResources(Number(target.value))}
                         value={2}
+                        name="manageSchedulesAndResources"
                         type="radio"
                       />{" "}
                       Knowledge = Awareness plus, can explain and have an informed debate and participation
@@ -1185,6 +1186,7 @@ const Assessment = ({ user }: any) => {
                       <input
                         onChange={({ target }) => setManageSchedulesAndResources(Number(target.value))}
                         value={3}
+                        name="manageSchedulesAndResources"
                         type="radio"
                       />{" "}
                       Skill = Knowledge plus, can do the work
@@ -1206,16 +1208,31 @@ const Assessment = ({ user }: any) => {
                 <div className="flex items-center space-x-2">
                   <div className="flex-1">
                     <label className="block">
-                      <input onChange={({ target }) => setManageCosts(Number(target.value))} value={1} type="radio" />{" "}
+                      <input
+                        name="manageCost"
+                        onChange={({ target }) => setManageCosts(Number(target.value))}
+                        value={1}
+                        type="radio"
+                      />{" "}
                       Awareness = Can describe in basic terms
                     </label>
 
                     <label className="block">
-                      <input onChange={({ target }) => setManageCosts(Number(target.value))} value={2} type="radio" />{" "}
+                      <input
+                        name="manageCost"
+                        onChange={({ target }) => setManageCosts(Number(target.value))}
+                        value={2}
+                        type="radio"
+                      />{" "}
                       Knowledge = Awareness plus, can explain and have an informed debate and participation
                     </label>
                     <label className="block">
-                      <input onChange={({ target }) => setManageCosts(Number(target.value))} value={3} type="radio" />{" "}
+                      <input
+                        name="manageCost"
+                        onChange={({ target }) => setManageCosts(Number(target.value))}
+                        value={3}
+                        type="radio"
+                      />{" "}
                       Skill = Knowledge plus, can do the work
                     </label>
                   </div>

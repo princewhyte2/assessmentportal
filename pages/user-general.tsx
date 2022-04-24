@@ -85,15 +85,20 @@ const UserGeneral = ({ user }: any) => {
         <div>
           <input type={"checkbox"} />
         </div>
-        <div className="break-words w-[60px]">{user.name}</div>
-        <div className=" break-words w-28">{user.email}</div>
+        <div className="break-words w-[60px]">{user.project?.fullName}</div>
+        <div className=" break-words w-28">{user.project?.email}</div>
         <div className="w-[60px]">{user.project?.jobTitle ?? ""}</div>
         <div className="w-[80px]">{user.project?.priSkillPool ?? ""}</div>
         <div className="w-[160px]">{user.project?.secSkillPool ?? ""}</div>
         <div className="w-[160px]">{user.project?.lastApprovedProjectLevel ?? ""}</div>
         <div className="w-[160px]">{user.project?.supervisor ?? ""}</div>
         <div className="flex-1 flex space-x-3">
-          <button className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500">
+          <button
+            onClick={() => {
+              router.push("/editpage")
+            }}
+            className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
+          >
             <SendIcon />
           </button>
           <button

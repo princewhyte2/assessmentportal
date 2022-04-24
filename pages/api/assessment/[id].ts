@@ -1,22 +1,21 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
-import formidable from "formidable";
-import fs from "fs";
+import type { NextApiRequest, NextApiResponse } from "next"
+import formidable from "formidable"
+import fs from "fs"
 import { join, parse, extname } from "path"
-import { PrismaClient,Assessment} from "@prisma/client"
-
+import { PrismaClient, Assessment } from "@prisma/client"
 
 export const saveFile = async (file: any) => {
-  if(!file) return null;
-  
-  const data = fs.readFileSync(file.filepath);
+  if (!file) return null
+
+  const data = fs.readFileSync(file.filepath)
   const url = `/uploads/${file.newFilename}${extname(file.originalFilename)}`
-  const path = `./public/${url}`;
-  
-  fs.writeFileSync(path, data);
-  await fs.unlinkSync(file.filepath);
-  return url;
-};
+  const path = `./public/${url}`
+
+  fs.writeFileSync(path, data)
+  await fs.unlinkSync(file.filepath)
+  return url
+}
 
 type Data = {
   message: string
@@ -24,23 +23,32 @@ type Data = {
 
 export const config = {
   api: {
-    bodyParser: false
+    bodyParser: false,
+  },
+}
+
+const prisma = new PrismaClient()
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse<Data | Assessment>) {
+  if (req.method !== "POST" && req.method !== "DELETE") {
+    return res.status(405).send({ message: "Only POST|Delete requests allowed" })
   }
-};
-
-const prisma = new PrismaClient();
-
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data|Assessment>
-) {
-
-    if (req.method !== 'POST') {
-   return res.status(405).send({ message: 'Only POST requests allowed' })
+  const { id } = req.query
+  if (req.method === "DELETE") {
+    try {
+      const clearUserAssessment = await prisma.assessment.delete({
+        where: {
+          userId: id as string,
+        },
+      })
+      return res.status(200).json(clearUserAssessment)
+    } catch (err) {
+      console.log(err)
+      return res.status(500).send({ message: "Something went wrong" })
+    }
   }
-  
-  const form = new formidable.IncomingForm();
-  
+  const form = new formidable.IncomingForm()
+
   form.parse(req, async function (err, fields, files) {
     const {
       evaluateAndFrameOpportunities,
@@ -58,25 +66,26 @@ export default async function handler(
       setUpLeadProjectTeams,
       workEfficientlyWithStakeholders,
       manageProjectComplexities,
-      manageQuality, implementProcurement ,
-  manageFabrication ,
-  costControl ,
-  planningAndScheduling ,
-  deliverSuccessfulStartUp ,
-  handOver ,
-  manageSchedulesAndResources ,
-  manageCosts ,
-  LeadInterfaceManagement ,
+      manageQuality,
+      implementProcurement,
+      manageFabrication,
+      costControl,
+      planningAndScheduling,
+      deliverSuccessfulStartUp,
+      handOver,
+      manageSchedulesAndResources,
+      manageCosts,
+      LeadInterfaceManagement,
     } = JSON.parse(fields.data as string)
 
     if (err) {
       console.log(err)
-      return res.status(400).send({ message: 'Invalid form data' })
+      return res.status(400).send({ message: "Invalid form data" })
     }
 
     // console.log('files', files);
     // console.log('fields',typeof JSON.parse(fields.data as string));
-    const  evaluateAndFrameOpportunitiesFile =   await saveFile(files.evaluateAndFrameOpportunitiesFile);
+    const evaluateAndFrameOpportunitiesFile = await saveFile(files.evaluateAndFrameOpportunitiesFile)
     const deliverCommercialValueFile = await saveFile(files.deliverCommercialValueFile)
     const costEstimatingFile = await saveFile(files.costEstimatingFile)
     const probablisticCostFile = await saveFile(files.probablisticCostFile)
@@ -86,7 +95,9 @@ export default async function handler(
     const leveragePortfolioBenefitFile = await saveFile(files.leveragePortfolioBenefitFile)
     const projectPortfolioBenchmarkingFile = await saveFile(files.projectPortfolioBenchmarkingFile)
     const manageDesignEngineeringFile = await saveFile(files.manageDesignEngineeringFile)
-    const developProjectExecutionStrategiesAndPlansFile = await saveFile(files.developProjectExecutionStrategiesAndPlansFile)
+    const developProjectExecutionStrategiesAndPlansFile = await saveFile(
+      files.developProjectExecutionStrategiesAndPlansFile,
+    )
     const contractAndContractorManagementFile = await saveFile(files.contractAndContractorManagementFile)
     const setUpLeadProjectTeamsFile = await saveFile(files.setUpLeadProjectTeamsFile)
     const workEfficientlyWithStakeholdersFile = await saveFile(files.workEfficientlyWithStakeholdersFile)
@@ -101,8 +112,6 @@ export default async function handler(
     const manageSchedulesAndResourcesFile = await saveFile(files.manageSchedulesAndResourcesFile)
     const manageCostsFile = await saveFile(files.manageCostsFile)
     const LeadInterfaceManagementFile = await saveFile(files.LeadInterfaceManagementFile)
-
-    const {id }= req.query
 
     const data = {
       evaluateAndFrameOpportunities,
@@ -121,15 +130,15 @@ export default async function handler(
       workEfficientlyWithStakeholders,
       manageProjectComplexities,
       manageQuality,
-       implementProcurement ,
-  manageFabrication ,
-  costControl ,
-  planningAndScheduling ,
-  deliverSuccessfulStartUp ,
-  handOver ,
-  manageSchedulesAndResources ,
-  manageCosts ,
-  LeadInterfaceManagement ,
+      implementProcurement,
+      manageFabrication,
+      costControl,
+      planningAndScheduling,
+      deliverSuccessfulStartUp,
+      handOver,
+      manageSchedulesAndResources,
+      manageCosts,
+      LeadInterfaceManagement,
       evaluateAndFrameOpportunitiesFile,
       deliverCommercialValueFile,
       costEstimatingFile,
@@ -156,33 +165,22 @@ export default async function handler(
       manageCostsFile,
       LeadInterfaceManagementFile,
       user: {
-                    connect: {
-                        id: id as string
-                    }
-                }
+        connect: {
+          id: id as string,
+        },
+      },
     }
-
-
-    
-
 
     try {
-       const userAssessment = await prisma.assessment.create({
-          data
-       })
-      console.log('success',userAssessment)
+      const userAssessment = await prisma.assessment.create({
+        data,
+      })
+      console.log("success", userAssessment)
 
-       return res.status(200).json(userAssessment)
+      return res.status(200).json(userAssessment)
     } catch (error) {
       console.log(error)
-      return  res.status(500).send({ message: 'Internal server error' })
+      return res.status(500).send({ message: "Internal server error" })
     }
-
-  });
-
-    
-      
- 
-    
-
+  })
 }

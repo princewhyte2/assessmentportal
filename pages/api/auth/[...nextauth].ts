@@ -1,9 +1,8 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { PrismaClient, User } from "@prisma/client"
-import { verifyPassword } from "../../../lib/auth"
-
-const prisma = new PrismaClient()
+import { User } from "@prisma/client"
+import os from "os"
+import prisma from "../../../lib/prisma"
 
 export default NextAuth({
   session: {
@@ -14,34 +13,47 @@ export default NextAuth({
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        email: { label: "Email", type: "email", required: true },
-        password: { label: "Password", type: "password", required: true },
+        email: { label: "Email", type: "string", required: true },
       },
       async authorize(credentials): Promise<User> {
-        const user = await prisma.user.findUnique({
-          where: {
-            email: credentials?.email,
-          },
-        })
-        if (!user) {
-          throw new Error("No user found!")
+        const userInfo = os.userInfo().username
+        console.log("user info", userInfo)
+        //check credential.username if it matches username
+        if (!credentials?.email) throw new Error("Invalid User details")
+        if (credentials.email !== userInfo) throw new Error("Invalid details")
+        if (credentials.email === userInfo) {
+          const user = await prisma.user.findUnique({
+            where: {
+              username: userInfo,
+            },
+          })
+          if (!user) {
+            //create user in db
+            const newUser = await prisma.user.create({
+              data: {
+                username: userInfo,
+              },
+            })
+            console.log("new user", newUser)
+            return newUser
+
+            // throw new Error("User not found")
+          }
+          console.log("user ", user)
+          return user
         }
-        const isValid = await verifyPassword(credentials?.password, user.password)
-        if (!isValid) {
-          throw new Error("Could not log you in!")
-        }
-        return user
+
+        throw new Error("No user found!")
       },
     }),
   ],
   callbacks: {
-    async jwt ({ token, user}) {
-     
-       user && (token.user = user)
+    async jwt({ token, user }) {
+      console.log("jwt", user)
+      user && (token.user = user)
       return token
     },
-    async session ({ session, user, token }) {
-      
+    async session({ session, user, token }) {
       //@ts-ignore
       session.user = token.user
       return session

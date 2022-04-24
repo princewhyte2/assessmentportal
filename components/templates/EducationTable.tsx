@@ -6,10 +6,9 @@ const EducationTable = ({ education }: any) => {
     () =>
       education?.map((item: any) => {
         return {
-          col1: item.keyDate,
-          col2: "",
-          col3: item.certificate,
-          col4: item.education,
+          col1: new Date(item.keyDate).toLocaleDateString(),
+          col2: item.certificate,
+          col3: item.education,
         }
       }) ?? [],
     [education],
@@ -21,16 +20,12 @@ const EducationTable = ({ education }: any) => {
         accessor: "col1", // accessor is the "key" in the data
       },
       {
-        Header: "",
+        Header: "Education/certificate",
         accessor: "col2",
       },
       {
-        Header: "Education/certificate",
-        accessor: "col3",
-      },
-      {
         Header: "School",
-        accessor: "col4",
+        accessor: "col3",
       },
     ],
     [],

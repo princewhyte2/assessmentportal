@@ -10,7 +10,7 @@ type Data = {
 const secret = process.env.JWT_SECRET
 const prisma = new PrismaClient()
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<Data | User>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<Data | any>) {
   if (req.method !== "GET") {
     return res.status(405).send({ message: "Only POST requests allowed" })
   }
@@ -20,30 +20,34 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   if (!id) return res.status(400).send({ message: "No id provided" })
 
   try {
-    const uniqueUser: User | null = await prisma.user.findUnique({
-      where: {
-        id,
-      },
-      include: {
-        department: true,
-        assessment: true,
-        project: {
-          include: {
-            //@ts-ignore
-            relevantTrainings: true,
-            projects: true,
-            education: true,
-            cvAssessmentFiles: true,
-          },
+    const [_clearedDept, _clearedProject, _clearedAssess, clearedUser] = await prisma.$transaction([
+      prisma.department.delete({
+        where: {
+          userId: id,
         },
-      },
-    })
+      }),
+      prisma.project.delete({
+        where: {
+          userId: id,
+        },
+      }),
+      prisma.assessment.delete({
+        where: {
+          userId: id,
+        },
+      }),
+      prisma.user.findUnique({
+        where: {
+          id: id,
+        },
+      }),
+    ])
 
-    if (!uniqueUser) {
+    if (!clearedUser) {
       return res.status(404).send({ message: "User not found" })
     }
 
-    return res.status(200).json(uniqueUser)
+    return res.status(200).json(clearedUser)
   } catch (error) {
     console.log("backend", error)
     return res.status(500).send({ message: "Internal server error" })

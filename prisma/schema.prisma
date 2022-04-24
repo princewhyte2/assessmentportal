@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
 }
 
 datasource db {
@@ -12,10 +13,7 @@ datasource db {
 
 model User {
   id         String      @id @default(cuid())
-  name       String?
-  email      String?     @unique
-  image      String?
-  password   String
+  username   String      @unique
   isAdmin    Boolean     @default(false)
   department Department?
   assessment Assessment?
@@ -129,27 +127,75 @@ model Assessment {
   costControlAssesorEntry                               Int?
   deliverSuccessfulStartUpAssesorEntry                  Int?
   handOverAssesorEntry                                  Int?
+  leadInterfaceManagementLineEntry                      Int?
+  leadInterfaceManagementAssesorEntry                   Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }
 
 model Project {
-  id                       Int     @id @default(autoincrement())
-  user                     User    @relation(fields: [userId], references: [id])
-  userId                   String  @unique
+  id                       Int                 @id @default(autoincrement())
+  user                     User                @relation(fields: [userId], references: [id])
+  userId                   String              @unique
   email                    String
   fullName                 String
   refIndicator             String?
   jobTitle                 String?
   yrsOfExp                 String?
-  projects                 Json?
-  relevantTrainings        Json?
+  projects                 Projects[]
+  relevantTrainings        RelevantTrainings[]
   priSkillPool             String?
   secSkillPool             String?
   lastApprovedProjectLevel String?
-  education                Json?
+  education                Educations[]
   supervisor               String?
-  cvAssessmentFiles        Json?
+  cvAssessmentFiles        CvAssessmentFiles[]
 
+}
+
+model Projects {
+  id                    Int      @id @default(autoincrement())
+  project               Project  @relation(fields: [projectId], references: [id])
+  projectId             Int
+  name                  String?
+  size                  String?
+  complexity            String?
+  duration              String?
+  projectManageMentRole String?
+  orpPhases             String?
+  challenges            String?
+  details               String?
+  resultsAchieved       String?
+  createdAt             DateTime @default(now())
+}
+
+// keyDate: null, training: null, certificate: null
+model RelevantTrainings {
+  id          Int       @id @default(autoincrement())
+  project     Project   @relation(fields: [projectId], references: [id])
+  projectId   Int
+  keyDate     DateTime?
+  training    String?
+  certificate String?
+  createdAt   DateTime  @default(now())
+}
+
+//  keyDate: string | null; education: string | null; certificate: string | null
+model Educations {
+  id          Int       @id @default(autoincrement())
+  project     Project   @relation(fields: [projectId], references: [id])
+  projectId   Int
+  keyDate     DateTime?
+  education   String?
+  certificate String?
+  createdAt   DateTime  @default(now())
+}
+
+model CvAssessmentFiles {
+  id        Int      @id @default(autoincrement())
+  project   Project  @relation(fields: [projectId], references: [id])
+  projectId Int
+  file      String?
+  createdAt DateTime @default(now())
 }

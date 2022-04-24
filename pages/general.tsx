@@ -89,8 +89,8 @@ const General = ({ users }: any) => {
               <div>
                 <input type={"checkbox"} />
               </div>
-              <div className="break-words w-[60px]">{user.name}</div>
-              <div className=" break-words w-28">{user.email}</div>
+              <div className="break-words w-[60px]">{user.project?.fullName}</div>
+              <div className=" break-words w-28">{user.project?.email}</div>
               <div className="w-[60px]">{user.project?.jobTitle ?? ""}</div>
               <div className="w-[80px]">{user.project?.priSkillPool ?? ""}</div>
               <div className="w-[160px]">{user.project?.secSkillPool ?? ""}</div>
@@ -98,7 +98,7 @@ const General = ({ users }: any) => {
               <div className="w-[160px]">{user.project?.supervisor ?? ""}</div>
               <div className="flex-1 flex space-x-3">
                 <a
-                  href={`mailto:${user.email}`}
+                  href={`mailto:${user.project?.email}`}
                   className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
                 >
                   <SendIcon />
@@ -130,6 +130,15 @@ export async function getServerSideProps(context: any) {
     }
   } else {
     try {
+      if (!session.user.isAdmin) {
+        console.log("user is admin", session.user)
+        return {
+          redirect: {
+            permanent: false,
+            destination: "/user-general",
+          },
+        }
+      }
       const { data } = await axios.get(`http://localhost:3000/api/users`)
       console.log("data", data)
       if (data) {

@@ -214,54 +214,122 @@ function calcWeighedLineScore(lineScore: number, competence: number) {
 }
 
 const TFAssessment = ({ user }: any) => {
-  const [evaluateAndFrameOpportunitiesLineEntry, setEvaluateAndFrameOpportunitiesLineEntry] = useState(0)
-  const [evaluateAndFrameOpportunitiesAssessorEntry, setEvaluateAndFrameOpportunitiesAssessorEntry] = useState(0)
-  const [deliverCommercialValueLineEntry, setDeliverCommercialValueLineEntry] = useState(0)
-  const [deliverCommercialValueAssessorEntry, setDeliverCommercialValueAssessorEntry] = useState(0)
-  const [costEstimatingLineEntry, setCostEstimatingLineEntry] = useState(0)
-  const [costEstimatingAssessorEntry, setCostEstimatingAssessorEntry] = useState(0)
-  const [projectRiskManagementLineEntry, setProjectRiskManagementLineEntry] = useState(0)
-  const [projectRiskManagementAssesorEntry, setProjectRiskManagementAssesorEntry] = useState(0)
-  const [probablisticCostLineEntry, setProbablisticCostLineEntry] = useState(0)
-  const [probablisticCostAssessorEntry, setProbablisticCostAssesorEntry] = useState(0)
-  const [driveProjectPerformanceLineEntry, setDriveProjectPerformanceLineEntry] = useState(0)
-  const [driveProjectPerformanceAssesorEntry, setDriveProjectPerformanceAssesorEntry] = useState(0)
-  const [leveragePortfolioBenefitLineEntry, setLeveragePortfolioBenefitLineEntry] = useState(0)
-  const [leveragePortfolioBenefitAssesorEntry, setLeveragePortfolioBenefitAssesorEntry] = useState(0)
-  const [projectPortfolioBenchmarkingLineEntry, setProjectPortfolioBenchmarkingLineEntry] = useState(0)
-  const [projectPortfolioBenchmarkingAssesorEntry, setProjectPortfolioBenchmarkingAssesorEntry] = useState(0)
-  const [manageDesignEngineeringLineEntry, setManageDesignEngineeringLineEntry] = useState(0)
-  const [manageDesignEngineeringAssesorEntry, setManageDesignEngineeringAssesorEntry] = useState(0)
+  const [evaluateAndFrameOpportunitiesLineEntry, setEvaluateAndFrameOpportunitiesLineEntry] = useState(
+    user.assessment.evaluateAndFrameOpportunitiesLineEntry ?? 1,
+  )
+  const [evaluateAndFrameOpportunitiesAssessorEntry, setEvaluateAndFrameOpportunitiesAssessorEntry] = useState(
+    user.assessment.evaluateAndFrameOpportunitiesAssessorEntry ?? 1,
+  )
+  const [deliverCommercialValueLineEntry, setDeliverCommercialValueLineEntry] = useState(
+    user.assessment.deliverCommercialValueLineEntry ?? 1,
+  )
+  const [deliverCommercialValueAssessorEntry, setDeliverCommercialValueAssessorEntry] = useState(
+    user.assessment.deliverCommercialValueAssessorEntry ?? 1,
+  )
+  const [costEstimatingLineEntry, setCostEstimatingLineEntry] = useState(user.assessment.costEstimatingLineEntry ?? 1)
+  const [costEstimatingAssessorEntry, setCostEstimatingAssessorEntry] = useState(
+    user.assessment.costEstimatingAssessorEntry ?? 1,
+  )
+  const [projectRiskManagementLineEntry, setProjectRiskManagementLineEntry] = useState(
+    user.assessment.projectRiskManagementLineEntry ?? 1,
+  )
+  const [projectRiskManagementAssesorEntry, setProjectRiskManagementAssesorEntry] = useState(
+    user.assessment.projectRiskManagementAssesorEntry ?? 1,
+  )
+  const [probablisticCostLineEntry, setProbablisticCostLineEntry] = useState(
+    user.assessment.probablisticCostLineEntry ?? 1,
+  )
+  const [probablisticCostAssessorEntry, setProbablisticCostAssesorEntry] = useState(
+    user.assessment.probablisticCostAssessorEntry ?? 1,
+  )
+  const [driveProjectPerformanceLineEntry, setDriveProjectPerformanceLineEntry] = useState(
+    user.assessment.driveProjectPerformanceLineEntry ?? 1,
+  )
+  const [driveProjectPerformanceAssesorEntry, setDriveProjectPerformanceAssesorEntry] = useState(
+    user.assessment.driveProjectPerformanceAssesorEntry ?? 1,
+  )
+  const [leveragePortfolioBenefitLineEntry, setLeveragePortfolioBenefitLineEntry] = useState(
+    user.assessment.leveragePortfolioBenefitLineEntry ?? 1,
+  )
+  const [leveragePortfolioBenefitAssesorEntry, setLeveragePortfolioBenefitAssesorEntry] = useState(
+    user.assessment.leveragePortfolioBenefitAssesorEntry ?? 1,
+  )
+  const [projectPortfolioBenchmarkingLineEntry, setProjectPortfolioBenchmarkingLineEntry] = useState(
+    user.assessment.projectPortfolioBenchmarkingLineEntry ?? 1,
+  )
+  const [projectPortfolioBenchmarkingAssesorEntry, setProjectPortfolioBenchmarkingAssesorEntry] = useState(
+    user.assessment.projectPortfolioBenchmarkingAssesorEntry ?? 1,
+  )
+  const [manageDesignEngineeringLineEntry, setManageDesignEngineeringLineEntry] = useState(
+    user.assessment.manageDesignEngineeringLineEntry ?? 1,
+  )
+  const [manageDesignEngineeringAssesorEntry, setManageDesignEngineeringAssesorEntry] = useState(
+    user.assessment.manageDesignEngineeringAssesorEntry ?? 1,
+  )
   const [developProjectExecutionStrategiesAndPlansLineEntry, setDevelopProjectExecutionStrategiesAndPlansLineEntry] =
-    useState(0)
+    useState(user.assessment.developProjectExecutionStrategiesAndPlansLineEntry ?? 1)
   const [
     developProjectExecutionStrategiesAndPlansAssesorEntry,
     setDevelopProjectExecutionStrategiesAndPlansAssesorEntry,
-  ] = useState(0)
-  const [contractAndContractorManagementLineEntry, setContractAndContractorManagementLineEntry] = useState(0)
-  const [contractAndContractorManagementAssesorEntry, setContractAndContractorManagementAssesorEntry] = useState(0)
-  const [setUpLeadProjectTeamsLineEntry, setSetUpLeadProjectTeamsLineEntry] = useState(0)
-  const [setUpLeadProjectTeamsAssessorEntry, setSetUpLeadProjectTeamsAssessorEntry] = useState(0)
-  const [workEfficientlyWithStakeholdersLineEntry, setWorkEfficientlyWithStakeholdersLineEntry] = useState(0)
-  const [workEfficientlyWithStakeholdersAssesorEntry, setWorkEfficientlyWithStakeholdersAssesorEntry] = useState(0)
-  const [manageProjectComplexitiesLineEntry, setManageProjectComplexitiesLineEntry] = useState(0)
-  const [manageProjectComplexitiesAssesorEntry, setManageProjectComplexitiesAssesorEntry] = useState(0)
-  const [manageQualityLineEntry, setManageQualityLineEntry] = useState(0)
-  const [manageQualityAssesorEntry, setManageQualityAssesorEntry] = useState(0)
-  const [implementProcurementLineEntry, setImplementProcurementLineEntry] = useState(0)
-  const [implementProcurementAssesorEntry, setImplementProcurementAssesorEntry] = useState(0)
-  const [manageFabricationLineEntry, setManageFabricationLineEntry] = useState(0)
-  const [manageFabricationAssesorEntry, setManageFabricationAssesorEntry] = useState(0)
-  const [planningAndSchedulingLineEntry, setPlanningAndSchedulingLineEntry] = useState(0)
-  const [planningAndSchedulingAssesorEntry, setPlanningAndSchedulingAssesorEntry] = useState(0)
-  const [manageCostsLineEntry, setManageCostsLineEntry] = useState(0)
-  const [manageCostsAssesorEntry, setManageCostsAssesorEntry] = useState(0)
-  const [costControlLineEntry, setCostControlLineEntry] = useState(0)
-  const [costControlAssesorEntry, setCostControlAssesorEntry] = useState(0)
-  const [deliverSuccessfulStartUpLineEntry, setDeliverSuccessfulStartUpLineEntry] = useState(0)
-  const [deliverSuccessfulStartUpAssesorEntry, setDeliverSuccessfulStartUpAssesorEntry] = useState(0)
-  const [handOverLineEntry, setHandOverLineEntry] = useState(0)
-  const [handOverAssesorEntry, setHandOverAssesorEntry] = useState(0)
+  ] = useState(user.assessment.developProjectExecutionStrategiesAndPlansAssesorEntry ?? 1)
+  const [contractAndContractorManagementLineEntry, setContractAndContractorManagementLineEntry] = useState(
+    user.assessment.contractAndContractorManagementLineEntry ?? 1,
+  )
+  const [contractAndContractorManagementAssesorEntry, setContractAndContractorManagementAssesorEntry] = useState(
+    user.assessment.contractAndContractorManagementAssesorEntry ?? 1,
+  )
+  const [setUpLeadProjectTeamsLineEntry, setSetUpLeadProjectTeamsLineEntry] = useState(
+    user.assessment.setUpLeadProjectTeamsLineEntry ?? 1,
+  )
+  const [setUpLeadProjectTeamsAssessorEntry, setSetUpLeadProjectTeamsAssessorEntry] = useState(
+    user.assessment.setUpLeadProjectTeamsAssessorEntry ?? 1,
+  )
+  const [workEfficientlyWithStakeholdersLineEntry, setWorkEfficientlyWithStakeholdersLineEntry] = useState(
+    user.assessment.workEfficientlyWithStakeholdersLineEntry ?? 1,
+  )
+  const [workEfficientlyWithStakeholdersAssesorEntry, setWorkEfficientlyWithStakeholdersAssesorEntry] = useState(
+    user.assessment.workEfficientlyWithStakeholdersAssesorEntry ?? 1,
+  )
+  const [manageProjectComplexitiesLineEntry, setManageProjectComplexitiesLineEntry] = useState(
+    user.assessment.manageProjectComplexitiesLineEntry ?? 1,
+  )
+  const [manageProjectComplexitiesAssesorEntry, setManageProjectComplexitiesAssesorEntry] = useState(
+    user.assessment.manageProjectComplexitiesAssesorEntry ?? 1,
+  )
+  const [manageQualityLineEntry, setManageQualityLineEntry] = useState(user.assessment.manageQualityLineEntry ?? 1)
+  const [manageQualityAssesorEntry, setManageQualityAssesorEntry] = useState(
+    user.assessment.manageQualityAssesorEntry ?? 1,
+  )
+  const [implementProcurementLineEntry, setImplementProcurementLineEntry] = useState(
+    user.assessment.implementProcurementLineEntry ?? 1,
+  )
+  const [implementProcurementAssesorEntry, setImplementProcurementAssesorEntry] = useState(
+    user.assessment.implementProcurementAssesorEntry ?? 1,
+  )
+  const [manageFabricationLineEntry, setManageFabricationLineEntry] = useState(
+    user.assessment.manageFabricationLineEntry ?? 1,
+  )
+  const [manageFabricationAssesorEntry, setManageFabricationAssesorEntry] = useState(
+    user.assessment.manageFabricationAssesorEntry ?? 1,
+  )
+  const [planningAndSchedulingLineEntry, setPlanningAndSchedulingLineEntry] = useState(
+    user.assessment.planningAndSchedulingLineEntry ?? 1,
+  )
+  const [planningAndSchedulingAssesorEntry, setPlanningAndSchedulingAssesorEntry] = useState(
+    user.assessment.planningAndSchedulingAssesorEntry ?? 1,
+  )
+  const [manageCostsLineEntry, setManageCostsLineEntry] = useState(user.assessment.manageCostsLineEntry ?? 1)
+  const [manageCostsAssesorEntry, setManageCostsAssesorEntry] = useState(user.assessment.manageCostsAssesorEntry ?? 1)
+  const [costControlLineEntry, setCostControlLineEntry] = useState(user.assessment.costControlLineEntry ?? 1)
+  const [costControlAssesorEntry, setCostControlAssesorEntry] = useState(user.assessment.costControlAssesorEntry ?? 1)
+  const [deliverSuccessfulStartUpLineEntry, setDeliverSuccessfulStartUpLineEntry] = useState(
+    user.assessment.deliverSuccessfulStartUpLineEntry ?? 1,
+  )
+  const [deliverSuccessfulStartUpAssesorEntry, setDeliverSuccessfulStartUpAssesorEntry] = useState(
+    user.assessment.deliverSuccessfulStartUpAssesorEntry ?? 1,
+  )
+  const [handOverLineEntry, setHandOverLineEntry] = useState(user.assessment.handOverLineEntry ?? 1)
+  const [handOverAssesorEntry, setHandOverAssesorEntry] = useState(user.assessment.handOverAssesorEntry ?? 1)
   const [isLoading, setIsLoading] = useState(false)
 
   const [targetLevel, _] = useState(() => getTargetLevel(user.department.projectLevel))
@@ -423,9 +491,7 @@ const TFAssessment = ({ user }: any) => {
             </div>
             <div className="flex items-center">
               <div className="p-3 border-r border-black">Assessment Date</div>
-              <div className="p-3 border-r border-black">
-                <input type="text" />
-              </div>
+              <div className="p-3 border-r border-black">{new Date(user.assessment.createdAt).toDateString()}</div>
             </div>
           </div>
           <div className="flex mt-3 border border-black">
@@ -576,6 +642,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={evaluateAndFrameOpportunitiesLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setEvaluateAndFrameOpportunitiesLineEntry(+target.value)}
                 >
@@ -596,6 +663,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={evaluateAndFrameOpportunitiesAssessorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setEvaluateAndFrameOpportunitiesAssessorEntry(+target.value)}
                 >
@@ -624,6 +692,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={deliverCommercialValueLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setDeliverCommercialValueLineEntry(+target.value)}
                 >
@@ -644,6 +713,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={deliverCommercialValueAssessorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setDeliverCommercialValueAssessorEntry(+target.value)}
                 >
@@ -671,7 +741,11 @@ const TFAssessment = ({ user }: any) => {
                 </a>
               </td>
               <td style={{ border: "1px solid black" }}>
-                <select disabled={!user.isAdmin} onChange={({ target }) => setCostEstimatingLineEntry(+target.value)}>
+                <select
+                  value={costEstimatingLineEntry}
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setCostEstimatingLineEntry(+target.value)}
+                >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -689,6 +763,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={costEstimatingAssessorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setCostEstimatingAssessorEntry(+target.value)}
                 >
@@ -717,6 +792,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={projectRiskManagementLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setProjectRiskManagementLineEntry(+target.value)}
                 >
@@ -737,6 +813,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={projectRiskManagementAssesorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setProjectRiskManagementAssesorEntry(+target.value)}
                 >
@@ -764,7 +841,11 @@ const TFAssessment = ({ user }: any) => {
                 </a>
               </td>
               <td style={{ border: "1px solid black" }}>
-                <select disabled={!user.isAdmin} onChange={({ target }) => setProbablisticCostLineEntry(+target.value)}>
+                <select
+                  value={probablisticCostLineEntry}
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setProbablisticCostLineEntry(+target.value)}
+                >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -782,6 +863,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={probablisticCostAssessorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setProbablisticCostAssesorEntry(+target.value)}
                 >
@@ -810,6 +892,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={driveProjectPerformanceLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setDriveProjectPerformanceLineEntry(+target.value)}
                 >
@@ -830,6 +913,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={driveProjectPerformanceAssesorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setDriveProjectPerformanceAssesorEntry(+target.value)}
                 >
@@ -898,6 +982,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={leveragePortfolioBenefitLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setLeveragePortfolioBenefitLineEntry(+target.value)}
                 >
@@ -918,6 +1003,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={leveragePortfolioBenefitAssesorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setLeveragePortfolioBenefitAssesorEntry(+target.value)}
                 >
@@ -948,6 +1034,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={projectPortfolioBenchmarkingLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setProjectPortfolioBenchmarkingLineEntry(+target.value)}
                 >
@@ -968,6 +1055,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={projectPortfolioBenchmarkingAssesorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setProjectPortfolioBenchmarkingAssesorEntry(+target.value)}
                 >
@@ -996,6 +1084,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={manageDesignEngineeringLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setManageDesignEngineeringLineEntry(+target.value)}
                 >
@@ -1016,6 +1105,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={manageDesignEngineeringAssesorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setManageDesignEngineeringAssesorEntry(+target.value)}
                 >
@@ -1064,6 +1154,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={developProjectExecutionStrategiesAndPlansLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setDevelopProjectExecutionStrategiesAndPlansLineEntry(+target.value)}
                 >
@@ -1086,6 +1177,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={developProjectExecutionStrategiesAndPlansAssesorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setDevelopProjectExecutionStrategiesAndPlansAssesorEntry(+target.value)}
                 >
@@ -1122,6 +1214,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={contractAndContractorManagementLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setContractAndContractorManagementLineEntry(+target.value)}
                 >
@@ -1142,6 +1235,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={contractAndContractorManagementAssesorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setContractAndContractorManagementAssesorEntry(+target.value)}
                 >
@@ -1170,6 +1264,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={setUpLeadProjectTeamsLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setSetUpLeadProjectTeamsLineEntry(+target.value)}
                 >
@@ -1190,6 +1285,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={setUpLeadProjectTeamsAssessorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setSetUpLeadProjectTeamsAssessorEntry(+target.value)}
                 >
@@ -1226,6 +1322,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={workEfficientlyWithStakeholdersLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setWorkEfficientlyWithStakeholdersLineEntry(+target.value)}
                 >
@@ -1246,6 +1343,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={workEfficientlyWithStakeholdersAssesorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setWorkEfficientlyWithStakeholdersAssesorEntry(+target.value)}
                 >
@@ -1274,6 +1372,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={manageProjectComplexitiesLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setManageProjectComplexitiesLineEntry(+target.value)}
                 >
@@ -1294,6 +1393,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={manageProjectComplexitiesAssesorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setManageProjectComplexitiesAssesorEntry(+target.value)}
                 >
@@ -1321,7 +1421,11 @@ const TFAssessment = ({ user }: any) => {
                 </a>
               </td>
               <td style={{ border: "1px solid black" }}>
-                <select disabled={!user.isAdmin} onChange={({ target }) => setManageQualityLineEntry(+target.value)}>
+                <select
+                  value={manageQualityLineEntry}
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setManageQualityLineEntry(+target.value)}
+                >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -1335,7 +1439,11 @@ const TFAssessment = ({ user }: any) => {
                 {calcWeighedLineScore(manageQualityLineEntry, getEntryScore(targetLevel?.manageQualityLineEntry ?? ""))}
               </td>
               <td style={{ border: "1px solid black" }}>
-                <select disabled={!user.isAdmin} onChange={({ target }) => setManageQualityAssesorEntry(+target.value)}>
+                <select
+                  value={manageQualityAssesorEntry}
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setManageQualityAssesorEntry(+target.value)}
+                >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -1373,6 +1481,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={implementProcurementLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setImplementProcurementLineEntry(+target.value)}
                 >
@@ -1393,6 +1502,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={implementProcurementAssesorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setImplementProcurementAssesorEntry(+target.value)}
                 >
@@ -1421,6 +1531,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={manageFabricationLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setManageFabricationLineEntry(+target.value)}
                 >
@@ -1441,6 +1552,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={manageFabricationAssesorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setManageFabricationAssesorEntry(+target.value)}
                 >
@@ -1469,6 +1581,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={planningAndSchedulingLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setPlanningAndSchedulingLineEntry(+target.value)}
                 >
@@ -1489,6 +1602,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={planningAndSchedulingAssesorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setPlanningAndSchedulingAssesorEntry(+target.value)}
                 >
@@ -1516,7 +1630,11 @@ const TFAssessment = ({ user }: any) => {
                 </a>
               </td>
               <td style={{ border: "1px solid black" }}>
-                <select disabled={!user.isAdmin} onChange={({ target }) => setManageCostsLineEntry(+target.value)}>
+                <select
+                  value={manageCostsLineEntry}
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setManageCostsLineEntry(+target.value)}
+                >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -1530,7 +1648,11 @@ const TFAssessment = ({ user }: any) => {
                 {calcWeighedLineScore(manageCostsLineEntry, getEntryScore(targetLevel?.manageCostsLineEntry ?? ""))}
               </td>
               <td style={{ border: "1px solid black" }}>
-                <select disabled={!user.isAdmin} onChange={({ target }) => setManageCostsAssesorEntry(+target.value)}>
+                <select
+                  value={manageCostsAssesorEntry}
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setManageCostsAssesorEntry(+target.value)}
+                >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -1552,7 +1674,11 @@ const TFAssessment = ({ user }: any) => {
                 </a>
               </td>
               <td style={{ border: "1px solid black" }}>
-                <select disabled={!user.isAdmin} onChange={({ target }) => setCostControlLineEntry(+target.value)}>
+                <select
+                  value={costControlLineEntry}
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setCostControlLineEntry(+target.value)}
+                >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -1566,7 +1692,11 @@ const TFAssessment = ({ user }: any) => {
                 {calcWeighedLineScore(costControlLineEntry, getEntryScore(targetLevel?.costControlLineEntry ?? ""))}
               </td>
               <td style={{ border: "1px solid black" }}>
-                <select disabled={!user.isAdmin} onChange={({ target }) => setCostControlAssesorEntry(+target.value)}>
+                <select
+                  value={costControlAssesorEntry}
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setCostControlAssesorEntry(+target.value)}
+                >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -1589,6 +1719,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={deliverSuccessfulStartUpLineEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setDeliverSuccessfulStartUpLineEntry(+target.value)}
                 >
@@ -1609,6 +1740,7 @@ const TFAssessment = ({ user }: any) => {
               </td>
               <td style={{ border: "1px solid black" }}>
                 <select
+                  value={deliverSuccessfulStartUpAssesorEntry}
                   disabled={!user.isAdmin}
                   onChange={({ target }) => setDeliverSuccessfulStartUpAssesorEntry(+target.value)}
                 >
@@ -1636,7 +1768,11 @@ const TFAssessment = ({ user }: any) => {
                 </a>
               </td>
               <td style={{ border: "1px solid black" }}>
-                <select disabled={!user.isAdmin} onChange={({ target }) => setHandOverLineEntry(+target.value)}>
+                <select
+                  value={handOverLineEntry}
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setHandOverLineEntry(+target.value)}
+                >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -1650,7 +1786,11 @@ const TFAssessment = ({ user }: any) => {
                 {calcWeighedLineScore(handOverLineEntry, getEntryScore(targetLevel?.handOverLineEntry ?? ""))}
               </td>
               <td style={{ border: "1px solid black" }}>
-                <select disabled={!user.isAdmin} onChange={({ target }) => setHandOverAssesorEntry(+target.value)}>
+                <select
+                  value={handOverAssesorEntry}
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setHandOverAssesorEntry(+target.value)}
+                >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}

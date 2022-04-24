@@ -7,7 +7,7 @@ const SummaryTable = ({ project }: any) => {
       project?.map((item: any) => {
         return {
           col1: item.name,
-          col2: "",
+          col2: item.duration,
           col3: item.size,
           col4: item.projectManageMentRole,
           col5: item.orpPhases,
@@ -24,7 +24,7 @@ const SummaryTable = ({ project }: any) => {
         accessor: "col1", // accessor is the "key" in the data
       },
       {
-        Header: "",
+        Header: "Duration",
         accessor: "col2",
       },
       {
