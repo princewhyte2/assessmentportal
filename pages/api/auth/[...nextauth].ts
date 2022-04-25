@@ -20,18 +20,21 @@ export default NextAuth({
         console.log("user info", userInfo)
         //check credential.username if it matches username
         if (!credentials?.email) throw new Error("Invalid User details")
-        if (credentials.email !== userInfo) throw new Error("Invalid details")
-        if (credentials.email === userInfo) {
+        // if (credentials.email !== userInfo) throw new Error("Invalid details")
+        // if (credentials.email === userInfo) {
+        if (credentials.email) {
           const user = await prisma.user.findUnique({
             where: {
-              username: userInfo,
+              // username: userInfo,
+              username: credentials.email,
             },
           })
           if (!user) {
             //create user in db
             const newUser = await prisma.user.create({
               data: {
-                username: userInfo,
+                // username: userInfo,
+                username: credentials.email,
               },
             })
             console.log("new user", newUser)
