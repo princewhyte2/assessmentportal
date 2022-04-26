@@ -395,7 +395,6 @@ const TFAssessment = ({ user }: any) => {
     competitiveAndAffordableScopeLineEntry
 
   function totalLinePercent() {
-    console.log(totalLineEntry)
     return Math.floor((totalLineEntry / 67) * 100)
   }
   function totalAssessorPercent() {
@@ -412,10 +411,8 @@ const TFAssessment = ({ user }: any) => {
     try {
       const value = await axios.put(`http://localhost:3000/api/user/update/${user.id}`, data)
       window.alert("saved successfully")
-      console.log(value)
     } catch (err) {
       window.alert("something went wrong try again ")
-      console.log(err)
     } finally {
       setIsLoading(false)
       return
@@ -447,7 +444,6 @@ const TFAssessment = ({ user }: any) => {
       deliverSuccessfulStartUpLineEntry,
       handOverLineEntry,
     }
-    console.log(data)
     saveLine(data)
   }
 
@@ -476,7 +472,6 @@ const TFAssessment = ({ user }: any) => {
       deliverSuccessfulStartUpAssesorEntry,
       handOverAssesorEntry,
     }
-    console.log(data)
     saveLine(data)
   }
 
