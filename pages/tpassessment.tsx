@@ -13,6 +13,7 @@ const pone = {
   probablisticCostLineEntry: "S",
   driveProjectPerformanceLineEntry: "S",
   leveragePortfolioBenefitLineEntry: "S",
+  competitiveAndAffordableScopeLineEntry: "S",
   projectPortfolioBenchmarkingLineEntry: "S",
   manageDesignEngineeringLineEntry: "S",
   developProjectExecutionStrategiesAndPlansLineEntry: "S",
@@ -34,6 +35,7 @@ const ptwo = {
   deliverCommercialValueLineEntry: "K",
   costEstimatingLineEntry: "K",
   projectRiskManagementLineEntry: "S",
+  competitiveAndAffordableScopeLineEntry: "K",
   probablisticCostLineEntry: "S",
   driveProjectPerformanceLineEntry: "S",
   leveragePortfolioBenefitLineEntry: "S",
@@ -71,6 +73,7 @@ const pthree = {
   manageQualityLineEntry: "K",
   implementProcurementLineEntry: "S",
   manageFabricationLineEntry: "K",
+  competitiveAndAffordableScopeLineEntry: "K",
   planningAndSchedulingLineEntry: "S",
   manageCostsLineEntry: "S",
   costControlLineEntry: "K",
@@ -87,6 +90,7 @@ const pfour = {
   driveProjectPerformanceLineEntry: "K",
   leveragePortfolioBenefitLineEntry: "A",
   projectPortfolioBenchmarkingLineEntry: "K",
+  competitiveAndAffordableScopeLineEntry: "A",
   manageDesignEngineeringLineEntry: "K",
   developProjectExecutionStrategiesAndPlansLineEntry: "S",
   contractAndContractorManagementLineEntry: "K",
@@ -111,6 +115,7 @@ const pfive = {
   probablisticCostLineEntry: "K",
   driveProjectPerformanceLineEntry: "K",
   leveragePortfolioBenefitLineEntry: "A",
+  competitiveAndAffordableScopeLineEntry: "K",
   projectPortfolioBenchmarkingLineEntry: "K",
   manageDesignEngineeringLineEntry: "K",
   developProjectExecutionStrategiesAndPlansLineEntry: "K",
@@ -330,6 +335,12 @@ const TFAssessment = ({ user }: any) => {
   )
   const [handOverLineEntry, setHandOverLineEntry] = useState(user.assessment.handOverLineEntry ?? 1)
   const [handOverAssesorEntry, setHandOverAssesorEntry] = useState(user.assessment.handOverAssesorEntry ?? 1)
+  const [competitiveAndAffordableScopeLineEntry, setCompetitiveAndAffordableScopeLineEntry] = useState(
+    user.assessment.competitiveAndAffordableScopeLineEntry ?? 1,
+  )
+  const [competitiveAndAffordableScopeAssessorEntry, setCompetitiveAndAffordableScopeAssessorEntry] = useState(
+    user.assessment.competitiveAndAffordableScopeAssessorEntry ?? 1,
+  )
   const [isLoading, setIsLoading] = useState(false)
 
   const [targetLevel, _] = useState(() => getTargetLevel(user.department.projectLevel))
@@ -355,7 +366,8 @@ const TFAssessment = ({ user }: any) => {
     manageCostsAssesorEntry +
     costControlAssesorEntry +
     deliverSuccessfulStartUpAssesorEntry +
-    handOverAssesorEntry
+    handOverAssesorEntry +
+    competitiveAndAffordableScopeAssessorEntry
 
   const totalLineEntry =
     evaluateAndFrameOpportunitiesLineEntry +
@@ -379,7 +391,8 @@ const TFAssessment = ({ user }: any) => {
     manageCostsLineEntry +
     costControlLineEntry +
     deliverSuccessfulStartUpLineEntry +
-    handOverLineEntry
+    handOverLineEntry +
+    competitiveAndAffordableScopeLineEntry
 
   function totalLinePercent() {
     console.log(totalLineEntry)
@@ -468,7 +481,7 @@ const TFAssessment = ({ user }: any) => {
   }
 
   return (
-    <div className="w-screen h-full min-h-screen ">
+    <div className="w-screen h-full min-h-screen justify-center items-center flex flex-col ">
       <h1 className="text-2xl font-bold text-purple-600 ">TP Assessment</h1>
       <div className="flex items-center pr-16 mr-16 space-x-52">
         <div className="flex-1">
@@ -945,11 +958,21 @@ const TFAssessment = ({ user }: any) => {
             </tr>
             <tr className="text-center">
               <td style={{ border: "1px solid black" }}>Select & Optimize Capital Efficient Project Concepts</td>
-              <td style={{ border: "1px solid black" }}>S</td>
-              <td style={{ border: "1px solid black" }}>{getEntry(user.assessment?.driveProjectPerformance ?? 0)}</td>
-              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>{targetLevel?.competitiveAndAffordableScopeLineEntry ?? ""}</td>
               <td style={{ border: "1px solid black" }}>
-                <select disabled={!user.isAdmin}>
+                {getEntry(user.assessment?.competitiveAndAffordableScope ?? 0)}
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <a target={"_blank"} rel="noreferrer" href={user.assessment?.competitiveAndAffordableScopeFile ?? "#"}>
+                  {user.assessment?.competitiveAndAffordableScopeFile ? "view" : ""}
+                </a>
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select
+                  value={competitiveAndAffordableScopeLineEntry}
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setCompetitiveAndAffordableScopeLineEntry(+target.value)}
+                >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -957,11 +980,21 @@ const TFAssessment = ({ user }: any) => {
                   ))}
                 </select>
               </td>
-              <td style={{ border: "1px solid black" }}>{user.assessment?.driveProjectPerformance ?? 0}</td>
-              <td style={{ border: "1px solid black" }}>0</td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>{user.assessment?.competitiveAndAffordableScope ?? 0}</td>
+              <td style={{ border: "1px solid black" }}>{competitiveAndAffordableScopeLineEntry}</td>
               <td style={{ border: "1px solid black" }}>
-                <select disabled={!user.isAdmin}>
+                {" "}
+                {calcWeighedLineScore(
+                  competitiveAndAffordableScopeLineEntry,
+                  getEntryScore(targetLevel?.competitiveAndAffordableScopeLineEntry ?? ""),
+                )}
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                <select
+                  value={competitiveAndAffordableScopeAssessorEntry}
+                  disabled={!user.isAdmin}
+                  onChange={({ target }) => setCompetitiveAndAffordableScopeAssessorEntry(+target.value)}
+                >
                   {lineEntry.map((item) => (
                     <option value={item.value} key={item.key}>
                       {item.key}
@@ -969,7 +1002,12 @@ const TFAssessment = ({ user }: any) => {
                   ))}
                 </select>
               </td>
-              <td style={{ border: "1px solid black" }}>0</td>
+              <td style={{ border: "1px solid black" }}>
+                {calcWeighedLineScore(
+                  competitiveAndAffordableScopeAssessorEntry,
+                  getEntryScore(targetLevel?.competitiveAndAffordableScopeLineEntry ?? ""),
+                )}
+              </td>
             </tr>
             <tr className="text-center">
               <td style={{ border: "1px solid black" }}>Leverage Portfolio benefits</td>

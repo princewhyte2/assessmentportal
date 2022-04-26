@@ -13,6 +13,7 @@ const SummaryTable = ({ project }: any) => {
           col5: item.orpPhases,
           col6: item.challenges,
           col7: item.resultsAchieved,
+          col8: item.details,
         }
       }) ?? [],
     [project],
@@ -46,6 +47,10 @@ const SummaryTable = ({ project }: any) => {
       {
         Header: "Results Achieved",
         accessor: "col7",
+      },
+      {
+        Header: "Details",
+        accessor: "col8",
       },
     ],
     [],

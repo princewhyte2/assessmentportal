@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import SendIcon from "../components/icons/Send"
 import MoreIcon from "../components/icons/More"
 import { useRouter } from "next/router"
+import Tooltip from "@mui/material/Tooltip"
 import axios from "axios"
 import { getSession } from "next-auth/react"
 
@@ -22,7 +23,7 @@ const General = ({ users }: any) => {
   }
 
   return (
-    <div className="min-h-screen px-20 bg-gray-500">
+    <div className="min-h-screen h-full px-20 pb-10 bg-gray-500">
       <h2 className="text-center">Assessment</h2>
       <h3 className="mt-6">General Information</h3>
       <div className="flex justify-between mb-6">
@@ -85,7 +86,7 @@ const General = ({ users }: any) => {
         (user: any) =>
           user.department?.id &&
           user.project?.id && (
-            <div key={user.id} className="flex bg-white p-3 space-x-6">
+            <div key={user.id} className="flex bg-white p-3 mb-6 space-x-6">
               <div>
                 <input type={"checkbox"} />
               </div>
@@ -97,18 +98,22 @@ const General = ({ users }: any) => {
               <div className="w-[160px]">{user.project?.lastApprovedProjectLevel ?? ""}</div>
               <div className="w-[160px]">{user.project?.supervisor ?? ""}</div>
               <div className="flex-1 flex space-x-3">
-                <a
-                  href={`mailto:${user.project?.email}`}
-                  className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
-                >
-                  <SendIcon />
-                </a>
-                <button
-                  onClick={() => handleRoute(user)}
-                  className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
-                >
-                  <MoreIcon />
-                </button>
+                <Tooltip title="Send mail" arrow>
+                  <a
+                    href={`mailto:${user.project?.email}`}
+                    className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
+                  >
+                    <SendIcon />
+                  </a>
+                </Tooltip>
+                <Tooltip title="View Assessment" arrow>
+                  <button
+                    onClick={() => handleRoute(user)}
+                    className=" flex items-center justify-center h-11 w-11 rounded-full bg-gray-500"
+                  >
+                    <MoreIcon />
+                  </button>
+                </Tooltip>
               </div>
             </div>
           ),
