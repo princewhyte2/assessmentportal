@@ -28,11 +28,6 @@ const UserGeneral = ({ user }: any) => {
       <h3 className="mt-6">General Information</h3>
       <div className="flex justify-between mb-6">
         <div className="flex space-x-3 items-center">
-          {/* <div className="px-2 bg-white">
-            <select className="bg-transparent">
-              <option>All properties</option>
-            </select>
-          </div> */}
           <div className="px-2 bg-white">
             <select className="bg-transparent">
               <option>Today</option>
