@@ -4,6 +4,7 @@ import SummaryTable from "../components/templates/SummaryTable"
 import CvDashboard from "../components/templates/cvdashboard"
 import axios from "axios"
 import { getSession } from "next-auth/react"
+import { useRouter } from "next/router"
 
 const pone = {
   evaluateAndFrameOpportunitiesLineEntry: "S",
@@ -218,7 +219,7 @@ function calcWeighedLineScore(lineScore: number, competence: number) {
   return Math.floor((competence / lineScore) * 5)
 }
 
-const TFAssessment = ({ user }: any) => {
+const TFAssessment = ({ user, sessionUser }: any) => {
   const [evaluateAndFrameOpportunitiesLineEntry, setEvaluateAndFrameOpportunitiesLineEntry] = useState(
     user.assessment.evaluateAndFrameOpportunitiesLineEntry ?? 1,
   )
@@ -342,6 +343,7 @@ const TFAssessment = ({ user }: any) => {
     user.assessment.competitiveAndAffordableScopeAssessorEntry ?? 1,
   )
   const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
 
   const [targetLevel, _] = useState(() => getTargetLevel(user.department.projectLevel))
   const totalAssessorEntry =
@@ -409,7 +411,7 @@ const TFAssessment = ({ user }: any) => {
   async function saveLine(data: {}) {
     setIsLoading(true)
     try {
-      const value = await axios.put(`http://localhost:3000/api/user/update/${user.id}`, data)
+      const value = await axios.put(`/api/user/update/${user.id}`, data)
       window.alert("saved successfully")
     } catch (err) {
       window.alert("something went wrong try again ")
@@ -476,7 +478,7 @@ const TFAssessment = ({ user }: any) => {
   }
 
   return (
-    <div className="w-screen h-full min-h-screen justify-center items-center flex flex-col ">
+    <div className="flex flex-col items-center justify-center w-screen h-full min-h-screen ">
       <h1 className="text-2xl font-bold text-purple-600 ">TP Assessment</h1>
       <div className="flex items-center pr-16 mr-16 space-x-52">
         <div className="flex-1">
@@ -557,7 +559,18 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <div className="flex items-center justify-center h-full text-2xl font-extrabold">{`${totalLinePercent()}%`}</div>
               </td>
-              <td style={{ border: "1px solid black" }}></td>
+              <td style={{ border: "1px solid black" }}>
+                <div className="flex items-center justify-center h-full">
+                  {sessionUser.isAdmin && (
+                    <button
+                      onClick={() => router.push(`assessorsummary?id=${user.id}`)}
+                      className="px-3 text-white bg-blue-400 rounded"
+                    >
+                      Summary
+                    </button>
+                  )}
+                </div>
+              </td>
               <td style={{ border: "1px solid black" }}>
                 <div className="flex items-center justify-center h-full text-2xl font-extrabold">{`${totalAssessorPercent()}%`}</div>
               </td>
@@ -577,7 +590,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black", padding: "10px" }}></td>
               <td style={{ border: "1px solid black", padding: "10px" }}></td>
               <td style={{ border: "1px solid black", padding: "10px" }}>
-                {user.isAdmin && (
+                {sessionUser.isAdmin && (
                   <button
                     disabled={isLoading}
                     onClick={handleSaveLine}
@@ -594,7 +607,7 @@ const TFAssessment = ({ user }: any) => {
                 {totalLinePercent() > 80 ? "Achieved" : "Not Achieved"}
               </td>
               <td style={{ border: "1px solid black", padding: "10px" }}>
-                {user.isAdmin && (
+                {sessionUser.isAdmin && (
                   <button
                     disabled={isLoading}
                     onClick={handleSaveAssessor}
@@ -651,7 +664,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={evaluateAndFrameOpportunitiesLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setEvaluateAndFrameOpportunitiesLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -672,7 +685,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={evaluateAndFrameOpportunitiesAssessorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setEvaluateAndFrameOpportunitiesAssessorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -701,7 +714,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={deliverCommercialValueLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setDeliverCommercialValueLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -722,7 +735,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={deliverCommercialValueAssessorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setDeliverCommercialValueAssessorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -751,7 +764,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={costEstimatingLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setCostEstimatingLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -772,7 +785,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={costEstimatingAssessorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setCostEstimatingAssessorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -801,7 +814,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={projectRiskManagementLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setProjectRiskManagementLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -822,7 +835,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={projectRiskManagementAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setProjectRiskManagementAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -851,7 +864,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={probablisticCostLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setProbablisticCostLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -872,7 +885,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={probablisticCostAssessorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setProbablisticCostAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -901,7 +914,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={driveProjectPerformanceLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setDriveProjectPerformanceLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -922,7 +935,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={driveProjectPerformanceAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setDriveProjectPerformanceAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -965,7 +978,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={competitiveAndAffordableScopeLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setCompetitiveAndAffordableScopeLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -987,7 +1000,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={competitiveAndAffordableScopeAssessorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setCompetitiveAndAffordableScopeAssessorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1016,7 +1029,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={leveragePortfolioBenefitLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setLeveragePortfolioBenefitLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1037,7 +1050,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={leveragePortfolioBenefitAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setLeveragePortfolioBenefitAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1068,7 +1081,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={projectPortfolioBenchmarkingLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setProjectPortfolioBenchmarkingLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1089,7 +1102,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={projectPortfolioBenchmarkingAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setProjectPortfolioBenchmarkingAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1118,7 +1131,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={manageDesignEngineeringLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setManageDesignEngineeringLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1139,7 +1152,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={manageDesignEngineeringAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setManageDesignEngineeringAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1188,7 +1201,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={developProjectExecutionStrategiesAndPlansLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setDevelopProjectExecutionStrategiesAndPlansLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1211,7 +1224,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={developProjectExecutionStrategiesAndPlansAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setDevelopProjectExecutionStrategiesAndPlansAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1248,7 +1261,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={contractAndContractorManagementLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setContractAndContractorManagementLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1269,7 +1282,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={contractAndContractorManagementAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setContractAndContractorManagementAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1298,7 +1311,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={setUpLeadProjectTeamsLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setSetUpLeadProjectTeamsLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1319,7 +1332,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={setUpLeadProjectTeamsAssessorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setSetUpLeadProjectTeamsAssessorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1356,7 +1369,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={workEfficientlyWithStakeholdersLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setWorkEfficientlyWithStakeholdersLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1377,7 +1390,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={workEfficientlyWithStakeholdersAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setWorkEfficientlyWithStakeholdersAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1406,7 +1419,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={manageProjectComplexitiesLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setManageProjectComplexitiesLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1427,7 +1440,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={manageProjectComplexitiesAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setManageProjectComplexitiesAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1456,7 +1469,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={manageQualityLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setManageQualityLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1474,7 +1487,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={manageQualityAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setManageQualityAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1515,7 +1528,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={implementProcurementLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setImplementProcurementLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1536,7 +1549,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={implementProcurementAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setImplementProcurementAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1565,7 +1578,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={manageFabricationLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setManageFabricationLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1586,7 +1599,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={manageFabricationAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setManageFabricationAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1615,7 +1628,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={planningAndSchedulingLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setPlanningAndSchedulingLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1636,7 +1649,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={planningAndSchedulingAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setPlanningAndSchedulingAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1665,7 +1678,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={manageCostsLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setManageCostsLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1683,7 +1696,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={manageCostsAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setManageCostsAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1709,7 +1722,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={costControlLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setCostControlLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1727,7 +1740,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={costControlAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setCostControlAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1753,7 +1766,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={deliverSuccessfulStartUpLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setDeliverSuccessfulStartUpLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1774,7 +1787,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={deliverSuccessfulStartUpAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setDeliverSuccessfulStartUpAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1803,7 +1816,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={handOverLineEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setHandOverLineEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1821,7 +1834,7 @@ const TFAssessment = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>
                 <select
                   value={handOverAssesorEntry}
-                  disabled={!user.isAdmin}
+                  disabled={!sessionUser.isAdmin}
                   onChange={({ target }) => setHandOverAssesorEntry(+target.value)}
                 >
                   {lineEntry.map((item) => (
@@ -1922,6 +1935,7 @@ export async function getServerSideProps(context: any) {
         return {
           props: {
             user: data,
+            sessionUser: session?.user,
           },
         }
       }

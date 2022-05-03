@@ -151,6 +151,15 @@ model Project {
   education                Educations[]
   supervisor               String?
   cvAssessmentFiles        CvAssessmentFiles[]
+  jcp                      String?
+  jcpNote                  String?
+  capexSize                String?
+  capexSizeNote            String?
+  flyingHours              String?
+  flyingHoursNote          String?
+  training                 String?
+  trainingNote             String?
+  remark                   String?
 
 }
 
