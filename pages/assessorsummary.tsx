@@ -42,7 +42,7 @@ const AccessorSummary: NextPage = ({ user }: any) => {
   }, [user])
 
   const stringArray = useMemo(() => {
-    return user.department?.projectLevel.split("-")
+    return user.department?.projectLevel.split(" - ")
   }, [user.department?.projectLevel])
   return (
     <div className="flex flex-col items-center justify-center w-screen h-full min-h-screen py-4 space-y-3 ">

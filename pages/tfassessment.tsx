@@ -346,7 +346,7 @@ const TFAssessment = ({ user, sessionUser }: any) => {
   }
   // const v = user.department?.projectLevel
   const stringArray = useMemo(() => {
-    return user.department?.projectLevel.split("-")
+    return user.department?.projectLevel.split(" - ")
   }, [user.department?.projectLevel])
 
   return (
