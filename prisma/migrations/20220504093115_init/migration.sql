@@ -140,6 +140,15 @@ CREATE TABLE `Project` (
     `secSkillPool` VARCHAR(191) NULL,
     `lastApprovedProjectLevel` VARCHAR(191) NULL,
     `supervisor` VARCHAR(191) NULL,
+    `jcp` VARCHAR(191) NULL,
+    `jcpNote` VARCHAR(191) NULL,
+    `capexSize` VARCHAR(191) NULL,
+    `capexSizeNote` VARCHAR(191) NULL,
+    `flyingHours` VARCHAR(191) NULL,
+    `flyingHoursNote` VARCHAR(191) NULL,
+    `training` VARCHAR(191) NULL,
+    `trainingNote` VARCHAR(191) NULL,
+    `remark` VARCHAR(191) NULL,
 
     UNIQUE INDEX `Project_userId_key`(`userId`),
     PRIMARY KEY (`id`)

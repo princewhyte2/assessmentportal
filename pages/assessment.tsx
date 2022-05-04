@@ -974,6 +974,7 @@ const Assessment = ({ user }: any) => {
                           <input
                             onChange={({ target }) => setManageFabrication(Number(target.value))}
                             value={1}
+                            name="manageFabrication"
                             type="radio"
                           />{" "}
                           Awareness = Can describe in basic terms
@@ -981,6 +982,7 @@ const Assessment = ({ user }: any) => {
 
                         <label className="block">
                           <input
+                            name="manageFabrication"
                             onChange={({ target }) => setManageFabrication(Number(target.value))}
                             value={2}
                             type="radio"
@@ -989,6 +991,7 @@ const Assessment = ({ user }: any) => {
                         </label>
                         <label className="block">
                           <input
+                            name="manageFabrication"
                             onChange={({ target }) => setManageFabrication(Number(target.value))}
                             value={3}
                             type="radio"
@@ -1015,6 +1018,7 @@ const Assessment = ({ user }: any) => {
                           <input
                             onChange={({ target }) => setCostControl(Number(target.value))}
                             value={1}
+                            name="costControl"
                             type="radio"
                           />{" "}
                           Awareness = Can describe in basic terms
@@ -1024,6 +1028,7 @@ const Assessment = ({ user }: any) => {
                           <input
                             onChange={({ target }) => setCostControl(Number(target.value))}
                             value={2}
+                            name="costControl"
                             type="radio"
                           />{" "}
                           Knowledge = Awareness plus, can explain and have an informed debate and participation
@@ -1032,6 +1037,7 @@ const Assessment = ({ user }: any) => {
                           <input
                             onChange={({ target }) => setCostControl(Number(target.value))}
                             value={3}
+                            name="costControl"
                             type="radio"
                           />{" "}
                           Skill = Knowledge plus, can do the work
@@ -1056,6 +1062,7 @@ const Assessment = ({ user }: any) => {
                           <input
                             onChange={({ target }) => setPlanningAndScheduling(Number(target.value))}
                             value={1}
+                            name="planningAndScheduling"
                             type="radio"
                           />{" "}
                           Awareness = Can describe in basic terms
@@ -1063,6 +1070,7 @@ const Assessment = ({ user }: any) => {
 
                         <label className="block">
                           <input
+                            name="planningAndScheduling"
                             onChange={({ target }) => setPlanningAndScheduling(Number(target.value))}
                             value={2}
                             type="radio"
@@ -1071,6 +1079,7 @@ const Assessment = ({ user }: any) => {
                         </label>
                         <label className="block">
                           <input
+                            name="planningAndScheduling"
                             onChange={({ target }) => setPlanningAndScheduling(Number(target.value))}
                             value={3}
                             type="radio"
@@ -1097,6 +1106,7 @@ const Assessment = ({ user }: any) => {
                           <input
                             onChange={({ target }) => setDeliverSuccessfulStartUp(Number(target.value))}
                             value={1}
+                            name="deliverSuccessfulStartUp"
                             type="radio"
                           />{" "}
                           Awareness = Can describe in basic terms
@@ -1104,6 +1114,7 @@ const Assessment = ({ user }: any) => {
 
                         <label className="block">
                           <input
+                            name="deliverSuccessfulStartUp"
                             onChange={({ target }) => setDeliverSuccessfulStartUp(Number(target.value))}
                             value={2}
                             type="radio"
@@ -1112,6 +1123,7 @@ const Assessment = ({ user }: any) => {
                         </label>
                         <label className="block">
                           <input
+                            name="deliverSuccessfulStartUp"
                             onChange={({ target }) => setDeliverSuccessfulStartUp(Number(target.value))}
                             value={3}
                             type="radio"
@@ -1135,16 +1147,31 @@ const Assessment = ({ user }: any) => {
                     <div className="flex items-center space-x-2">
                       <div className="flex-1 ">
                         <label className="block">
-                          <input onChange={({ target }) => setHandOver(Number(target.value))} value={1} type="radio" />{" "}
+                          <input
+                            name="handOver"
+                            onChange={({ target }) => setHandOver(Number(target.value))}
+                            value={1}
+                            type="radio"
+                          />{" "}
                           Awareness = Can describe in basic terms
                         </label>
 
                         <label className="block">
-                          <input onChange={({ target }) => setHandOver(Number(target.value))} value={2} type="radio" />{" "}
+                          <input
+                            name="handOver"
+                            onChange={({ target }) => setHandOver(Number(target.value))}
+                            value={2}
+                            type="radio"
+                          />{" "}
                           Knowledge = Awareness plus, can explain and have an informed debate and participation
                         </label>
                         <label className="block">
-                          <input onChange={({ target }) => setHandOver(Number(target.value))} value={3} type="radio" />{" "}
+                          <input
+                            name="handOver"
+                            onChange={({ target }) => setHandOver(Number(target.value))}
+                            value={3}
+                            type="radio"
+                          />{" "}
                           Skill = Knowledge plus, can do the work
                         </label>
                       </div>

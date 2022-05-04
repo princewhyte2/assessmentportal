@@ -4,15 +4,15 @@ import { getSession } from "next-auth/react"
 import { useEffect, useState } from "react"
 
 const AccessorSummary: NextPage = ({ user }: any) => {
-  const [jcp, setJcp] = useState(user.assessment.jcp ?? "no")
-  const [jcpNote, setJcpNote] = useState(user.assessment.jcpNote ?? "")
-  const [capexSize, setCapexSize] = useState(user.assessment.capexSize ?? "no")
-  const [capexSizeNote, setCapexSizeNote] = useState(user.assessment.capexSizeNote ?? "")
-  const [flyingHours, setFlyingHours] = useState(user.assessment.flyingHours ?? "no")
-  const [flyingHoursNote, setFlyingHoursNote] = useState(user.assessment.flyingHoursNote ?? "")
-  const [training, setTraining] = useState(user.assessment.training ?? "no")
-  const [trainingNote, setTrainingNote] = useState(user.assessment.trainingNote ?? "")
-  const [remark, setRemark] = useState(user.assessment.remark ?? "")
+  const [jcp, setJcp] = useState(user.project.jcp ?? "no")
+  const [jcpNote, setJcpNote] = useState(user.project.jcpNote ?? "")
+  const [capexSize, setCapexSize] = useState(user.project.capexSize ?? "no")
+  const [capexSizeNote, setCapexSizeNote] = useState(user.project.capexSizeNote ?? "")
+  const [flyingHours, setFlyingHours] = useState(user.project.flyingHours ?? "no")
+  const [flyingHoursNote, setFlyingHoursNote] = useState(user.project.flyingHoursNote ?? "")
+  const [training, setTraining] = useState(user.project.training ?? "no")
+  const [trainingNote, setTrainingNote] = useState(user.project.trainingNote ?? "")
+  const [remark, setRemark] = useState(user.project.remark ?? "")
   const [isLoading, setIsLoading] = useState(false)
 
   async function handleSave() {
@@ -29,9 +29,10 @@ const AccessorSummary: NextPage = ({ user }: any) => {
     }
     setIsLoading(true)
     try {
-      await axios.put(`/api/user/update/${user.id}`, data)
-      alert("Saved")
+      await axios.put(`/api/user/update/project/${user.id}`, data)
+      window.alert("Saved")
     } catch (error) {
+      window.alert("something went wrong")
       console.error(error)
     }
     setIsLoading(false)
@@ -40,7 +41,7 @@ const AccessorSummary: NextPage = ({ user }: any) => {
     console.log(user)
   }, [user])
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-full min-h-screen space-y-3 ">
+    <div className="flex flex-col items-center justify-center w-screen h-full min-h-screen py-4 space-y-3 ">
       <h1 className="text-xl font-extrabold ">PROJECT LEVEL ASSESSMENT - FINAL ASSESSMENT SHEET</h1>
       <div className="flex flex-col w-full max-w-3xl space-y-3">
         <div className="flex w-full ">
@@ -80,7 +81,7 @@ const AccessorSummary: NextPage = ({ user }: any) => {
             <td className="p-2 bg-yellow-300 border border-black">JCP</td>
             <td className="p-2 border border-black">Achieved </td>
             <td className="p-2 border border-black">
-              <select onChange={({ target }) => setJcp(target.value)} className="border-none outline-none ">
+              <select value={jcp} onChange={({ target }) => setJcp(target.value)} className="border-none outline-none ">
                 <option value={"yes"}>Yes</option>
                 <option value={"no"}>No</option>
               </select>
@@ -122,7 +123,11 @@ const AccessorSummary: NextPage = ({ user }: any) => {
             <td className="p-2 bg-yellow-300 border border-black">Flying Hours</td>
             <td className="p-2 border border-black">3 years with a single point</td>
             <td className="p-2 border border-black">
-              <select onChange={({ target }) => setFlyingHours(target.value)} className="border-none outline-none ">
+              <select
+                value={flyingHours}
+                onChange={({ target }) => setFlyingHours(target.value)}
+                className="border-none outline-none "
+              >
                 <option value={"yes"}>Yes</option>
                 <option value={"no"}>No</option>
               </select>
@@ -141,7 +146,11 @@ const AccessorSummary: NextPage = ({ user }: any) => {
             <td className="p-2 bg-yellow-300 border border-black">Training</td>
             <td className="p-2 border border-black">Managing Access</td>
             <td className="p-2 border border-black">
-              <select onChange={({ target }) => setTraining(target.value)} className="border-none outline-none ">
+              <select
+                value={training}
+                onChange={({ target }) => setTraining(target.value)}
+                className="border-none outline-none "
+              >
                 <option value={"yes"}>Yes</option>
                 <option value={"no"}>No</option>
               </select>

@@ -20,9 +20,9 @@ export default NextAuth({
         console.log("user info", userInfo)
         //check credential.username if it matches username
         if (!credentials?.email) throw new Error("Invalid User details")
-        if (credentials.email !== userInfo) throw new Error("Invalid details")
-        if (credentials.email === userInfo) {
-          // if (credentials.email) {
+        // if (credentials.email !== userInfo) throw new Error("Invalid details")
+        // if (credentials.email === userInfo) {
+        if (credentials.email) {
           const user = await prisma.user.findUnique({
             where: {
               // username: userInfo,
