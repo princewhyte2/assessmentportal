@@ -126,6 +126,21 @@ const Project = ({ user }: any) => {
       window.alert("Please enter a valid email")
       return
     }
+    if (
+      !fullName ||
+      !jobTitle ||
+      !yrsOfExp ||
+      !priSkillPool ||
+      !secSkillPool ||
+      !lastApprovedProjectLevel ||
+      !relevantTrainings ||
+      !education ||
+      !supervisor
+    ) {
+      window.alert("you have empty fields")
+      return
+    }
+
     const response = window.confirm("Are you sure all fields are filled correctly ?")
     if (!response) return
     setIsLoading(true)
