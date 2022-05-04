@@ -26,20 +26,20 @@ const General = ({ users }: any) => {
     <div className="min-h-screen h-full px-20 pb-10 bg-gray-500">
       <h2 className="text-center">Assessment</h2>
       <h3 className="mt-6">General Information</h3>
-      <div className="flex justify-between mb-6">
-        <div className="flex space-x-3 items-center">
-          {/* <div className="px-2 bg-white">
+      <div className="flex justify-center mb-6">
+        {/* <div className="flex space-x-3 items-center">
+          <div className="px-2 bg-white">
             <select className="bg-transparent">
               <option>All properties</option>
             </select>
-          </div> */}
+          </div> 
           <div className="px-2 bg-white">
             <select className="bg-transparent">
               <option>Today</option>
             </select>
           </div>
           <button className="px-2 bg-white">filter</button>
-        </div>
+        </div>  */}
         <div className="flex space-x-3 items-center">
           <button
             onClick={() => setActiveMenu("General")}
@@ -60,14 +60,14 @@ const General = ({ users }: any) => {
             Summary
           </button> */}
         </div>
-        <div className="flex items-center space-x-3">
-          {/* <button className="p-2 bg-green-400">+ ADD ITEM</button> */}
+        {/* <div className="flex items-center space-x-3">
+          <button className="p-2 bg-green-400">+ ADD ITEM</button>
           <div className="p-2 bg-black">
             <select className="bg-transparent text-white">
               <option>Export</option>
             </select>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="flex mb-2 bg-green-300 px-3 space-x-6">
         <div>

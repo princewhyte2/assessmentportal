@@ -489,7 +489,7 @@ const TFAssessment = ({ user, sessionUser }: any) => {
             </div>
             <div className="flex items-center">
               <div className="p-3 border-r border-black">Ref Indicator</div>
-              <div className="p-3 border-r border-black">{user.project?.refIndicator ?? ""}</div>
+              <div className="p-3 ">{user.project?.refIndicator ?? ""}</div>
             </div>
           </div>
           <div className="flex mt-3 border border-black">
@@ -501,7 +501,7 @@ const TFAssessment = ({ user, sessionUser }: any) => {
             </div>
             <div className="flex items-center">
               <div className="p-3 border-r border-black">Assessment Date</div>
-              <div className="p-3 border-r border-black">{new Date(user.assessment.createdAt).toDateString()}</div>
+              <div className="p-3 ">{new Date(user.assessment.createdAt).toDateString()}</div>
             </div>
           </div>
           <div className="flex mt-3 border border-black">
@@ -513,7 +513,7 @@ const TFAssessment = ({ user, sessionUser }: any) => {
           <div className="flex mt-3 border border-black">
             <div className="flex items-center">
               <div className="p-3 border-r border-black">Project Level</div>
-              <div className="p-3 border-r border-black">{user.department?.projectLevel ?? ""}</div>
+              <div className="p-3 ">{user.department?.projectLevel ?? ""}</div>
             </div>
           </div>
         </div>
