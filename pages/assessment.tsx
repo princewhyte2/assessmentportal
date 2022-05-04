@@ -104,6 +104,55 @@ const Assessment = ({ user }: any) => {
 
   const handleContinue = async (e: any) => {
     e.preventDefault()
+    if (department === "TF") {
+      if (
+        !evaluateAndFrameOpportunities ||
+        !deliverCommercialValue ||
+        !LeadInterfaceManagement ||
+        !driveProjectPerformance ||
+        !leveragePortfolioBenefit ||
+        !projectPortfolioBenchmarking ||
+        !manageDesignEngineering ||
+        !developProjectExecutionStrategiesAndPlans ||
+        !contractAndContractorManagement ||
+        !setUpLeadProjectTeams ||
+        !workEfficientlyWithStakeholders ||
+        !manageProjectComplexities ||
+        !manageCosts
+      ) {
+        window.alert("you have empty fields")
+        return
+      }
+    } else {
+      if (
+        !evaluateAndFrameOpportunities ||
+        !deliverCommercialValue ||
+        !costEstimating ||
+        !probablisticCost ||
+        !driveProjectPerformance ||
+        !projectRiskManagement ||
+        !leveragePortfolioBenefit ||
+        !projectPortfolioBenchmarking ||
+        !manageDesignEngineering ||
+        !developProjectExecutionStrategiesAndPlans ||
+        !contractAndContractorManagement ||
+        !setUpLeadProjectTeams ||
+        !workEfficientlyWithStakeholders ||
+        !manageProjectComplexities ||
+        !manageQuality ||
+        !implementProcurement ||
+        !manageFabrication ||
+        !planningAndScheduling ||
+        !manageCosts ||
+        !costControl ||
+        !deliverSuccessfulStartUp ||
+        !handOver ||
+        !competitiveAndAffordableScope
+      ) {
+        window.alert("you have empty fields")
+        return
+      }
+    }
     const response = window.confirm("Are you sure all fields are filled correctly ?")
     if (!response) return
     setIsLoading(true)
