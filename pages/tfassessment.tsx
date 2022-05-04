@@ -375,7 +375,7 @@ const TFAssessment = ({ user, sessionUser }: any) => {
           <div className="flex mt-3 border border-black">
             <div className="flex items-center">
               <div className="p-3 border-r border-black">PL Designation</div>
-              <div className="p-3 border-r border-black">Front End Engineer</div>
+              <div className="p-3 "></div>
             </div>
           </div>
           <div className="flex mt-3 border border-black">

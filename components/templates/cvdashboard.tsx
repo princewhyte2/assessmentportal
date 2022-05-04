@@ -12,6 +12,13 @@ const CvDashboard = ({ user }: any) => {
         col5: user?.project?.secSkillPool ?? "",
         col6: user?.project?.lastApprovedProjectLevel ?? "",
         col7: user?.project?.supervisor ?? "",
+        col8: user?.project?.cvAssessmentFiles.length
+          ? user?.project?.cvAssessmentFiles.map((file: any) => (
+              <a key={file.id} target={"_blank"} rel="noreferrer" href={file.file}>
+                view
+              </a>
+            ))
+          : "",
       },
     ],
     [
@@ -22,6 +29,7 @@ const CvDashboard = ({ user }: any) => {
       user?.project?.refIndicator,
       user?.project?.secSkillPool,
       user?.project?.supervisor,
+      user?.project?.cvAssessmentFiles,
     ],
   )
   const columns: any = useMemo(
@@ -53,6 +61,10 @@ const CvDashboard = ({ user }: any) => {
       {
         Header: "Supervisor",
         accessor: "col7",
+      },
+      {
+        Header: "CV",
+        accessor: "col8",
       },
     ],
     [],

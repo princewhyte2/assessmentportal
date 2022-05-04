@@ -276,6 +276,50 @@ const Assessment = ({ user }: any) => {
                   </div>
                 </div>
               </section>
+              <section>
+                <h3>Drive Project Performance</h3>
+                <div className="flex items-center space-x-2">
+                  <div className="flex-1">
+                    <label className="block">
+                      <input
+                        onChange={({ target }) => setDriveProjectPerformance(Number(target.value))}
+                        value={1}
+                        name="driveProjectPerformance"
+                        type="radio"
+                      />{" "}
+                      Awareness = Can describe in basic terms
+                    </label>
+
+                    <label className="block">
+                      <input
+                        onChange={({ target }) => setDriveProjectPerformance(Number(target.value))}
+                        value={2}
+                        name="driveProjectPerformance"
+                        type="radio"
+                      />{" "}
+                      Knowledge = Awareness plus, can explain and have an informed debate and participation
+                    </label>
+                    <label className="block">
+                      <input
+                        onChange={({ target }) => setDriveProjectPerformance(Number(target.value))}
+                        value={3}
+                        name="driveProjectPerformance"
+                        type="radio"
+                      />{" "}
+                      Skill = Knowledge plus, can do the work
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      onChange={({ target }) =>
+                        target?.files?.length ? setDriveProjectPerformanceFile(target.files[0]) : null
+                      }
+                      type={"file"}
+                      placeholder="File:Attach file evidence"
+                    />
+                  </div>
+                </div>
+              </section>
               {department === "TP" && (
                 <>
                   <section>
@@ -359,50 +403,6 @@ const Assessment = ({ user }: any) => {
                         <input
                           onChange={({ target }) =>
                             target?.files?.length ? setProbablisticCostFile(target.files[0]) : null
-                          }
-                          type={"file"}
-                          placeholder="File:Attach file evidence"
-                        />
-                      </div>
-                    </div>
-                  </section>
-                  <section>
-                    <h3>Drive Project Performance</h3>
-                    <div className="flex items-center space-x-2">
-                      <div className="flex-1">
-                        <label className="block">
-                          <input
-                            onChange={({ target }) => setDriveProjectPerformance(Number(target.value))}
-                            value={1}
-                            name="driveProjectPerformance"
-                            type="radio"
-                          />{" "}
-                          Awareness = Can describe in basic terms
-                        </label>
-
-                        <label className="block">
-                          <input
-                            onChange={({ target }) => setDriveProjectPerformance(Number(target.value))}
-                            value={2}
-                            name="driveProjectPerformance"
-                            type="radio"
-                          />{" "}
-                          Knowledge = Awareness plus, can explain and have an informed debate and participation
-                        </label>
-                        <label className="block">
-                          <input
-                            onChange={({ target }) => setDriveProjectPerformance(Number(target.value))}
-                            value={3}
-                            name="driveProjectPerformance"
-                            type="radio"
-                          />{" "}
-                          Skill = Knowledge plus, can do the work
-                        </label>
-                      </div>
-                      <div>
-                        <input
-                          onChange={({ target }) =>
-                            target?.files?.length ? setDriveProjectPerformanceFile(target.files[0]) : null
                           }
                           type={"file"}
                           placeholder="File:Attach file evidence"
