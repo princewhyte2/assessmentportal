@@ -1,7 +1,7 @@
 import type { NextPage } from "next"
 import axios from "axios"
 import { getSession } from "next-auth/react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 
 const AccessorSummary: NextPage = ({ user }: any) => {
   const [jcp, setJcp] = useState(user.project.jcp ?? "no")
@@ -40,6 +40,10 @@ const AccessorSummary: NextPage = ({ user }: any) => {
   useEffect(() => {
     console.log(user)
   }, [user])
+
+  const stringArray = useMemo(() => {
+    return user.department?.projectLevel.split("-")
+  }, [user.department?.projectLevel])
   return (
     <div className="flex flex-col items-center justify-center w-screen h-full min-h-screen py-4 space-y-3 ">
       <h1 className="text-xl font-extrabold ">PROJECT LEVEL ASSESSMENT - FINAL ASSESSMENT SHEET</h1>
@@ -50,7 +54,7 @@ const AccessorSummary: NextPage = ({ user }: any) => {
         </div>
         <div className="flex w-full ">
           <h2 className="w-2/5 p-3 text-black bg-orange-300">Department/Section</h2>
-          <h2 className="w-3/5 p-3 text-black bg-yellow-400">{user.department.name} </h2>
+          <h2 className="w-3/5 p-3 text-black bg-yellow-400">{stringArray[0]} </h2>
         </div>
         <div className="flex w-full ">
           <h2 className="w-2/5 p-3 text-black bg-orange-300">Assessor Name</h2>
@@ -64,7 +68,7 @@ const AccessorSummary: NextPage = ({ user }: any) => {
         </div>
         <div className="flex w-full ">
           <h2 className="w-2/5 p-3 text-black bg-orange-300">Target Level</h2>
-          <h2 className="w-3/5 p-3 text-black bg-yellow-400">{user.department.projectLevel}</h2>
+          <h2 className="w-3/5 p-3 text-black bg-yellow-400">{stringArray[1]}</h2>
         </div>
       </div>
       <table>

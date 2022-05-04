@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 import EducationTable from "../components/templates/EducationTable"
 import SummaryTable from "../components/templates/SummaryTable"
 import CvDashboard from "../components/templates/cvdashboard"
@@ -476,6 +476,9 @@ const TFAssessment = ({ user, sessionUser }: any) => {
     }
     saveLine(data)
   }
+  const stringArray = useMemo(() => {
+    return user.department?.projectLevel.split("-")
+  }, [user.department?.projectLevel])
 
   return (
     <div className="flex flex-col items-center justify-center w-screen h-full min-h-screen ">
@@ -507,13 +510,13 @@ const TFAssessment = ({ user, sessionUser }: any) => {
           <div className="flex mt-3 border border-black">
             <div className="flex items-center">
               <div className="p-3 border-r border-black">PL Designation</div>
-              <div className="p-3 "></div>
+              <div className="p-3 ">{stringArray[0]}</div>
             </div>
           </div>
           <div className="flex mt-3 border border-black">
             <div className="flex items-center">
               <div className="p-3 border-r border-black">Project Level</div>
-              <div className="p-3 ">{user.department?.projectLevel ?? ""}</div>
+              <div className="p-3 ">{stringArray[1]}</div>
             </div>
           </div>
         </div>
