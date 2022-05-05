@@ -15,7 +15,7 @@ const Department = ({ user }: any) => {
     "Project Practioner - Level 2",
     "Project Services - Level 1",
     "Project Services - Level 2",
-    "Project Services - Level 3",
+    "Project Practitioner - Level 3",
   ]
 
   const handleSubmitDepartment = async (e: any) => {

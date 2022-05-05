@@ -25,7 +25,7 @@ const UserGeneral = ({ user }: any) => {
   return (
     <div className="min-h-screen px-20 bg-gray-500">
       <h2 className="text-center">Assessment</h2>
-      <h3 className="mt-6">General Information</h3>
+      {/* <h3 className="mt-6">General Information</h3> */}
       <div className="flex justify-center  mb-6">
         {/* <div className="flex space-x-3 items-center">
           <div className="px-2 bg-white">
@@ -65,9 +65,9 @@ const UserGeneral = ({ user }: any) => {
         </div> */}
       </div>
       <div className="flex mb-2 bg-green-300 px-3 space-x-6">
-        <div>
+        {/* <div>
           <input type={"checkbox"} />
-        </div>
+        </div> */}
         <div className="w-[60px]">Full name</div>
         <div className="w-28">Ref.</div>
         <div className="w-[60px]">Job Role</div>
@@ -78,9 +78,9 @@ const UserGeneral = ({ user }: any) => {
         <div className="flex-1"></div>
       </div>
       <div key={user.id} className="flex bg-white p-3 space-x-6">
-        <div>
+        {/* <div>
           <input type={"checkbox"} />
-        </div>
+        </div> */}
         <div className="break-words w-[60px]">{user.project?.fullName}</div>
         <div className=" break-words w-28">{user.project?.email}</div>
         <div className="w-[60px]">{user.project?.jobTitle ?? ""}</div>

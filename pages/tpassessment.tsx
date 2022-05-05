@@ -144,7 +144,7 @@ function getTargetLevel(projectLevel: string) {
       return pthree
     case "Project Practioner - Level 2":
       return ptwo
-    case "Project Services - Level 3":
+    case "Project Practitioner - Level 3":
       return pone
     default:
       break
@@ -161,7 +161,7 @@ function getCompetenceLevel(projectLevel: string) {
       return 3
     case "Project Practioner - Level 2":
       return 4
-    case "Project Services - Level 3":
+    case "Project Practitioner - Level 3":
       return 5
     default:
       break
