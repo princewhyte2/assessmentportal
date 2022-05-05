@@ -154,15 +154,15 @@ function getTargetLevel(projectLevel: string) {
 function getCompetenceLevel(projectLevel: string) {
   switch (projectLevel) {
     case "Project Practitioner  - Level 1":
-      return 2
+      return 1
     case "Project Services - Level 1":
       return 1
     case "Project Services - Level 2":
-      return 3
+      return 2
     case "Project Practioner - Level 2":
-      return 4
+      return 2
     case "Project Practitioner - Level 3":
-      return 5
+      return 3
     default:
       break
   }

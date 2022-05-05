@@ -127,13 +127,15 @@ const Project = ({ user }: any) => {
       return
     }
     if (
+      !education.length ||
+      !projects.length ||
       !fullName ||
       !jobTitle ||
       !yrsOfExp ||
       !priSkillPool ||
       !secSkillPool ||
       !lastApprovedProjectLevel ||
-      !relevantTrainings ||
+      !relevantTrainings.length ||
       !education ||
       !supervisor
     ) {
