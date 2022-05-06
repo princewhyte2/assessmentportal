@@ -198,7 +198,7 @@ const AccessorSummary: NextPage = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>Employee</td>
               <td style={{ border: "1px solid black" }}>
                 {/* <input type={"text"} /> */}
-                {/* {user.project.fullName} */}
+                {user.project.fullName}
               </td>
               <td style={{ border: "1px solid black" }}>
                 <input type={"text"} />
@@ -223,7 +223,7 @@ const AccessorSummary: NextPage = ({ user }: any) => {
               <td style={{ border: "1px solid black" }}>Supervisor</td>
               <td style={{ border: "1px solid black" }}>
                 {/* <input type={"text"} /> */}
-                {/* {user.project.supervisor} */}
+                {user.project.supervisor}
               </td>
               <td style={{ border: "1px solid black" }}>
                 <input type={"text"} />
